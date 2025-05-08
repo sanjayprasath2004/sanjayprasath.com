@@ -3,294 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sanjay Prasath | Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <title>Sanjay Prasath - Portfolio</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
-      line-height: 1.6;
-    }
-    header {
-      background: #1e293b;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-      animation: fadeInDown 1.5s ease-in-out;
-    }
-    header nav a {
-      color: #60a5fa;
-      margin: 0 1rem;
-      text-decoration: none;
-    }
-    section {
-      padding: 3rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .intro {
-      background: linear-gradient(135deg, #1e3a8a, #0f172a);
-      flex-direction: row;
-    }
-    .left {
-      flex: 1;
-      max-width: 500px;
-      animation: slideInLeft 1.5s ease;
-    }
-    .right {
-      flex: 1;
-      text-align: right;
-      animation: slideInRight 1.5s ease;
-    }
-    .right img {
-      width: 350px;
-      border-radius: 15px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-    .links a {
-      display: block;
-      margin: 0.5rem 0;
-      color: #93c5fd;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .about, .education, .skills, .projects, .contact, .final-quote {
-      background: #1e293b;
-      flex-direction: column;
-      text-align: center;
-      display: flex;
-    }
-    .section-title {
-      font-size: 2rem;
-      color: #60a5fa;
-      margin-bottom: 1rem;
-    }
-    .edu-container, .skills-grid, .project-grid {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .clg-logo {
-      width: 80px;
-      margin-right: 1rem;
-    }
-    .skill-card, .project-card {
-      background: #334155;
-      padding: 1rem;
-      border-radius: 12px;
-      width: 180px;
-      text-align: center;
-    }
-    .skill-card img, .project-card img {
-      width: 50px;
-    }
-    .btn {
-      margin: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: #3b82f6;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-    .final-quote {
-      font-style: italic;
-      font-size: 1.4rem;
-      margin-top: 1rem;
-    }
-    footer {
-      background: #1e293b;
-      text-align: center;
-      padding: 1rem;
-      color: #cbd5e1;
-    }
-    /* Contact Form Styles */
-    .contact-form {
-      background: #334155;
-      padding: 2rem;
-      border-radius: 8px;
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      padding: 0.75rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      width: 100%;
-    }
-    .contact-form button {
-      padding: 0.75rem;
-      border-radius: 5px;
-      border: none;
-      background-color: #3b82f6;
-      color: white;
-      font-size: 1.1rem;
-      cursor: pointer;
-    }
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideInLeft {
-      0% { opacity: 0; transform: translateX(-100px); }
-      100% { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes slideInRight {
-      0% { opacity: 0; transform: translateX(100px); }
-      100% { opacity: 1; transform: translateX(0); }
-    }
-    /* Contact Form Styles */
-    .contact-form {
-      background: #334155;
-      padding: 2rem;
-      border-radius: 8px;
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      padding: 0.75rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      width: 100%;
-    }
-    .contact-form button {
-      padding: 0.75rem;
-      border-radius: 5px;
-      border: none;
-      background-color: #3b82f6;
-      color: white;
-      font-size: 1.1rem;
-      cursor: pointer;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background: #0e1a2b; color: #f5f5f5; scroll-behavior: smooth; }
+    header { background: #14243d; padding: 20px; text-align: center; border-bottom: 2px solid #2f4c6d; animation: fadeIn 1s ease-in-out; }
+    header h1 { color: #00ffc3; font-size: 2rem; }
+
+    section { padding: 40px 20px; border-bottom: 1px solid #223b56; }
+    h2 { font-size: 1.8rem; color: #00ffc3; margin-bottom: 15px; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
+
+    .about-container, .skills, .projects { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: auto; }
+
+    .about-photo img { width: 200px; height: 200px; border-radius: 50%; border: 3px solid #00ffc3; object-fit: cover; transition: transform 0.3s ease; }
+    .about-photo img:hover { transform: scale(1.1); }
+
+    .about-text { flex: 1; min-width: 250px; text-align: justify; }
+    .about-links { margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap; }
+    .about-links a { color: #00ffc3; text-decoration: none; display: flex; align-items: center; gap: 5px; background: #1b2e47; padding: 8px 12px; border-radius: 5px; transition: background 0.3s, transform 0.3s; }
+    .about-links a:hover { background: #00ffc3; color: #000; transform: scale(1.1); }
+
+    .about-links img { width: 20px; height: 20px; }
+
+    .card { background: #1b2e47; padding: 20px; border-radius: 10px; width: 220px; box-shadow: 0 0 10px #00ffc3aa; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center; }
+    .card:hover { transform: scale(1.05); box-shadow: 0 0 15px #00ffc3; }
+    .card img { width: 50px; height: 50px; margin-bottom: 10px; }
+
+    .card-buttons { display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+    .card-buttons a { background: #00ffc3; color: #000; padding: 5px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s, transform 0.3s; }
+    .card-buttons a:hover { background: #00bfa5; transform: scale(1.1); }
+
+    .contact { max-width: 600px; margin: auto; animation: fadeIn 1.5s ease-in-out; }
+    .contact input, .contact textarea { width: 100%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; background: #203a58; color: white; }
+    .contact button { background: #00ffc3; color: #000; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 15px; cursor: pointer; font-weight: bold; transition: background 0.3s ease, transform 0.3s ease; }
+    .contact button:hover { background: #00bfa5; transform: scale(1.05); }
+
+    footer { text-align: center; padding: 15px; background: #0b1729; font-size: 0.9rem; animation: fadeIn 2s ease-in-out; }
+    footer p { color: #00ffc3; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Sanjay Prasath</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section class="intro">
-    <div class="left">
-      <h2>Hello, I'm <strong>Sanjay Prasath</strong></h2>
-      <p>A passionate developer eager to learn and grow every day.</p>
-      <div class="links">
-        <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        <a href="your-resume.pdf" download><i class="fas fa-file-alt"></i> Resume</a>
+<header>
+  <h1>Sanjay Prasath - Web Developer</h1>
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about-container">
+    <div class="about-photo">
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQFt-CpY2lZg3w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727794972713?e=1752105600&v=beta&t=4-N5IAQgpPNk7A3ip9lUEPNFkIQ8-qXtuK8WBklTj3k" alt="Sanjay Prasath">
+    </div>
+    <div class="about-text">
+      <p>I am Sanjay Prasath, a recent graduate with a Bachelor of Computer Applications (BCA). I have a strong foundation in computer science and hands-on skills in web development, software testing, and data science. I have completed several certification courses to enhance my technical expertise. I am passionate about solving problems, learning new technologies, and building efficient digital solutions.</p>
+      <div class="about-links">
+        <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/"><img src="https://cdn.iconscout.com/icon/free/png-256/free-linkedin-circle-logo-icon-download-in-svg-png-gif-file-formats--social-media-pack-logos-icons-1583140.png?f=webp" alt="LinkedIn">LinkedIn</a>
+        <a href="https://github.com/sanjayprasath2004"><img src="https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png" alt="GitHub">GitHub</a>
+        <a href="https://drive.google.com/drive/folders/1aNmiy2wZfitNdp0bGekI20H3uyh1JSxd?usp=drive_link"><img src="https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-vector-resume-icon-png-image_927259.jpg" alt="Resume">Resume</a>
       </div>
     </div>
-    <div class="right">
-      <img src="b4b2c360-1cfc-4e76-9c29-21a5852f1b30.png" alt="Your Real Photo" />
-    </div>
-  </section>
+  </div>
+</section>
 
-  <section class="about" id="about">
-    <h2 class="section-title">About Me</h2>
-    <div style="display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
-      <div class="left" style="flex: 1;">
-        <p>I am Sanjay Prasath, a dedicated and results-driven individual with a strong passion for technology, innovation, and continuous improvement. I possess a well-rounded skill set in areas such as web development, software testing, data analysis, and digital communication.</p>
-        <p>My ability to quickly adapt to new tools and technologies, combined with a problem-solving mindset, allows me to contribute effectively in dynamic and fast-paced environments.</p>
-        <p>With experience in leadership and team-based roles, I bring strong organizational, communication, and interpersonal skills. I thrive in collaborative settings and am always eager to take on new challenges that push me to grow both professionally and personally. I am committed to delivering high-quality outcomes and making a meaningful impact through my work.</p>
-      </div>
-      <div class="right" style="flex: 1; text-align: right;">
-        <img src="b4b2c360-1cfc-4e76-9c29-21a5852f1b30.png" alt="Your Real Photo" />
-      </div>
+<section id="education">
+  <h2>Education</h2>
+  <div class="skills">
+    <div class="card">
+      <img src="https://www.careerguide.com/career/wp-content/uploads/2023/04/Vellore_Institute_of_Technology_seal_2017.svg.png" alt="VIT Logo" />
+      <p>Vellore Institute of Technology</p>
+      <p>Bachelor of Computer Applications</p>
+      <p>2022 - 2025</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="education" id="education">
-    <h2 class="section-title">Education</h2>
-    <div class="edu-container">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Vellore_Institute_of_Technology_seal_2017.svg/1200px-Vellore_Institute_of_Technology_seal_2017.svg.png" alt="VIT University Logo" class="clg-logo">
-      <div>
-        <p><strong>VIT University</strong><br/>Bachelor's of Computer Application (BCA)<br/>2021 - 2025</p>
-      </div>
-    </div>
-  </section>
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5"><p>HTML5</p></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3"><p>CSS3</p></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png" alt="C"><p>C</p></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png" alt="C++"><p>C++</p></div>
+    <div class="card"><img src="https://firebase.google.com/images/brand-guidelines/logo-vertical.png" alt="Firebase"><p>Firebase</p></div>
+  </div>
+</section>
 
-  <section class="skills" id="skills">
-    <h2 class="section-title">Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <img src="https://img.icons8.com/color/48/html-5--v1.png" alt="HTML">
-        <p>HTML</p>
-      </div>
-      <div class="skill-card">
-        <img src="https://img.icons8.com/color/48/css3.png" alt="CSS">
-        <p>CSS</p>
-      </div>
-      <div class="skill-card">
-        <img src="https://img.icons8.com/color/48/javascript--v1.png" alt="JavaScript">
-        <p>JavaScript</p>
-      </div>
-      <div class="skill-card">
-        <img src="https://img.icons8.com/color/48/firebase.png" alt="Firebase">
-        <p>Firebase</p>
-      </div>
-      <div class="skill-card">
-        <img src="https://img.icons8.com/external-flat-juicy-fish/64/external-canva-social-media-marketing-flat-flat-juicy-fish.png" alt="Canva">
-        <p>Canva</p>
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>My Portfolio</h3>
+      <div class="card-buttons">
+        <a href="https://sanjayprasath2004.github.io/sanjayprasath.com/">Demo</a><a href="https://github.com/sanjayprasath2004/sanjayprasath.com.git">Code</a>
       </div>
     </div>
-  </section>
-
-  <section class="projects" id="projects">
-    <h2 class="section-title">Projects</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <img src="your-image-path/epharmacy-project.png" alt="E-Pharmacy Project" />
-        <h3>E-Pharmacy</h3>
-      </div>
-      <div class="project-card">
-        <img src="your-image-path/newyear-landing-page.png" alt="New Year Landing Page" />
-        <h3>New Year Landing Page</h3>
-      </div>
-      <div class="project-card">
-        <img src="your-image-path/portfolio-project.png" alt="My Portfolio" />
-        <h3>My Portfolio</h3>
+    <div class="card">
+      <h3>ePharmacy with Chatbot</h3>
+      <div class="card-buttons">
+        <a href="https://easypharm-82073.firebaseapp.com/">Demo</a><a href="https://github.com/sanjayprasath2004/E-pharmacy-with-chatbot.git">Code</a>
       </div>
     </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <h2 class="section-title">Contact Me</h2>
-    <div class="contact-form">
-      <input type="text" placeholder="Your Name" />
-      <input type="email" placeholder="Your Email" />
-      <textarea placeholder="Your Message"></textarea>
-      <button>Send Message</button>
+    <div class="card">
+      <h3>Landing Page</h3>
+      <div class="card-buttons">
+        <a href="https://sanjayprasath2004.github.io/newyear/">Demo</a><a href="https://github.com/sanjayprasath2004/newyear.git">Code</a>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="final-quote">
-    <p>"Strive for progress, not perfection."</p>
-  </section>
+<section id="certifications">
+  <h2>Certifications</h2>
+  <div class="skills">
+    <div class="card">
+      <h3> HP LIFE 'IT for Business Success' course</h3>
+      <p>HP LIFE</p>
+      <div class="card-buttons">
+        <a href="https://media.licdn.com/dms/image/v2/D5622AQGU2_m1Vbyemw/feedshare-shrink_1280/feedshare-shrink_1280/0/1729698334376?e=1749686400&v=beta&t=Rs5v0Rveki3LDF2-UbZuMnWoe15booKpc2cTGwYKSPo">View</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Software Testing Tutorial</h3>
+      <p>Grand learning </p>
+      <div class="card-buttons">
+        <a href="https://media.licdn.com/dms/image/v2/D5622AQG9hz5kCGNj0w/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1721919906684?e=1749686400&v=beta&t=_bBwvIIdf_tr5M1jQ1PWg8V4U7D3rDC5nbl4cYBrF6M">View</a>
+      </div>
+       <div class="card">
+      <h3>Web design course</h3>
+      <p>Grand learning </p>
+      <div class="card-buttons">
+        <a href="https://drive.google.com/file/d/1KTfKavjERnYINGyJvk2jcS4uvRWP2IsG/view?usp=sharing">View</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Software Testing</h3>
+      <p>NPTEL</p>
+      <div class="card-buttons">
+        <a href="#">View</a><a href="#">Download</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 Sanjay Prasath | All Rights Reserved</p>
-  </footer>
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact">
+    <form id="contact-form">
+      <input type="text" name="user_name" placeholder="Your Name" required>
+      <input type="email" name="user_email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="status-message"></div>
+  </div>
+</section>
+
+<script>
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    emailjs.sendForm('service_aqptnhq', 'template_klf3e11', this)
+      .then(() => {
+        document.getElementById("status-message").innerText = "✅ Message sent successfully!";
+        this.reset();
+      }, (error) => {
+        document.getElementById("status-message").innerText = "❌ Failed to send. Please try again.";
+        console.error('EmailJS Error:', error);
+      });
+  });
+</script>
+
+
+<footer>
+  <p>&copy; 2025 Sanjay Prasath. All Rights Reserved.</p>
+</footer>
+
 </body>
 </html>
