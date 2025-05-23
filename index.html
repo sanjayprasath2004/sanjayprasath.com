@@ -127,6 +127,210 @@
     </div>
   </div>
 </section>
+  <title>Volunteering Section</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e1a2b;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h2.section-title {
+      margin-bottom: 25px;
+      font-weight: 700;
+      color: #00ffc3;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .volunteer-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      background: #1a2b40;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 850px;
+      width: 100%;
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.2);
+    }
+
+    .volunteer-photos {
+      flex: 1;
+      max-width: 260px;
+    }
+
+    .volunteer-photos img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: none;
+      box-shadow: 0 0 10px rgba(0, 255, 195, 0.3);
+    }
+
+    .volunteer-photos img.active {
+      display: block;
+    }
+
+    .volunteer-about {
+      flex: 1;
+      max-width: 450px;
+    }
+
+    .volunteer-about p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .volunteer-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00ffc3;
+      border: none;
+      color: #0e1a2b;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .volunteer-button:hover {
+      background: #00d5aa;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background-color: #1a2b40;
+      margin: 10% auto;
+      padding: 20px;
+      border: 2px solid #00ffc3;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      color: #fff;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: #00ffc3;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .modal-content button {
+      background: #00ffc3;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 10px;
+      color: #0e1a2b;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .modal-content button:hover {
+      background: #00d5aa;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 class="section-title">Get Involved: Volunteering Opportunities</h2>
+
+  <section class="volunteer-section">
+    <div class="volunteer-photos">
+      <img src="https://photos.google.com/photo/AF1QipO9odWYS2O7e_1uwDzzF426Ke6Wc4s0bVDnE1MP" class="active" alt="Volunteer 1">
+      <img src="https://photos.google.com/photo/AF1QipMtvjSIyIP-aZhrbzaXLm4NOM6vQjwVm_XuIsqg" alt="Volunteer 2">
+      <img src="https://photos.google.com/photo/AF1QipN--4W_nNVezXC5_56uKkZytM1K8Lbjj1eXOYvU" alt="Volunteer 3">
+    </div>
+    <div class="volunteer-about">
+      <p>NSS CAMP
+
+As a NSS volunteer we have done  Tree Plantation Drive: Planted over 100 trees in the Vandathagal village near Vellore, Tamil Nadu, contributing to environmental conservation and enhancing the local ecosystem.
+
+Village Clean-up: Led a team in cleaning and beautifying the Vandathagal village, promoting cleanliness and hygiene among the residents.
+
+Awareness Campaigns: Conducted awareness programs on the importance of voting, encouraging civic participation and informed decision-making within the community. </p>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="volunteerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Volunteer Sign-Up</h3>
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea placeholder="Tell us why you'd like to volunteer" rows="4"></textarea>
+      <button>Submit</button>
+    </div>
+  </div>
+
+  <script>
+    // Image Rotation
+    let images = document.querySelectorAll('.volunteer-photos img');
+    let index = 0;
+    setInterval(() => {
+      images[index].classList.remove('active');
+      index = (index + 1) % images.length;
+      images[index].classList.add('active');
+    }, 3000);
+
+    // Modal logic
+    function openModal() {
+      document.getElementById('volunteerModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('volunteerModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside the modal
+    window.onclick = function(event) {
+      let modal = document.getElementById('volunteerModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
 <style>
   body {
@@ -246,7 +450,7 @@
 <body>
 
   <section class="social-section">
-    <h2 class="section-title">Follow Us on Social Media</h2>
+    <h2 class="section-title">Follow me on Social Media</h2>
     <div class="social-links">
       <a href="https://www.instagram.com/sanjayprasath_2004/" target="_blank" rel="noopener noreferrer">
         <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
