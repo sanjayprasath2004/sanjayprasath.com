@@ -55,6 +55,35 @@
   background-color: #00ffff;       /* Neon fill on hover */
   color: #000;                     /* Dark text on neon background */
 }
+.floating-contact {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+  animation: float 2s ease-in-out infinite;
+}
+
+.floating-contact a img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+  border-radius: 50%;
+  background: white;
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.floating-contact a img:hover {
+  transform: scale(1.2);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
 
   </style>
 </head>
@@ -161,6 +190,18 @@
       Phone: +91-6382336606
     </p>
   </section>
+  <div class="floating-contact">
+  <a href="your-resume-link.pdf" target="_blank" title="Download Resume">
+    <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Resume">
+  </a>
+  <a href="mailto:your@email.com" title="Email">
+    <img src="https://cdn-icons-png.flaticon.com/128/732/732200.png" alt="Email">
+  </a>
+  <a href="https://www.linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">
+    <img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="LinkedIn">
+  </a>
+</div>
+
 
   <footer>
     <p>&copy; 2025 Sanjay Prasath. All rights reserved.</p>
@@ -176,5 +217,6 @@
   <script>AOS.init({duration:1000});</script>
 </body>
 </html>
+
 
 
