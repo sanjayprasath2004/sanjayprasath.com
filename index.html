@@ -30,10 +30,16 @@
     a { text-decoration:none; color:inherit; }
     html { scroll-behavior: smooth; }
 
-    /* Floating Buttons */
+    /* Floating Buttons - Vertically Centered Right */
     .fab-container {
-      position: fixed; bottom: 20px; right: 20px; z-index: 999;
-      display: flex; flex-direction: column; gap: 14px;
+      position: fixed; 
+      top: 50%; 
+      right: 20px;
+      z-index: 999;
+      display: flex; 
+      flex-direction: column; 
+      gap: 14px;
+      transform: translateY(-50%);
     }
     .fab {
       width: 58px; height: 58px; border-radius: 50%;
@@ -46,7 +52,11 @@
     .fab.whatsapp { background: #25d366; }
     .fab.resume { background: #10d440; }
 
-    /* Navigation - Desktop + Mobile Hamburger */
+    @media (max-width: 768px) {
+      .fab-container { right: 12px; gap: 10px; top: 50%; transform: translateY(-50%); }
+      .fab { width: 50px; height: 50px; font-size: 1.16rem; }
+    }
+
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       padding: 1.2rem 5%; display: flex;
@@ -78,7 +88,6 @@
     .nav-links a:hover::after { width: 100%; }
     .nav-links a:hover { color: var(--accent); }
 
-    /* Hamburger Menu */
     .hamburger {
       display: none;
       font-size: 1.8rem;
@@ -131,6 +140,34 @@
     .btn:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 20px 50px rgba(0,212,255,0.5); }
     .btn-outline:hover { background: var(--accent); color: #000; }
 
+    .btn-volunteer {
+      display: inline-block;
+      width: 100%;
+      margin-top: 1.1rem;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 1.15rem 0;
+      border-radius: 13px;
+      font-weight: 700;
+      font-size: 1.11rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,212,255,0.24);
+      transition: all 0.3s;
+      letter-spacing: 0.01em;
+    }
+    .btn-volunteer:hover {
+      filter: brightness(96%);
+      transform: translateY(-4px) scale(1.03);
+    }
+    @media (max-width: 768px) {
+      .btn-volunteer {
+        font-size: 1.09rem;
+        padding: 1.03rem 0;
+        margin-bottom: 6px;
+      }
+    }
+
     section { padding: 5rem 5%; }
     h2 {
       font-size: 3rem; text-align: center; margin-bottom: 3rem; position: relative;
@@ -140,7 +177,6 @@
       position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); border-radius: 2px;
     }
 
-    /* About Section - Perfectly Aligned Paragraphs */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -159,7 +195,7 @@
     .about-text {
       display: flex;
       flex-direction: column;
-      gap: 1.6rem; /* Even spacing between paragraphs */
+      gap: 1.6rem;
       font-size: 1.15rem;
       color: #e8e8e8;
       line-height: 1.8;
@@ -169,7 +205,6 @@
       text-align: justify;
     }
 
-    /* Other sections */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -210,9 +245,7 @@
 
     footer { text-align: center; padding: 3rem; background: #050505; color: var(--gray); }
 
-    /* Mobile View - Fully Fixed */
     @media (max-width: 1024px) {
-      /* make hero shorter on tablets and large phones for better fit */
       .hero { min-height: 60vh; padding-top: 90px; }
       nav { padding: 0.9rem 4%; }
     }
@@ -247,25 +280,11 @@
 
       .social-links { gap: 2.2rem; }
       .social-links a { font-size: 2.4rem; }
-
-      /* Floating buttons reposition for small screens */
-      .fab-container { bottom: 16px; right: 12px; gap: 10px; }
-      .fab { width: 52px; height: 52px; font-size: 1.35rem; }
-
-      /* Mobile menu improvements */
-      .mobile-menu { top: 64px; padding: 1.6rem 6%; }
-      .mobile-menu a {
-        font-size: 1.05rem; padding: 0.9rem; border-radius: 10px;
-        color: #e6faff;
-      }
-      .mobile-menu a:active, .mobile-menu a:focus { background: rgba(0,212,255,0.06); outline: none; }
-
-      /* tighten card padding on mobile */
+      
       .card { padding: 1.2rem; border-radius: 14px; }
       .grid-3 { gap: 1rem; }
     }
 
-    /* extra small phones */
     @media (max-width: 420px) {
       .hero h1 { font-size: 2.6rem; }
       .hero p { font-size: 1.1rem; }
@@ -275,13 +294,12 @@
       .fab { width: 48px; height: 48px; font-size: 1.1rem; }
     }
 
-    /* accessibility: focus ring */
     a:focus, button:focus { outline: 3px solid rgba(0,212,255,0.12); outline-offset: 3px; border-radius: 8px; }
   </style>
 </head>
 <body>
 
-  <!-- Floating Buttons -->
+  <!-- Floating Buttons - Centered Right -->
   <div class="fab-container" aria-hidden="false">
     <a href="https://wa.me/916382336606" target="_blank" class="fab whatsapp" aria-label="WhatsApp">
       <i class="fab fa-whatsapp" aria-hidden="true"></i>
@@ -335,12 +353,12 @@
     </div>
   </section>
 
-  <!-- About Section - Perfect Spacing -->
+  <!-- About Section -->
   <section id="about" data-aos="fade-up" aria-labelledby="aboutHeading">
     <h2 id="aboutHeading">About Me</h2>
     <div class="about-grid">
       <div class="about-img" data-aos="zoom-in" aria-hidden="false">
-        <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Sanjay Prasath">
+        <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jp" alt="Sanjay Prasath">
       </div>
       <div class="about-text" data-aos="fade-up">
         <p>I am a postgraduate student pursuing a <strong>Master of Social Work</strong> at VIT Vellore, equipped with a strong foundation in computer applications.</p>
@@ -390,24 +408,24 @@
         <h3>Impact of Social Media on Youth</h3>
         <p>Exploring psychological theories and digital engagement from a social work perspective.</p>
         <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_socialmedia-youth-impact-activity-7151940624682342400-KC1p"
-           target="_blank" style="color:var(--accent);font-weight:500;">
-          Read on LinkedIn
+           class="btn btn-volunteer" target="_blank" aria-label="Read on LinkedIn">
+          View Full Article
         </a>
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="100">
         <h3>Tech for Social Good: My Journey</h3>
         <p>How web applications and digital platforms are transforming local NGOs and healthcare delivery.</p>
         <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_techforsocialgood-ngo-activity-7151940624682342400-MJKp"
-           target="_blank" style="color:var(--accent);font-weight:500;">
-          See full post
+           class="btn btn-volunteer" target="_blank" aria-label="See full post">
+          View Full Article
         </a>
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="200">
         <h3>Field Work Case Study: Community Empowerment</h3>
         <p>Documentation of successful field work projects in partnership with VIT and local organizations.</p>
         <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_fieldwork-community-socialwork-activity-7151940624682342400-XYZp"
-           target="_blank" style="color:var(--accent);font-weight:500;">
-          View case study
+           class="btn btn-volunteer" target="_blank" aria-label="View case study">
+          View Full Article
         </a>
       </div>
     </div>
@@ -421,25 +439,24 @@
         <h3>VIT Gravitas 2025</h3>
         <p>I had the wonderful opportunity to participate by representing our Department of Social Work. Together with my seniors, we put up a stall showcasing our department’s activities and learnings.</p>
         <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-ugcPost-7378987288053153792-HJiB?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI"
-           target="_blank" style="color:var(--accent);font-weight:500;">
-          LinkedIn Collaboration Post
+           class="btn btn-volunteer" target="_blank" aria-label="View LinkedIn Collaboration Post">
+          View LinkedIn Collab
         </a>
       </div>
       <div class="card" data-aos="flip-left" data-aos-delay="100">
         <h3>Ungaludan Stalin Camp</h3>
-        <p>Had the opportunity to participate in the Ungaludan Stalin Camp organized by the Tamil Nadu Government at Thathavalli village. The camp focused on delivering various welfare schemes and services directly to the rural public, ensuring last-mile connectivity of government programs.
-</p>
+        <p>Had the opportunity to participate in the Ungaludan Stalin Camp organized by the Tamil Nadu Government at Thathavalli village. The camp focused on delivering various welfare schemes and services directly to the rural public, ensuring last-mile connectivity of government programs.</p>
         <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI"
-           target="_blank" style="color:var(--accent);font-weight:500;">
-          LinkedIn Collaboration Post
+           class="btn btn-volunteer" target="_blank" aria-label="View LinkedIn Collaboration Post">
+          View LinkedIn Collab
         </a>
       </div>
       <div class="card" data-aos="flip-left" data-aos-delay="200">
         <h3>Hack the Dash-Gravitas-2024</h3>
         <p>Coordinator for the 'Hack the Dash' event, organized by the Health Club at VIT Vellore, where participants leveraged the power of Power BI. It was a great learning experience for me, and I'm excited to see how everyone applies these insights in real-world scenarios!.</p>
         <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI"
-           target="_blank" style="color:var(--accent);font-weight:500;">
-          LinkedIn Collaboration Post
+           class="btn btn-volunteer" target="_blank" aria-label="View LinkedIn Collaboration Post">
+          View LinkedIn Collab
         </a>
       </div>
     </div>
@@ -502,11 +519,9 @@
     // Improve in-page link focus for accessibility on mobile
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', () => {
-        // close mobile menu after navigation
         if (mobileMenu.classList.contains('active')) toggleMobileMenu();
       });
     });
   </script>
 </body>
 </html>
-
