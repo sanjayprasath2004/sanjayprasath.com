@@ -5,154 +5,164 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sanjay Prasath | MSW × Tech for Social Good</title>
   <meta name="description" content="Sanjay Prasath - MSW Student at VIT Vellore | Tech-savvy Social Worker">
-<link rel="apple-touch-icon" href="/mnt/data/20250831_063416.jpg">
+  <link rel="apple-touch-icon" href="/mnt/data/20250831_063416.jpg">
 
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
 
   <style>
-    :root {
+    /* ===== Theme tokens ===== */
+    :root{
       --bg: #fbfdff;
-      --text: #000000; /* changed to black as requested */
+      --text: #000;
       --muted: #6b7480;
-      --accent: #0b66ff; /* sky blue accent retained */
+      --accent: #0b66ff;
       --accent-2: #00c2ff;
-      --card: #ffffff;
+      --card: #fff;
       --glass: rgba(11,102,255,0.04);
-      --max-w: 1200px;
+      --max-w: 1100px;
+      --nav-height: 62px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Reset & base */
+    *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
-      background: linear-gradient(180deg,#fbfdff 0%, #f0f6ff 100%);
-      color: var(--text);
+    body{
+      font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height: 1.6;
-      font-weight: 600; /* make letters bolder as requested */
+      background:linear-gradient(180deg,var(--bg) 0%, #f0f6ff 100%);
+      color:var(--text);
+      line-height:1.5;
+      font-weight:600;
+      -webkit-font-feature-settings: "lnum";
+      padding-bottom: 80px; /* room for mobile fab */
     }
     a{color:var(--accent);text-decoration:none;font-weight:700}
     img{display:block;max-width:100%}
 
-    .wrap{max-width:var(--max-w);margin:0 auto;padding:26px}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:18px}
 
-    /* Nav */
-    header{position:fixed;left:0;right:0;top:12px;z-index:1000;display:flex;justify-content:center;pointer-events:none}
-    .nav{width:100%;max-width:var(--max-w);display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,0.75);box-shadow:0 8px 30px rgba(12,18,40,0.06);pointer-events:auto}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo-mark{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#fff}
-    .brand h1{font-family:'Poppins', Inter;font-size:1rem;margin:0}
-    .nav-links{display:flex;gap:18px;align-items:center}
-    .nav-links a{color:var(--muted);font-weight:700;padding:8px;border-radius:8px}
-    .contact-btn{background:var(--accent);color:#fff;padding:10px 16px;border-radius:999px;font-weight:800;border:none}
+    /* ===== Header / Nav ===== */
+    header{position:fixed;left:0;right:0;top:10px;z-index:1100;display:flex;justify-content:center;pointer-events:none}
+    .nav{width:100%;max-width:var(--max-w);display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,0.85);box-shadow:0 10px 30px rgba(12,18,40,0.06);pointer-events:auto;gap:12px;height:var(--nav-height)}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo-mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#fff;font-size:0.95rem}
+    .brand h1{font-family:'Poppins', Inter;font-size:0.95rem;margin:0;line-height:1}
+    .brand small{display:block;font-size:11px;color:var(--muted)}
 
-    /* Hero */
+    /* Desktop links */
+    .nav-links{display:flex;gap:14px;align-items:center}
+    .nav-links a{color:var(--muted);font-weight:700;padding:8px;border-radius:8px;font-size:14px}
+    .contact-btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:999px;font-weight:800;border:none;font-size:13px}
+
+    /* Hamburger (mobile) */
+    .hamburger{display:none;background:transparent;border:none;font-size:20px;padding:8px;border-radius:8px}
+    .mobile-menu{position:fixed;top:calc(var(--nav-height) + 18px);left:12px;right:12px;background:rgba(255,255,255,0.98);border-radius:12px;padding:12px;box-shadow:0 20px 60px rgba(12,18,40,0.08);display:none;flex-direction:column;gap:10px;z-index:1200}
+    .mobile-menu a{padding:12px;border-radius:10px;color:var(--muted);font-weight:700}
+    .mobile-menu.show{display:flex}
+
+    /* ===== Hero ===== */
     .hero-wrap{margin-top:84px}
-    .hero{display:grid;grid-template-columns:1fr 520px;gap:28px;align-items:center;min-height:74vh;padding:20px 0 34px}
-    .hero-left .hello{display:inline-block;border:2px solid rgba(11,102,255,0.12);color:var(--accent);padding:8px 12px;border-radius:8px;font-weight:800}
-    .hero-left h1{font-family:'Poppins', Inter;font-weight:900;font-size:clamp(2rem,5.5vw,3.6rem);line-height:1;margin:12px 0}
-    .hero-left p.lead{color:var(--muted);font-size:1.02rem;max-width:680px;margin-top:12px}
-    .hero-left .actions{display:flex;gap:12px;margin-top:22px}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:12px 18px;border-radius:12px;border:none;font-weight:800;cursor:pointer}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center;min-height:66vh;padding:14px 0 30px}
+    .hero-left .hello{display:inline-block;border:2px solid rgba(11,102,255,0.12);color:var(--accent);padding:6px 10px;border-radius:8px;font-weight:800;font-size:13px}
+    .hero-left h1{font-family:'Poppins', Inter;font-weight:900;font-size:clamp(1.8rem,6vw,3.2rem);line-height:1;margin:10px 0}
+    .hero-left p.lead{color:var(--muted);font-size:1rem;max-width:640px;margin-top:10px;font-weight:500}
+    .actions{display:flex;gap:12px;margin-top:18px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:12px 18px;border-radius:12px;border:none;font-weight:800;cursor:pointer;font-size:15px}
     .btn-ghost{background:transparent;border:1px solid rgba(11,102,255,0.08);padding:12px 18px;border-radius:12px;font-weight:800}
 
-    /* Right side portrait + blob */
-    .hero-right{position:relative;display:grid;place-items:center}
-    .blob{position:absolute;right:0;top:30px;width:520px;height:420px;pointer-events:none}
-    .portrait{width:420px;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#fff,#f7fbff);box-shadow:0 30px 80px rgba(11,102,255,0.08);border:8px solid #fff}
+    /* Portrait / right */
+    .hero-right{position:relative;display:grid;place-items:center;justify-items:center}
+    .portrait{width:420px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#fff,#f7fbff);box-shadow:0 30px 80px rgba(11,102,255,0.08);border:8px solid #fff}
     .portrait img{width:100%;height:100%;object-fit:cover;display:block}
-    .role-badge{position:absolute;right:56px;top:36px;background:var(--accent);color:#fff;padding:8px 14px;border-radius:999px;font-weight:800;box-shadow:0 12px 30px rgba(11,102,255,0.12)}
-    .role-badge.small{right:44px;bottom:44px;top:auto;background:var(--accent-2)}
+    .role-badge{position:absolute;right:46px;top:30px;background:var(--accent);color:#fff;padding:8px 12px;border-radius:999px;font-weight:800;box-shadow:0 12px 30px rgba(11,102,255,0.12)}
+    .blob{position:absolute;right:0;top:20px;width:480px;height:380px;pointer-events:none;opacity:0.12;filter:blur(10px)}
 
-    /* Sections */
-    section{padding:48px 0}
-    h2{font-size:2.2rem;margin-bottom:18px;color:var(--text);font-weight:900}
-    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-    .card{background:var(--card);padding:18px;border-radius:14px;border:1px solid rgba(11,102,255,0.04);box-shadow:0 8px 26px rgba(12,18,40,0.04);display:flex;flex-direction:column;justify-content:space-between}
-    .muted{color:var(--muted)}
-
-    /* Ensure article/volunteer buttons align on desktop and mobile */
-    .card .btn-primary{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;background:var(--accent);color:#fff}
-
-    /* About grid alignment */
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;max-width:1200px;margin:0 auto}
-    .about-img{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(11,102,255,0.06)}
-    .about-text p{color:var(--muted);line-height:1.7}
+    /* Sections & cards */
+    section{padding:42px 0}
+    h2{font-size:1.6rem;margin-bottom:12px;color:var(--text);font-weight:900}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(11,102,255,0.04);box-shadow:0 8px 26px rgba(12,18,40,0.04);display:flex;flex-direction:column;justify-content:space-between}
+    .muted{color:var(--muted);font-weight:500}
 
     /* Timeline */
-    .timeline{max-width:900px;margin:24px auto;position:relative}
+    .timeline{max-width:900px;margin:12px auto;position:relative}
     .timeline::before{content:'';position:absolute;left:50%;width:3px;background:linear-gradient(to bottom,var(--accent),var(--accent-2));top:0;bottom:0;transform:translateX(-50%)}
-    .timeline-item{margin:28px 0;display:flex;justify-content:space-between;align-items:center}
-    .timeline-item:nth-child(odd){flex-direction:row-reverse}
-    .timeline-content{background:var(--card);padding:16px;border-radius:12px;width:45%;text-align:center;box-shadow:0 12px 35px rgba(12,18,40,0.04)}
+    .timeline-item{margin:18px 0;display:flex;justify-content:space-between;align-items:center}
+    .timeline-content{background:var(--card);padding:12px;border-radius:12px;width:45%;text-align:center;box-shadow:0 12px 35px rgba(12,18,40,0.04)}
 
     /* Contact */
     #contact{text-align:center}
-    .social-links{display:flex;justify-content:center;gap:22px;margin:22px 0}
+    .social-links{display:flex;justify-content:center;gap:18px;margin:18px 0}
     .email-link{color:var(--accent);font-weight:800}
 
-    /* Floating Fabs — inverted for new bg */
-    .fab-container{position:fixed;top:50%;right:20px;z-index:999;display:flex;flex-direction:column;gap:14px;transform:translateY(-50%)}
-    .fab{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--accent);font-size:1.25rem;box-shadow:0 10px 30px rgba(11,102,255,0.06)}
+    /* FABs for small screens moved lower and reduced */
+    .fab-container{position:fixed;bottom:18px;right:12px;z-index:999;display:flex;flex-direction:column;gap:12px}
+    .fab{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--accent);font-size:1.1rem;box-shadow:0 10px 30px rgba(11,102,255,0.06)}
     .fab.whatsapp{background:linear-gradient(90deg,#25d366,#1fbf53);color:#fff}
     .fab.resume{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071226}
 
-    footer{padding:40px 0;text-align:center;color:var(--muted)}
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
 
-    /* ===== Responsive improvements ===== */
-    @media (max-width:1100px){
-      .hero{grid-template-columns:1fr 420px}
-      .blob{width:420px;height:340px}
-      .portrait{width:340px}
-    }
+    /* ===== Responsive adjustments (mobile-first) ===== */
     @media (max-width:900px){
+      /* show hamburger and hide desktop links */
       .nav-links{display:none}
-      .hero{grid-template-columns:1fr;gap:28px}
-      .hero-right{order:-1}
-      .blob{position:relative;right:auto;top:auto;width:100%;height:220px}
-      .portrait{width:92%;max-width:420px;border-radius:14px}
-      .timeline::before{left:20px}
-      .timeline-item{flex-direction:column;align-items:flex-start;padding-left:46px}
-      .timeline-item:nth-child(odd){flex-direction:column}
-      .timeline-content{width:100%;text-align:left}
-      .about-grid{grid-template-columns:1fr}
-      section{padding:28px 0}
-      .wrap{padding:16px}
-      .fab-container{right:12px}
+      .hamburger{display:inline-flex}
+      .mobile-menu{left:12px;right:12px;top:calc(var(--nav-height) + 18px)}
 
-      /* Make CTA buttons full width on small screens */
-      .hero-left .actions{flex-direction:column;align-items:stretch}
-      .btn-primary,.btn-ghost{width:100%}
-
-      /* Buttons inside cards (articles & volunteering) should stack full-width */
-      .card .btn-primary{display:block;width:100%;text-align:center;margin-top:12px}
-    }
-    @media (max-width:420px){
+      /* stack hero - portrait first for visual interest */
+      .hero{grid-template-columns:1fr;gap:18px}
+      .hero-right{order:-1;width:100%;display:flex;justify-content:center}
+      .portrait{width:92%;max-width:360px;border-radius:14px;border-width:6px}
+      .blob{display:none}
       .hero-left h1{font-size:1.6rem}
       .hero-left p.lead{font-size:0.98rem}
-      .contact-btn{padding:8px 12px}
-      .logo-mark{width:40px;height:40px}
+      .actions{flex-direction:column;align-items:stretch}
+      .btn-primary,.btn-ghost{width:100%}
+      .role-badge{right:22px;top:12px;padding:6px 10px;font-size:13px}
+
+      /* timeline single column */
+      .timeline::before{left:18px}
+      .timeline-item{flex-direction:column;align-items:flex-start;padding-left:44px}
+      .timeline-item:nth-child(odd){flex-direction:column}
+      .timeline-content{width:100%;text-align:left;padding:10px}
+
+      /* tighter sections */
+      section{padding:20px 0}
+      .wrap{padding:12px}
     }
 
-    @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+    @media (max-width:420px){
+      .logo-mark{width:40px;height:40px;font-size:0.9rem}
+      .brand h1{font-size:0.92rem}
+      .brand small{font-size:10px}
+      .contact-btn{padding:8px 12px;font-size:13px}
+      .fab{width:48px;height:48px}
+      .nav{padding:6px 10px}
+    }
 
+    /* Accessibility */
     a:focus,button:focus{outline:3px solid rgba(11,102,255,0.12);outline-offset:3px;border-radius:8px}
+    @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
   </style>
 </head>
-  <!-- Google tag (gtag.js) -->
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQHW3F9H9C"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-GQHW3F9H9C');
 </script>
+
 <body>
   <div class="wrap">
 
-    <!-- Floating Buttons - Centered Right -->
+    <!-- Floating Buttons - bottom-right for mobile -->
     <div class="fab-container" aria-hidden="false">
       <a href="https://wa.me/916382336606" target="_blank" class="fab whatsapp" aria-label="WhatsApp">
         <i class="fab fa-whatsapp" aria-hidden="true"></i>
@@ -165,15 +175,16 @@
     <!-- Navigation -->
     <header>
       <div class="nav" role="navigation" aria-label="Main navigation">
-        <div class="brand">
-          <div class="logo-mark">SP</div>
+        <div class="brand" aria-hidden="false">
+          <div class="logo-mark" aria-hidden="true">SP</div>
           <div>
             <h1>Sanjay Prasath</h1>
-            <div style="font-size:12px;color:var(--muted)">MSW × Tech for Social Good</div>
+            <small>MSW × Tech for Social Good</small>
           </div>
         </div>
 
-        <div class="nav-links" role="navigation" aria-label="Main navigation">
+        <!-- Desktop links -->
+        <nav class="nav-links" role="navigation" aria-label="Primary">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
           <a href="#skills">Skills</a>
@@ -181,39 +192,56 @@
           <a href="#articles">Articles</a>
           <a href="#volunteering">Volunteering</a>
           <a href="#contact">Contact</a>
+        </nav>
+
+        <!-- Mobile hamburger -->
+        <div style="display:flex;align-items:center;gap:8px">
+          <button class="contact-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+          <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+            <i id="hamburgerIcon" class="fa fa-bars" aria-hidden="true"></i>
+          </button>
         </div>
 
-        <div>
-          <button class="contact-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact me</button>
+        <!-- Mobile menu (hidden by default) -->
+        <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+          <a href="#about" onclick="closeMobileMenu()">About</a>
+          <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+          <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+          <a href="#journey" onclick="closeMobileMenu()">Journey</a>
+          <a href="#articles" onclick="closeMobileMenu()">Articles</a>
+          <a href="#volunteering" onclick="closeMobileMenu()">Volunteering</a>
+          <a href="#contact" onclick="closeMobileMenu()">Contact</a>
         </div>
       </div>
     </header>
 
-    <!-- HERO (ExCert-style) -->
+    <!-- HERO -->
     <main class="hero-wrap" aria-labelledby="main-hero">
       <section class="hero" role="banner" aria-label="Hero section" id="main-hero">
+        <!-- Portrait shown first on mobile (order controlled by CSS) -->
+        <div class="hero-right" data-aos="fade-up">
+          <div class="portrait" role="img" aria-label="Sanjay Prasath portrait">
+            <img src="sanjay img - Copy.jpg" alt="Sanjay Prasath portrait">
+          </div>
+          <div class="role-badge" aria-hidden="true">Web Designer & Social Worker</div>
+        </div>
+
         <div class="hero-left" data-aos="fade-right">
           <div class="hello">Hello !</div>
           <h1>Sanjay <span style="color:var(--accent)">Prasath,</span><br> Web Designer &<br> Social worker</h1>
           <p class="lead">A passionate social worker and dedicated web developer, creating technology-driven solutions that uplift communities, improve accessibility, and deliver real social impact.</p>
           <div class="actions">
             <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Hire Me</button>
-            <a class="btn-ghost" href="https://wa.me/916382336606" target="_blank">WhatsApp</a>
+            <a class="btn-ghost" href="https://wa.me/916382336606" target="_blank" rel="noopener">WhatsApp</a>
           </div>
         </div>
-
-          <!-- Portrait: updated to the new photo you uploaded -->
-          <div class="portrait" role="img" aria-label="Sanjay Prasath portrait">
-            <img src="sanjay img - Copy.jpg" alt="Sanjay Prasath portrait">
-          </div>
-        </aside>
       </section>
     </main>
 
     <!-- ABOUT -->
     <section id="about" data-aos="fade-up" aria-labelledby="aboutHeading">
       <h2 id="aboutHeading">About Me</h2>
-      <div class="about-grid">
+      <div class="about-grid" style="display:grid;grid-template-columns:1fr;gap:18px;align-items:center;max-width:900px;margin:0 auto">
         <div class="about-img" data-aos="zoom-in" aria-hidden="false">
           <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Sanjay Prasath">
         </div>
@@ -247,19 +275,18 @@
       </div>
     </section>
 
-    <!-- JOURNEY (added one extra experience as requested) -->
+    <!-- JOURNEY -->
     <section id="journey" data-aos="fade-up" aria-labelledby="journeyHeading">
       <h2 id="journeyHeading">Education & Experience</h2>
       <div class="timeline" role="list">
         <div class="timeline-item" data-aos="fade-right" role="listitem"><div class="timeline-content"><h3>2022 – 2025</h3><p><strong>BCA</strong><br>VIT Vellore</p></div></div>
         <div class="timeline-item" data-aos="fade-left" role="listitem"><div class="timeline-content"><h3>2025 – Present</h3><p><strong>MSW</strong><br>VIT Vellore</p></div></div>
         <div class="timeline-item" data-aos="fade-right" role="listitem"><div class="timeline-content"><h3>Aug – Oct 2025</h3><p><strong>Social Work Trainee</strong><br>Freedom Foundation</p></div></div>
-        <!-- New experience entry -->
         <div class="timeline-item" data-aos="fade-left" role="listitem"><div class="timeline-content"><h3>Jan – Jul 2024</h3><p><strong>Health Tech Intern</strong><br>Community Health Initiative</p></div></div>
       </div>
     </section>
 
-    <!-- ARTICLES & INSIGHTS (fixed buttons styling) -->
+    <!-- ARTICLES -->
     <section id="articles" data-aos="fade-up" aria-labelledby="articlesHeading">
       <h2 id="articlesHeading">Articles & Insights</h2>
       <div class="grid-3">
@@ -281,7 +308,7 @@
       </div>
     </section>
 
-    <!-- VOLUNTEERING & COLLAB (fixed button styles) -->
+    <!-- VOLUNTEERING -->
     <section id="volunteering" data-aos="fade-up" aria-labelledby="volunteeringHeading">
       <h2 id="volunteeringHeading">Volunteering & Collaboration</h2>
       <div class="grid-3">
@@ -308,11 +335,11 @@
       <h2 id="contactHeading">Let's Connect</h2>
       <p class="muted contact-text">Have a social impact or tech-for-good idea? Reach out!</p>
       <div class="social-links" role="navigation" aria-label="Social links">
-        <a href="https://www.instagram.com/sanjayprasath_2004/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
-        <a href="https://x.com/Sanjayp62545815" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter fa-2x"></i></a>
-        <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in fa-2x"></i></a>
+        <a href="https://www.instagram.com/sanjayprasath_2004/" target="_blank" aria-label="Instagram" rel="noopener"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://x.com/Sanjayp62545815" target="_blank" aria-label="X (Twitter)" rel="noopener"><i class="fab fa-x-twitter fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin-in fa-2x"></i></a>
       </div>
-      <p style="margin-top: 2rem;">
+      <p style="margin-top: 1.5rem;">
         <a href="mailto:sanjayprasath2004@gmail.com" class="email-link">sanjayprasath2004@gmail.com</a>
       </p>
     </section>
@@ -320,48 +347,66 @@
     <footer>
       <p>© 2025 Sanjay Prasath. Building a better world with tech & compassion.</p>
     </footer>
-
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true });
+    AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true });
 
-    // Nav scrolled effect
-    window.addEventListener('scroll', () => {
-      const navWrap = document.querySelector('header .nav');
-      if(!navWrap) return;
-      navWrap.classList.toggle('scrolled', window.scrollY > 30);
-    });
-
-    // Mobile menu toggle if you still have hamburger elsewhere
+    // Mobile menu toggle
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const hamburgerIcon = document.getElementById('hamburgerIcon');
-    function toggleMobileMenu() {
-      if(!mobileMenu || !hamburgerBtn) return;
-      const isActive = mobileMenu.classList.toggle('active');
+
+    function toggleMobileMenu(){
+      if(!mobileMenu) return;
+      const isActive = mobileMenu.classList.toggle('show');
       mobileMenu.setAttribute('aria-hidden', !isActive);
       hamburgerBtn.setAttribute('aria-expanded', isActive);
       hamburgerIcon.classList.toggle('fa-bars', !isActive);
       hamburgerIcon.classList.toggle('fa-times', isActive);
       document.body.style.overflow = isActive ? 'hidden' : '';
     }
+
+    function closeMobileMenu(){
+      if(!mobileMenu) return;
+      mobileMenu.classList.remove('show');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      hamburgerIcon.classList.remove('fa-times');
+      hamburgerIcon.classList.add('fa-bars');
+      document.body.style.overflow = '';
+    }
+
     hamburgerBtn && hamburgerBtn.addEventListener('click', toggleMobileMenu);
 
-    // Smooth scroll for internal links
+    // Close mobile menu when tapping outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu) return;
+      const withinMenu = e.composedPath().includes(mobileMenu) || e.composedPath().includes(hamburgerBtn);
+      if (!withinMenu && mobileMenu.classList.contains('show')) closeMobileMenu();
+    });
+
+    // Smooth scroll for same-page anchors
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const href = a.getAttribute('href');
-        if(href && href.startsWith('#')){
+        if (href && href.startsWith('#')) {
           e.preventDefault();
-          document.querySelector(href).scrollIntoView({behavior:'smooth', block:'start'});
+          const el = document.querySelector(href);
+          if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+          // close mobile menu if open
+          if (mobileMenu && mobileMenu.classList.contains('show')) closeMobileMenu();
         }
       });
+    });
+
+    // Improve nav shadow on scroll (subtle)
+    window.addEventListener('scroll', () => {
+      const navWrap = document.querySelector('header .nav');
+      if(!navWrap) return;
+      navWrap.style.backdropFilter = window.scrollY > 30 ? 'saturate(120%) blur(6px)' : '';
     });
   </script>
 </body>
 </html>
-
-
-
