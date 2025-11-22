@@ -5,537 +5,382 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sanjay Prasath | MSW × Tech for Social Good</title>
   <meta name="description" content="Sanjay Prasath - MSW Student at VIT Vellore | Tech-savvy Social Worker">
-<link rel="apple-touch-icon" href="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg">
+<link rel="apple-touch-icon" href="/mnt/data/20250831_063416.jpg">
 
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
 
   <style>
     :root {
-      --bg: #0a0a0a;
-      --text: #ffffff;
-      --accent: #00d4ff;
-      --gray: #8899a6;
-      --card: #1a1a1a;
+      --bg: #fbfdff;
+      --text: #000000; /* changed to black as requested */
+      --muted: #6b7480;
+      --accent: #0b66ff; /* sky blue accent retained */
+      --accent-2: #00c2ff;
+      --card: #ffffff;
+      --glass: rgba(11,102,255,0.04);
+      --max-w: 1200px;
     }
-    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body{height:100%}
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
+      background: linear-gradient(180deg,#fbfdff 0%, #f0f6ff 100%);
       color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height: 1.6;
+      font-weight: 600; /* make letters bolder as requested */
     }
-    a { text-decoration:none; color:inherit; }
-    html { scroll-behavior: smooth; }
+    a{color:var(--accent);text-decoration:none;font-weight:700}
+    img{display:block;max-width:100%}
 
-    /* Floating Buttons - Vertically Centered Right */
-    .fab-container {
-      position: fixed; 
-      top: 50%; 
-      right: 20px;
-      z-index: 999;
-      display: flex; 
-      flex-direction: column; 
-      gap: 14px;
-      transform: translateY(-50%);
-    }
-    .fab {
-      width: 58px; height: 58px; border-radius: 50%;
-      background: var(--accent); color: #000; font-size: 1.6rem;
-      display: grid; place-items: center;
-      box-shadow: 0 10px 30px rgba(0,212,255,0.4);
-      transition: all 0.3s ease;
-    }
-    .fab:hover { transform: scale(1.12); }
-    .fab.whatsapp { background: #25d366; }
-    .fab.resume { background: #10d440; }
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:26px}
 
-    @media (max-width: 768px) {
-      .fab-container { right: 12px; gap: 10px; top: 50%; transform: translateY(-50%); }
-      .fab { width: 50px; height: 50px; font-size: 1.16rem; }
-    }
-
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      padding: 1.2rem 5%; display: flex;
-      justify-content: space-between; align-items: center;
-      z-index: 1000; transition: all 0.4s;
-    }
-    nav.scrolled {
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(15px);
-      padding: 0.9rem 5%;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-    }
-    .logo {
-      font-size: 1.9rem; font-weight: 800;
-      background: linear-gradient(90deg, #00d4ff, #0099cc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .nav-links {
-      display: flex; gap: 2rem;
-    }
-    .nav-links a {
-      font-weight: 500; position: relative; transition: 0.4s;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; width: 0; height: 2px;
-      bottom: -8px; left: 0; background: var(--accent); transition: 0.4s;
-    }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-links a:hover { color: var(--accent); }
-
-    .hamburger {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: white;
-      background: transparent;
-      border: none;
-    }
-    .mobile-menu {
-      position: fixed;
-      top: 70px; right: 0;
-      background: rgba(10,10,10,0.98);
-      width: 100%;
-      padding: 2rem 5%;
-      display: none;
-      flex-direction: column;
-      gap: 1.5rem;
-      backdrop-filter: blur(10px);
-      z-index: 999;
-    }
-    .mobile-menu.active { display: flex; }
+    /* Nav */
+    header{position:fixed;left:0;right:0;top:12px;z-index:1000;display:flex;justify-content:center;pointer-events:none}
+    .nav{width:100%;max-width:var(--max-w);display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,0.75);box-shadow:0 8px 30px rgba(12,18,40,0.06);pointer-events:auto}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo-mark{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#fff}
+    .brand h1{font-family:'Poppins', Inter;font-size:1rem;margin:0}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{color:var(--muted);font-weight:700;padding:8px;border-radius:8px}
+    .contact-btn{background:var(--accent);color:#fff;padding:10px 16px;border-radius:999px;font-weight:800;border:none}
 
     /* Hero */
-    .hero {
-      height: 90vh; min-height: 620px;
-      display: grid; place-items: center;
-      text-align: center; padding: 0 5%;
-    }
-    .hero h1 {
-      font-size: clamp(3.2rem, 9vw, 6.5rem); font-weight: 800;
-      background: linear-gradient(90deg, #00d4ff, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-    .hero p {
-      font-size: 1.6rem; color: var(--gray); margin: 1rem 0 3.5rem;
-    }
-    .hero-buttons {
-      display: flex; gap: 1.8rem; justify-content: center; flex-wrap: wrap;
-    }
-    .btn {
-      padding: 1.1rem 2.8rem; border-radius: 50px; font-weight: 600;
-      font-size: 1.1rem; cursor: pointer; transition: all 0.4s ease;
-      min-width: 200px; box-shadow: 0 10px 30px rgba(0,212,255,0.4);
-      -webkit-tap-highlight-color: transparent;
-    }
-    .btn-primary { background: var(--accent); color: #000; border: none; }
-    .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
-    .btn:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 20px 50px rgba(0,212,255,0.5); }
-    .btn-outline:hover { background: var(--accent); color: #000; }
+    .hero-wrap{margin-top:84px}
+    .hero{display:grid;grid-template-columns:1fr 520px;gap:28px;align-items:center;min-height:74vh;padding:20px 0 34px}
+    .hero-left .hello{display:inline-block;border:2px solid rgba(11,102,255,0.12);color:var(--accent);padding:8px 12px;border-radius:8px;font-weight:800}
+    .hero-left h1{font-family:'Poppins', Inter;font-weight:900;font-size:clamp(2rem,5.5vw,3.6rem);line-height:1;margin:12px 0}
+    .hero-left p.lead{color:var(--muted);font-size:1.02rem;max-width:680px;margin-top:12px}
+    .hero-left .actions{display:flex;gap:12px;margin-top:22px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:12px 18px;border-radius:12px;border:none;font-weight:800;cursor:pointer}
+    .btn-ghost{background:transparent;border:1px solid rgba(11,102,255,0.08);padding:12px 18px;border-radius:12px;font-weight:800}
 
-    .btn-volunteer {
-      display: inline-block;
-      width: 100%;
-      margin-top: 1.1rem;
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 1.15rem 0;
-      border-radius: 13px;
-      font-weight: 700;
-      font-size: 1.11rem;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(0,212,255,0.24);
-      transition: all 0.3s;
-      letter-spacing: 0.01em;
-    }
-    .btn-volunteer:hover {
-      filter: brightness(96%);
-      transform: translateY(-4px) scale(1.03);
-    }
-    @media (max-width: 768px) {
-      .btn-volunteer {
-        font-size: 1.09rem;
-        padding: 1.03rem 0;
-        margin-bottom: 6px;
-      }
-    }
+    /* Right side portrait + blob */
+    .hero-right{position:relative;display:grid;place-items:center}
+    .blob{position:absolute;right:0;top:30px;width:520px;height:420px;pointer-events:none}
+    .portrait{width:420px;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#fff,#f7fbff);box-shadow:0 30px 80px rgba(11,102,255,0.08);border:8px solid #fff}
+    .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+    .role-badge{position:absolute;right:56px;top:36px;background:var(--accent);color:#fff;padding:8px 14px;border-radius:999px;font-weight:800;box-shadow:0 12px 30px rgba(11,102,255,0.12)}
+    .role-badge.small{right:44px;bottom:44px;top:auto;background:var(--accent-2)}
 
-    section { padding: 5rem 5%; }
-    h2 {
-      font-size: 3rem; text-align: center; margin-bottom: 3rem; position: relative;
-    }
-    h2::after {
-      content: ''; width: 90px; height: 4px; background: var(--accent);
-      position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); border-radius: 2px;
-    }
+    /* Sections */
+    section{padding:48px 0}
+    h2{font-size:2.2rem;margin-bottom:18px;color:var(--text);font-weight:900}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .card{background:var(--card);padding:18px;border-radius:14px;border:1px solid rgba(11,102,255,0.04);box-shadow:0 8px 26px rgba(12,18,40,0.04);display:flex;flex-direction:column;justify-content:space-between}
+    .muted{color:var(--muted)}
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .about-img {
-      border-radius: 22px; overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,212,255,0.2);
-    }
-    .about-img img { width: 100%; height: auto; display:block; transition: 0.8s; }
-    .about-img:hover img { transform: scale(1.12); }
+    /* Ensure article/volunteer buttons align on desktop and mobile */
+    .card .btn-primary{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;background:var(--accent);color:#fff}
 
-    .about-text {
-      display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
-      font-size: 1.15rem;
-      color: #e8e8e8;
-      line-height: 1.8;
+    /* About grid alignment */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;max-width:1200px;margin:0 auto}
+    .about-img{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(11,102,255,0.06)}
+    .about-text p{color:var(--muted);line-height:1.7}
+
+    /* Timeline */
+    .timeline{max-width:900px;margin:24px auto;position:relative}
+    .timeline::before{content:'';position:absolute;left:50%;width:3px;background:linear-gradient(to bottom,var(--accent),var(--accent-2));top:0;bottom:0;transform:translateX(-50%)}
+    .timeline-item{margin:28px 0;display:flex;justify-content:space-between;align-items:center}
+    .timeline-item:nth-child(odd){flex-direction:row-reverse}
+    .timeline-content{background:var(--card);padding:16px;border-radius:12px;width:45%;text-align:center;box-shadow:0 12px 35px rgba(12,18,40,0.04)}
+
+    /* Contact */
+    #contact{text-align:center}
+    .social-links{display:flex;justify-content:center;gap:22px;margin:22px 0}
+    .email-link{color:var(--accent);font-weight:800}
+
+    /* Floating Fabs — inverted for new bg */
+    .fab-container{position:fixed;top:50%;right:20px;z-index:999;display:flex;flex-direction:column;gap:14px;transform:translateY(-50%)}
+    .fab{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--accent);font-size:1.25rem;box-shadow:0 10px 30px rgba(11,102,255,0.06)}
+    .fab.whatsapp{background:linear-gradient(90deg,#25d366,#1fbf53);color:#fff}
+    .fab.resume{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071226}
+
+    footer{padding:40px 0;text-align:center;color:var(--muted)}
+
+    /* ===== Responsive improvements ===== */
+    @media (max-width:1100px){
+      .hero{grid-template-columns:1fr 420px}
+      .blob{width:420px;height:340px}
+      .portrait{width:340px}
     }
-    .about-text p {
-      margin: 0;
-      text-align: justify;
+    @media (max-width:900px){
+      .nav-links{display:none}
+      .hero{grid-template-columns:1fr;gap:28px}
+      .hero-right{order:-1}
+      .blob{position:relative;right:auto;top:auto;width:100%;height:220px}
+      .portrait{width:92%;max-width:420px;border-radius:14px}
+      .timeline::before{left:20px}
+      .timeline-item{flex-direction:column;align-items:flex-start;padding-left:46px}
+      .timeline-item:nth-child(odd){flex-direction:column}
+      .timeline-content{width:100%;text-align:left}
+      .about-grid{grid-template-columns:1fr}
+      section{padding:28px 0}
+      .wrap{padding:16px}
+      .fab-container{right:12px}
+
+      /* Make CTA buttons full width on small screens */
+      .hero-left .actions{flex-direction:column;align-items:stretch}
+      .btn-primary,.btn-ghost{width:100%}
+
+      /* Buttons inside cards (articles & volunteering) should stack full-width */
+      .card .btn-primary{display:block;width:100%;text-align:center;margin-top:12px}
+    }
+    @media (max-width:420px){
+      .hero-left h1{font-size:1.6rem}
+      .hero-left p.lead{font-size:0.98rem}
+      .contact-btn{padding:8px 12px}
+      .logo-mark{width:40px;height:40px}
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem; max-width: 1300px; margin: 0 auto;
-    }
-    .card {
-      background: var(--card); padding: 2.2rem; border-radius: 18px;
-      border: 1px solid rgba(0,212,255,0.1); transition: all 0.5s;
-      text-align: center;
-    }
-    .card:hover {
-      transform: translateY(-16px);
-      box-shadow: 0 25px 50px rgba(0,212,255,0.25);
-      border-color: var(--accent);
-    }
+    @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 
-    .timeline {
-      max-width: 900px; margin: 2rem auto; position: relative;
-    }
-    .timeline::before {
-      content: ''; position: absolute; left: 50%; width: 3px;
-      background: linear-gradient(to bottom, var(--accent), #0099cc);
-      top: 0; bottom: 0; transform: translateX(-50%);
-    }
-    .timeline-item { margin: 3rem 0; display: flex; justify-content: space-between; align-items: center; }
-    .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
-    .timeline-content {
-      background: var(--card); padding: 1.6rem; border-radius: 16px;
-      width: 45%; text-align: center; box-shadow: 0 12px 35px rgba(0,0,0,0.4);
-    }
-
-    #contact { text-align: center; padding: 7rem 5%; }
-    .contact-text { font-size: 1.55rem; color: var(--gray); margin-bottom: 3.5rem; max-width: 800px; margin: 0 auto 3.5rem; }
-    .social-links { display: flex; justify-content: center; gap: 3rem; margin: 3rem 0; }
-    .social-links a { font-size: 3rem; color: var(--gray); transition: all 0.4s ease; }
-    .social-links a:hover { color: var(--accent); transform: translateY(-12px) scale(1.2); }
-    .email-link { font-size: 1.45rem; color: var(--accent); font-weight: 600; }
-
-    footer { text-align: center; padding: 3rem; background: #050505; color: var(--gray); }
-
-    @media (max-width: 1024px) {
-      .hero { min-height: 60vh; padding-top: 90px; }
-      nav { padding: 0.9rem 4%; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: block; }
-
-      .hero h1 { font-size: 3.2rem; }
-      .hero p { font-size: 1.35rem; }
-      .hero-buttons { flex-direction: column; gap: 1rem; }
-      .btn { width: 92%; min-width: auto; padding: 14px 18px; border-radius: 12px; font-size: 1rem; }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        text-align: center;
-      }
-      .about-text {
-        gap: 1.4rem;
-        font-size: 1.08rem;
-      }
-      .about-text p { text-align: center; }
-
-      section { padding: 3.2rem 6%; }
-      h2 { font-size: 2.2rem; margin-bottom: 1.6rem; }
-
-      .timeline::before { left: 20px; }
-      .timeline-item { flex-direction: column; padding-left: 50px; align-items:flex-start; }
-      .timeline-item:nth-child(odd) { flex-direction: column; }
-      .timeline-content { width: 100%; max-width: 100%; text-align: left; padding: 1rem 1.2rem; }
-
-      .social-links { gap: 2.2rem; }
-      .social-links a { font-size: 2.4rem; }
-      
-      .card { padding: 1.2rem; border-radius: 14px; }
-      .grid-3 { gap: 1rem; }
-    }
-
-    @media (max-width: 420px) {
-      .hero h1 { font-size: 2.6rem; }
-      .hero p { font-size: 1.1rem; }
-      .logo { font-size: 1.6rem; }
-      nav { padding: 0.7rem 4%; }
-      .hamburger { font-size: 1.4rem; }
-      .fab { width: 48px; height: 48px; font-size: 1.1rem; }
-    }
-
-    a:focus, button:focus { outline: 3px solid rgba(0,212,255,0.12); outline-offset: 3px; border-radius: 8px; }
+    a:focus,button:focus{outline:3px solid rgba(11,102,255,0.12);outline-offset:3px;border-radius:8px}
   </style>
 </head>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQHW3F9H9C"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){dataLayer.push(arguments);} 
   gtag('js', new Date());
-
   gtag('config', 'G-GQHW3F9H9C');
 </script>
 <body>
+  <div class="wrap">
 
-  <!-- Floating Buttons - Centered Right -->
-  <div class="fab-container" aria-hidden="false">
-    <a href="https://wa.me/916382336606" target="_blank" class="fab whatsapp" aria-label="WhatsApp">
-      <i class="fab fa-whatsapp" aria-hidden="true"></i>
-    </a>
-    <a href="https://drive.google.com/drive/folders/1vSf_w5giYXh2gkR-_MazCl_rnl-HbzbE?usp=drive_link" target="_blank" class="fab resume" aria-label="Resume">
-      <i class="fas fa-file-download" aria-hidden="true"></i>
-    </a>
+    <!-- Floating Buttons - Centered Right -->
+    <div class="fab-container" aria-hidden="false">
+      <a href="https://wa.me/916382336606" target="_blank" class="fab whatsapp" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1vSf_w5giYXh2gkR-_MazCl_rnl-HbzbE?usp=drive_link" target="_blank" class="fab resume" aria-label="Resume">
+        <i class="fas fa-file-download" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+      <div class="nav" role="navigation" aria-label="Main navigation">
+        <div class="brand">
+          <div class="logo-mark">SP</div>
+          <div>
+            <h1>Sanjay Prasath</h1>
+            <div style="font-size:12px;color:var(--muted)">MSW × Tech for Social Good</div>
+          </div>
+        </div>
+
+        <div class="nav-links" role="navigation" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#journey">Journey</a>
+          <a href="#articles">Articles</a>
+          <a href="#volunteering">Volunteering</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div>
+          <button class="contact-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact me</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO (ExCert-style) -->
+    <main class="hero-wrap" aria-labelledby="main-hero">
+      <section class="hero" role="banner" aria-label="Hero section" id="main-hero">
+        <div class="hero-left" data-aos="fade-right">
+          <div class="hello">Hello !</div>
+          <h1>Sanjay <span style="color:var(--accent)">Prasath,</span><br> Web Designer &<br> Social worker</h1>
+          <p class="lead">A passionate social worker and dedicated web developer, creating technology-driven solutions that uplift communities, improve accessibility, and deliver real social impact.</p>
+          <div class="actions">
+            <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+            <a class="btn-ghost" href="https://wa.me/916382336606" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+
+        <aside class="hero-right" data-aos="fade-left" aria-hidden="false">
+          <!-- Decorative blob SVG -->
+          <svg class="blob" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="var(--accent-2)" stop-opacity="0.9" />
+              </linearGradient>
+              <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="30" result="b" />
+                <feBlend in="SourceGraphic" in2="b" />
+              </filter>
+            </defs>
+            <g filter="url(#f1)">
+              <path d="M420,60 C520,20 700,40 740,160 C780,280 700,420 540,460 C380,500 200,460 140,340 C80,220 320,100 420,60 Z" fill="url(#g1)" opacity="0.95"></path>
+            </g>
+          </svg>
+
+          <div class="role-badge">WEB Designer</div>
+
+          <!-- Portrait: updated to the new photo you uploaded -->
+          <div class="portrait" role="img" aria-label="Sanjay Prasath portrait">
+            <img src="sanjay img - Copy.jpg" alt="Sanjay Prasath portrait">
+          </div>
+
+          <div class="role-badge small"> Social Worker</div>
+        </aside>
+      </section>
+    </main>
+
+    <!-- ABOUT -->
+    <section id="about" data-aos="fade-up" aria-labelledby="aboutHeading">
+      <h2 id="aboutHeading">About Me</h2>
+      <div class="about-grid">
+        <div class="about-img" data-aos="zoom-in" aria-hidden="false">
+          <img src="WhatsApp Image 2025-10-25 at 18.31" alt="Sanjay Prasath">
+        </div>
+        <div class="about-text" data-aos="fade-up">
+          <p>I am a postgraduate student pursuing a <strong>Master of Social Work</strong> at VIT Vellore, equipped with a strong foundation in computer applications.</p>
+          <p>My academic background and field experience have enabled me to integrate analytical thinking, problem-solving, and community-oriented approaches in addressing social issues.</p>
+          <p>I have actively participated in various community engagement programs, organisational activities, and developmental initiatives aimed at empowering individuals and promoting sustainable social change.</p>
+          <p>I am committed to fostering inclusive growth and contributing effectively to the advancement of social welfare and community development.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" data-aos="fade-up" aria-labelledby="projectsHeading">
+      <h2 id="projectsHeading">Projects</h2>
+      <div class="grid-3">
+        <div class="card" data-aos="zoom-in"><h3>E-Pharmacy with Chatbot</h3><p class="muted">Medicine purchase, OCR prescription upload + AI chatbot.</p></div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="100"><h3>Online Voting App</h3><p class="muted">Secure voter authentication using personal ID.</p></div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="200"><h3>Remote Plant Monitoring</h3><p class="muted">IoT system for smart agriculture.</p></div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="300"><h3>Hospital Management System</h3><p class="muted">Efficient patient & appointment management.</p></div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" data-aos="fade-up" aria-labelledby="skillsHeading">
+      <h2 id="skillsHeading">Skills & Competencies</h2>
+      <div class="grid-3">
+        <div class="card" data-aos="flip-left"><h3>Social Work</h3><p class="muted">Community Engagement · Case Work · Group Work · Research</p></div>
+        <div class="card" data-aos="flip-left" data-aos-delay="100"><h3>Technical</h3><p class="muted">Java · HTML · Firebase · Arduino · MySQL · IoT</p></div>
+        <div class="card" data-aos="flip-left" data-aos-delay="200"><h3>Professional</h3><p class="muted">MS Office · Digital Marketing · AI for Business</p></div>
+      </div>
+    </section>
+
+    <!-- JOURNEY (added one extra experience as requested) -->
+    <section id="journey" data-aos="fade-up" aria-labelledby="journeyHeading">
+      <h2 id="journeyHeading">Education & Experience</h2>
+      <div class="timeline" role="list">
+        <div class="timeline-item" data-aos="fade-right" role="listitem"><div class="timeline-content"><h3>2022 – 2025</h3><p><strong>BCA</strong><br>VIT Vellore</p></div></div>
+        <div class="timeline-item" data-aos="fade-left" role="listitem"><div class="timeline-content"><h3>2025 – Present</h3><p><strong>MSW</strong><br>VIT Vellore</p></div></div>
+        <div class="timeline-item" data-aos="fade-right" role="listitem"><div class="timeline-content"><h3>Aug – Oct 2025</h3><p><strong>Social Work Trainee</strong><br>Freedom Foundation</p></div></div>
+        <!-- New experience entry -->
+        <div class="timeline-item" data-aos="fade-left" role="listitem"><div class="timeline-content"><h3>Jan – Jul 2024</h3><p><strong>Health Tech Intern</strong><br>Community Health Initiative</p></div></div>
+      </div>
+    </section>
+
+    <!-- ARTICLES & INSIGHTS (fixed buttons styling) -->
+    <section id="articles" data-aos="fade-up" aria-labelledby="articlesHeading">
+      <h2 id="articlesHeading">Articles & Insights</h2>
+      <div class="grid-3">
+        <div class="card" data-aos="zoom-in">
+          <h3>Impact of Social Media on Youth</h3>
+          <p class="muted">Exploring psychological theories and digital engagement from a social work perspective.</p>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_socialmedia-youth-impact-activity-7151940624682342400-KC1p" class="btn-primary" target="_blank" aria-label="Read on LinkedIn">View Full Article</a>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="100">
+          <h3>Tech for Social Good: My Journey</h3>
+          <p class="muted">How web applications and digital platforms are transforming local NGOs and healthcare delivery.</p>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_techforsocialgood-ngo-activity-7151940624682342400-MJKp" class="btn-primary" target="_blank" aria-label="See full post">View Full Article</a>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="200">
+          <h3>Field Work Case Study: Community Empowerment</h3>
+          <p class="muted">Documentation of successful field work projects in partnership with VIT and local organizations.</p>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_fieldwork-community-socialwork-activity-7151940624682342400-XYZp" class="btn-primary" target="_blank" aria-label="View case study">View Full Article</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOLUNTEERING & COLLAB (fixed button styles) -->
+    <section id="volunteering" data-aos="fade-up" aria-labelledby="volunteeringHeading">
+      <h2 id="volunteeringHeading">Volunteering & Collaboration</h2>
+      <div class="grid-3">
+        <div class="card" data-aos="flip-left">
+          <h3>VIT Gravitas 2025</h3>
+          <p class="muted">I had the wonderful opportunity to participate by representing our Department of Social Work. Together with my seniors, we put up a stall showcasing our department’s activities and learnings.</p>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-ugcPost-7378987288053153792-HJiB?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collaboration Post">View LinkedIn Collab</a>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-delay="100">
+          <h3>Ungaludan Stalin Camp</h3>
+          <p class="muted">Had the opportunity to participate in the Ungaludan Stalin Camp organized by the Tamil Nadu Government at Thathavalli village. The camp focused on delivering various welfare schemes and services directly to the rural public, ensuring last-mile connectivity of government programs.</p>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collaboration Post">View LinkedIn Collab</a>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-delay="200">
+          <h3>Hack the Dash — Gravitas 2024</h3>
+          <p class="muted">Coordinator for the 'Hack the Dash' event, organized by the Health Club at VIT Vellore, where participants leveraged the power of Power BI.</p>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collab">View LinkedIn Collab</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" data-aos="fade-up" aria-labelledby="contactHeading">
+      <h2 id="contactHeading">Let's Connect</h2>
+      <p class="muted contact-text">Have a social impact or tech-for-good idea? Reach out!</p>
+      <div class="social-links" role="navigation" aria-label="Social links">
+        <a href="https://www.instagram.com/sanjayprasath_2004/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://x.com/Sanjayp62545815" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in fa-2x"></i></a>
+      </div>
+      <p style="margin-top: 2rem;">
+        <a href="mailto:sanjayprasath2004@gmail.com" class="email-link">sanjayprasath2004@gmail.com</a>
+      </p>
+    </section>
+
+    <footer>
+      <p>© 2025 Sanjay Prasath. Building a better world with tech & compassion.</p>
+    </footer>
+
   </div>
-
-  <!-- Navigation with Hamburger -->
-  <nav>
-    <div class="logo" aria-label="Sanjay Prasath">Sanjay Prasath</div>
-    <div class="nav-links" role="navigation" aria-label="Main navigation">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#journey">Journey</a>
-      <a href="#articles">Articles</a>
-      <a href="#volunteering">Volunteering</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle menu">
-      <i class="fas fa-bars" id="hamburgerIcon"></i>
-    </button>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
-    <a href="#about" role="menuitem" onclick="toggleMobileMenu()">About</a>
-    <a href="#projects" role="menuitem" onclick="toggleMobileMenu()">Projects</a>
-    <a href="#skills" role="menuitem" onclick="toggleMobileMenu()">Skills</a>
-    <a href="#journey" role="menuitem" onclick="toggleMobileMenu()">Journey</a>
-    <a href="#articles" role="menuitem" onclick="toggleMobileMenu()">Articles</a>
-    <a href="#volunteering" role="menuitem" onclick="toggleMobileMenu()">Volunteering</a>
-    <a href="#contact" role="menuitem" onclick="toggleMobileMenu()">Contact</a>
-  </div>
-
-  <!-- Hero -->
-  <section class="hero" data-aos="fade-down" role="banner" aria-label="Hero section">
-    <div>
-      <h1>Sanjay Prasath</h1>
-      <p>MSW Student × Tech for Social Good</p>
-      <div class="hero-buttons">
-        <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})" aria-label="Explore my work">
-          Explore My Work
-        </button>
-        <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" aria-label="Let's connect">
-          Let's Connect
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" data-aos="fade-up" aria-labelledby="aboutHeading">
-    <h2 id="aboutHeading">About Me</h2>
-    <div class="about-grid">
-      <div class="about-img" data-aos="zoom-in" aria-hidden="false">
-        <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Sanjay Prasath">
-      </div>
-      <div class="about-text" data-aos="fade-up">
-        <p>I am a postgraduate student pursuing a <strong>Master of Social Work</strong> at VIT Vellore, equipped with a strong foundation in computer applications.</p>
-        <p>My academic background and field experience have enabled me to integrate analytical thinking, problem-solving, and community-oriented approaches in addressing social issues.</p>
-        <p>I have actively participated in various community engagement programs, organisational activities, and developmental initiatives aimed at empowering individuals and promoting sustainable social change.</p>
-        <p>I am committed to fostering inclusive growth and contributing effectively to the advancement of social welfare and community development.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" data-aos="fade-up" aria-labelledby="projectsHeading">
-    <h2 id="projectsHeading">Projects</h2>
-    <div class="grid-3">
-      <div class="card" data-aos="zoom-in"><h3>E-Pharmacy with Chatbot</h3><p>Medicine purchase, OCR prescription upload + AI chatbot.</p><div class="tags"><span class="tag">HTML</span><span class="tag">Firebase</span><span class="tag">OCR</span></div></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="100"><h3>Online Voting App</h3><p>Secure voter authentication using personal ID.</p><div class="tags"><span class="tag">Java</span><span class="tag">Android</span></div></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="200"><h3>Remote Plant Monitoring</h3><p>IoT system for smart agriculture.</p><div class="tags"><span class="tag">Arduino</span><span class="tag">IoT</span></div></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="300"><h3>Hospital Management System</h3><p>Efficient patient & appointment management.</p><div class="tags"><span class="tag">Java</span><span class="tag">MySQL</span></div></div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" data-aos="fade-up" aria-labelledby="skillsHeading">
-    <h2 id="skillsHeading">Skills & Competencies</h2>
-    <div class="grid-3">
-      <div class="card" data-aos="flip-left"><h3>Social Work</h3><p>Community Engagement · Case Work · Group Work · Research</p></div>
-      <div class="card" data-aos="flip-left" data-aos-delay="100"><h3>Technical</h3><p>Java · HTML · Firebase · Arduino · MySQL · IoT</p></div>
-      <div class="card" data-aos="flip-left" data-aos-delay="200"><h3>Professional</h3><p>MS Office · Digital Marketing · AI for Business</p></div>
-    </div>
-  </section>
-
-  <!-- Journey Section -->
-  <section id="journey" data-aos="fade-up" aria-labelledby="journeyHeading">
-    <h2 id="journeyHeading">Education & Experience</h2>
-    <div class="timeline" role="list">
-      <div class="timeline-item" data-aos="fade-right" role="listitem"><div class="timeline-content"><h3>2022 – 2025</h3><p><strong>BCA</strong><br>VIT Vellore</p></div></div>
-      <div class="timeline-item" data-aos="fade-left" role="listitem"><div class="timeline-content"><h3>2025 – Present</h3><p><strong>MSW</strong><br>VIT Vellore</p></div></div>
-      <div class="timeline-item" data-aos="fade-right" role="listitem"><div class="timeline-content"><h3>Aug – Oct 2025</h3><p><strong>Social Work Trainee</strong><br>Freedom Foundation</p></div></div>
-    </div>
-  </section>
-
-  <!-- Articles & Insights Section -->
-  <section id="articles" data-aos="fade-up" aria-labelledby="articlesHeading">
-    <h2 id="articlesHeading">Articles & Insights</h2>
-    <div class="grid-3">
-      <div class="card" data-aos="zoom-in">
-        <h3>Impact of Social Media on Youth</h3>
-        <p>Exploring psychological theories and digital engagement from a social work perspective.</p>
-        <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_socialmedia-youth-impact-activity-7151940624682342400-KC1p"
-           class="btn btn-volunteer" target="_blank" aria-label="Read on LinkedIn">
-          View Full Article
-        </a>
-      </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="100">
-        <h3>Tech for Social Good: My Journey</h3>
-        <p>How web applications and digital platforms are transforming local NGOs and healthcare delivery.</p>
-        <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_techforsocialgood-ngo-activity-7151940624682342400-MJKp"
-           class="btn btn-volunteer" target="_blank" aria-label="See full post">
-          View Full Article
-        </a>
-      </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="200">
-        <h3>Field Work Case Study: Community Empowerment</h3>
-        <p>Documentation of successful field work projects in partnership with VIT and local organizations.</p>
-        <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_fieldwork-community-socialwork-activity-7151940624682342400-XYZp"
-           class="btn btn-volunteer" target="_blank" aria-label="View case study">
-          View Full Article
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Volunteering & Collaboration Section -->
-  <section id="volunteering" data-aos="fade-up" aria-labelledby="volunteeringHeading">
-    <h2 id="volunteeringHeading">Volunteering & Collaboration</h2>
-    <div class="grid-3">
-      <div class="card" data-aos="flip-left">
-        <h3>VIT Gravitas 2025</h3>
-        <p>I had the wonderful opportunity to participate by representing our Department of Social Work. Together with my seniors, we put up a stall showcasing our department’s activities and learnings.</p>
-        <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-ugcPost-7378987288053153792-HJiB?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI"
-           class="btn btn-volunteer" target="_blank" aria-label="View LinkedIn Collaboration Post">
-          View LinkedIn Collab
-        </a>
-      </div>
-      <div class="card" data-aos="flip-left" data-aos-delay="100">
-        <h3>Ungaludan Stalin Camp</h3>
-        <p>Had the opportunity to participate in the Ungaludan Stalin Camp organized by the Tamil Nadu Government at Thathavalli village. The camp focused on delivering various welfare schemes and services directly to the rural public, ensuring last-mile connectivity of government programs.</p>
-        <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI"
-           class="btn btn-volunteer" target="_blank" aria-label="View LinkedIn Collaboration Post">
-          View LinkedIn Collab
-        </a>
-      </div>
-      <div class="card" data-aos="flip-left" data-aos-delay="200">
-        <h3>Hack the Dash-Gravitas-2024</h3>
-        <p>Coordinator for the 'Hack the Dash' event, organized by the Health Club at VIT Vellore, where participants leveraged the power of Power BI. It was a great learning experience for me, and I'm excited to see how everyone applies these insights in real-world scenarios!.</p>
-        <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI"
-           class="btn btn-volunteer" target="_blank" aria-label="View LinkedIn Collaboration Post">
-          View LinkedIn Collab
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" data-aos="fade-up" aria-labelledby="contactHeading">
-    <h2 id="contactHeading">Let's Connect</h2>
-    <p class="contact-text">Have a social impact or tech-for-good idea? Reach out!</p>
-    <div class="social-links" role="navigation" aria-label="Social links">
-      <a href="https://www.instagram.com/sanjayprasath_2004/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/Sanjayp62545815" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-    <p style="margin-top: 3rem;">
-      <a href="mailto:sanjayprasath2004@gmail.com" class="email-link">sanjayprasath2004@gmail.com</a>
-    </p>
-  </section>
-
-  <footer>
-    <p>© 2025 Sanjay Prasath. Building a better world with tech & compassion.</p>
-  </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true });
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true });
 
-    // Nav scroll effect
+    // Nav scrolled effect
     window.addEventListener('scroll', () => {
-      document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+      const navWrap = document.querySelector('header .nav');
+      if(!navWrap) return;
+      navWrap.classList.toggle('scrolled', window.scrollY > 30);
     });
 
-    // Mobile menu toggle with accessible attributes
+    // Mobile menu toggle if you still have hamburger elsewhere
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const hamburgerIcon = document.getElementById('hamburgerIcon');
-
     function toggleMobileMenu() {
+      if(!mobileMenu || !hamburgerBtn) return;
       const isActive = mobileMenu.classList.toggle('active');
       mobileMenu.setAttribute('aria-hidden', !isActive);
       hamburgerBtn.setAttribute('aria-expanded', isActive);
-      // swap icon
       hamburgerIcon.classList.toggle('fa-bars', !isActive);
       hamburgerIcon.classList.toggle('fa-times', isActive);
-      // prevent page scroll when menu open (mobile)
       document.body.style.overflow = isActive ? 'hidden' : '';
     }
+    hamburgerBtn && hamburgerBtn.addEventListener('click', toggleMobileMenu);
 
-    hamburgerBtn.addEventListener('click', toggleMobileMenu);
-
-    // Close mobile menu when clicking outside on small screens
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target) && mobileMenu.classList.contains('active')) {
-          toggleMobileMenu();
-        }
-      }
-    });
-
-    // Improve in-page link focus for accessibility on mobile
+    // Smooth scroll for internal links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', () => {
-        if (mobileMenu.classList.contains('active')) toggleMobileMenu();
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth', block:'start'});
+        }
       });
     });
   </script>
 </body>
 </html>
-
-
-
-
