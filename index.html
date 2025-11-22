@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Sanjay Prasath | MSW × Tech for Social Good</title>
   <meta name="description" content="Sanjay Prasath - MSW Student at VIT Vellore | Tech-savvy Social Worker">
   <link rel="apple-touch-icon" href="/mnt/data/20250831_063416.jpg">
@@ -22,7 +22,8 @@
       --card: #fff;
       --glass: rgba(11,102,255,0.04);
       --max-w: 1100px;
-      --nav-height: 62px;
+      --nav-height: 64px;
+      --gap: 16px;
     }
 
     /* Reset & base */
@@ -37,34 +38,34 @@
       line-height:1.5;
       font-weight:600;
       -webkit-font-feature-settings: "lnum";
-      padding-bottom: 80px; /* room for mobile fab */
+      padding-bottom: 88px; /* room for mobile fab */
+      padding-top: calc(var(--nav-height) + 12px); /* ensure header doesn't overlap */
     }
     a{color:var(--accent);text-decoration:none;font-weight:700}
-    img{display:block;max-width:100%}
+    img{display:block;max-width:100%;height:auto}
 
     .wrap{max-width:var(--max-w);margin:0 auto;padding:18px}
 
     /* ===== Header / Nav ===== */
-    header{position:fixed;left:0;right:0;top:10px;z-index:1100;display:flex;justify-content:center;pointer-events:none}
-    .nav{width:100%;max-width:var(--max-w);display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,0.85);box-shadow:0 10px 30px rgba(12,18,40,0.06);pointer-events:auto;gap:12px;height:var(--nav-height)}
-    .brand{display:flex;align-items:center;gap:10px}
-    .logo-mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#fff;font-size:0.95rem}
-    .brand h1{font-family:'Poppins', Inter;font-size:0.95rem;margin:0;line-height:1}
-    .brand small{display:block;font-size:11px;color:var(--muted)}
+    header{position:fixed;inset-inline:0;top:10px;z-index:1100;display:flex;justify-content:center;pointer-events:none}
+    .nav{width:100%;max-width:var(--max-w);display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,0.95);box-shadow:0 10px 30px rgba(12,18,40,0.06);pointer-events:auto;gap:12px;height:var(--nav-height)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .logo-mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#fff;font-size:0.95rem;flex-shrink:0}
+    .brand h1{font-family:'Poppins', Inter;font-size:0.95rem;margin:0;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand small{display:block;font-size:11px;color:var(--muted);opacity:0.95}
 
-    /* Desktop links */
-    .nav-links{display:flex;gap:14px;align-items:center}
+    .nav-links{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
     .nav-links a{color:var(--muted);font-weight:700;padding:8px;border-radius:8px;font-size:14px}
-    .contact-btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:999px;font-weight:800;border:none;font-size:13px}
+    .contact-btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:999px;font-weight:800;border:none;font-size:13px;white-space:nowrap}
 
     /* Hamburger (mobile) */
     .hamburger{display:none;background:transparent;border:none;font-size:20px;padding:8px;border-radius:8px}
-    .mobile-menu{position:fixed;top:calc(var(--nav-height) + 18px);left:12px;right:12px;background:rgba(255,255,255,0.98);border-radius:12px;padding:12px;box-shadow:0 20px 60px rgba(12,18,40,0.08);display:none;flex-direction:column;gap:10px;z-index:1200}
+    .mobile-menu{position:fixed;left:12px;right:12px;top:calc(var(--nav-height) + 22px);background:rgba(255,255,255,0.98);border-radius:12px;padding:12px;box-shadow:0 20px 60px rgba(12,18,40,0.08);display:none;flex-direction:column;gap:10px;z-index:1200}
     .mobile-menu a{padding:12px;border-radius:10px;color:var(--muted);font-weight:700}
     .mobile-menu.show{display:flex}
 
     /* ===== Hero ===== */
-    .hero-wrap{margin-top:84px}
+    .hero-wrap{margin-top:0}
     .hero{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center;min-height:66vh;padding:14px 0 30px}
     .hero-left .hello{display:inline-block;border:2px solid rgba(11,102,255,0.12);color:var(--accent);padding:6px 10px;border-radius:8px;font-weight:800;font-size:13px}
     .hero-left h1{font-family:'Poppins', Inter;font-weight:900;font-size:clamp(1.8rem,6vw,3.2rem);line-height:1;margin:10px 0}
@@ -87,10 +88,16 @@
     .card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(11,102,255,0.04);box-shadow:0 8px 26px rgba(12,18,40,0.04);display:flex;flex-direction:column;justify-content:space-between}
     .muted{color:var(--muted);font-weight:500}
 
+    /* ===== About grid (moved from inline) ===== */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;max-width:980px;margin:0 auto}
+    .about-img{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(11,102,255,0.06)}
+    .about-text p{color:var(--muted);line-height:1.7;margin-bottom:8px;font-weight:500}
+
     /* Timeline */
     .timeline{max-width:900px;margin:12px auto;position:relative}
     .timeline::before{content:'';position:absolute;left:50%;width:3px;background:linear-gradient(to bottom,var(--accent),var(--accent-2));top:0;bottom:0;transform:translateX(-50%)}
-    .timeline-item{margin:18px 0;display:flex;justify-content:space-between;align-items:center}
+    .timeline-item{margin:18px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .timeline-item:nth-child(odd){flex-direction:row-reverse}
     .timeline-content{background:var(--card);padding:12px;border-radius:12px;width:45%;text-align:center;box-shadow:0 12px 35px rgba(12,18,40,0.04)}
 
     /* Contact */
@@ -108,7 +115,6 @@
 
     /* ===== Responsive adjustments (mobile-first) ===== */
     @media (max-width:900px){
-      /* show hamburger and hide desktop links */
       .nav-links{display:none}
       .hamburger{display:inline-flex}
       .mobile-menu{left:12px;right:12px;top:calc(var(--nav-height) + 18px)}
@@ -123,6 +129,9 @@
       .actions{flex-direction:column;align-items:stretch}
       .btn-primary,.btn-ghost{width:100%}
       .role-badge{right:22px;top:12px;padding:6px 10px;font-size:13px}
+
+      /* about becomes single column */
+      .about-grid{grid-template-columns:1fr;gap:14px;padding:0 6px}
 
       /* timeline single column */
       .timeline::before{left:18px}
@@ -177,7 +186,7 @@
       <div class="nav" role="navigation" aria-label="Main navigation">
         <div class="brand" aria-hidden="false">
           <div class="logo-mark" aria-hidden="true">SP</div>
-          <div>
+          <div style="min-width:0;">
             <h1>Sanjay Prasath</h1>
             <small>MSW × Tech for Social Good</small>
           </div>
@@ -221,7 +230,8 @@
         <!-- Portrait shown first on mobile (order controlled by CSS) -->
         <div class="hero-right" data-aos="fade-up">
           <div class="portrait" role="img" aria-label="Sanjay Prasath portrait">
-            <img src="sanjay img - Copy.jpg" alt="Sanjay Prasath portrait">
+            <!-- lazy load for performance -->
+            <img src="sanjay img - Copy.jpg" alt="Sanjay Prasath portrait" loading="lazy">
           </div>
           <div class="role-badge" aria-hidden="true">Web Designer & Social Worker</div>
         </div>
@@ -241,15 +251,12 @@
     <!-- ABOUT -->
     <section id="about" data-aos="fade-up" aria-labelledby="aboutHeading">
       <h2 id="aboutHeading">About Me</h2>
-      <div class="about-grid" style="display:grid;grid-template-columns:1fr;gap:18px;align-items:center;max-width:900px;margin:0 auto">
+      <div class="about-grid">
         <div class="about-img" data-aos="zoom-in" aria-hidden="false">
-          <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Sanjay Prasath">
+          <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Sanjay Prasath" loading="lazy">
         </div>
         <div class="about-text" data-aos="fade-up">
-          <p>I am a postgraduate student pursuing a <strong>Master of Social Work</strong> at VIT Vellore, equipped with a strong foundation in computer applications.</p>
-          <p>My academic background and field experience have enabled me to integrate analytical thinking, problem-solving, and community-oriented approaches in addressing social issues.</p>
-          <p>I have actively participated in various community engagement programs, organisational activities, and developmental initiatives aimed at empowering individuals and promoting sustainable social change.</p>
-          <p>I am committed to fostering inclusive growth and contributing effectively to the advancement of social welfare and community development.</p>
+         <p>I am a postgraduate student pursuing a <strong>Master of Social Work</strong> at VIT Vellore, supported by a solid academic background in computer applications. This interdisciplinary training enables me to apply analytical reasoning, structured problem-solving, and a systems-oriented perspective to contemporary social issues.</p> <p>My academic and fieldwork experiences have strengthened my competencies in community engagement, organisational functioning, programme implementation, and evidence-based social interventions. I have contributed to a range of outreach initiatives and developmental activities aimed at enhancing individual well-being and promoting sustainable community development.</p> <p>I am committed to advancing inclusive growth, strengthening welfare mechanisms, and integrating both social work principles and technological insights to support effective and meaningful social change.</p>
         </div>
       </div>
     </section>
@@ -293,17 +300,17 @@
         <div class="card" data-aos="zoom-in">
           <h3>Impact of Social Media on Youth</h3>
           <p class="muted">Exploring psychological theories and digital engagement from a social work perspective.</p>
-          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_socialmedia-youth-impact-activity-7151940624682342400-KC1p" class="btn-primary" target="_blank" aria-label="Read on LinkedIn">View Full Article</a>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_socialmedia-youth-impact-activity-7151940624682342400-KC1p" class="btn-primary" target="_blank" aria-label="Read on LinkedIn" rel="noopener">View Full Article</a>
         </div>
         <div class="card" data-aos="zoom-in" data-aos-delay="100">
           <h3>Tech for Social Good: My Journey</h3>
           <p class="muted">How web applications and digital platforms are transforming local NGOs and healthcare delivery.</p>
-          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_techforsocialgood-ngo-activity-7151940624682342400-MJKp" class="btn-primary" target="_blank" aria-label="See full post">View Full Article</a>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_techforsocialgood-ngo-activity-7151940624682342400-MJKp" class="btn-primary" target="_blank" aria-label="See full post" rel="noopener">View Full Article</a>
         </div>
         <div class="card" data-aos="zoom-in" data-aos-delay="200">
           <h3>Field Work Case Study: Community Empowerment</h3>
           <p class="muted">Documentation of successful field work projects in partnership with VIT and local organizations.</p>
-          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_fieldwork-community-socialwork-activity-7151940624682342400-XYZp" class="btn-primary" target="_blank" aria-label="View case study">View Full Article</a>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_fieldwork-community-socialwork-activity-7151940624682342400-XYZp" class="btn-primary" target="_blank" aria-label="View case study" rel="noopener">View Full Article</a>
         </div>
       </div>
     </section>
@@ -315,17 +322,17 @@
         <div class="card" data-aos="flip-left">
           <h3>VIT Gravitas 2025</h3>
           <p class="muted">I had the wonderful opportunity to participate by representing our Department of Social Work. Together with my seniors, we put up a stall showcasing our department’s activities and learnings.</p>
-          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-ugcPost-7378987288053153792-HJiB?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collaboration Post">View LinkedIn Collab</a>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-ugcPost-7378987288053153792-HJiB?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collaboration Post" rel="noopener">View LinkedIn Collab</a>
         </div>
         <div class="card" data-aos="flip-left" data-aos-delay="100">
           <h3>Ungaludan Stalin Camp</h3>
           <p class="muted">Had the opportunity to participate in the Ungaludan Stalin Camp organized by the Tamil Nadu Government at Thathavalli village. The camp focused on delivering various welfare schemes and services directly to the rural public, ensuring last-mile connectivity of government programs.</p>
-          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collaboration Post">View LinkedIn Collab</a>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collaboration Post" rel="noopener">View LinkedIn Collab</a>
         </div>
         <div class="card" data-aos="flip-left" data-aos-delay="200">
           <h3>Hack the Dash — Gravitas 2024</h3>
           <p class="muted">Coordinator for the 'Hack the Dash' event, organized by the Health Club at VIT Vellore, where participants leveraged the power of Power BI.</p>
-          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collab">View LinkedIn Collab</a>
+          <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" class="btn-primary" target="_blank" aria-label="View LinkedIn Collab" rel="noopener">View LinkedIn Collab</a>
         </div>
       </div>
     </section>
