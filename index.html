@@ -1,635 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <title>Sanjay Prasath • MSW × Tech</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#03040b" />
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    :root {
-      scroll-behavior: smooth;
-      --vh: 1vh; /* for mobile height fix */
-    }
-
+    /* Reset & basics */
+    *, *::before, *::after { box-sizing: border-box; }
+    :root { --vh: 1vh; scroll-behavior: smooth; }
+    html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: #f5f7ff;
       min-height: calc(var(--vh) * 100);
       overflow-x: hidden;
       background: radial-gradient(circle at 20% 20%, #151933, #03040b 70%);
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
     }
 
-    /* === Sticky header === */
+    /* Header */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: linear-gradient(90deg, rgba(3, 6, 20, 0.95), rgba(10, 18, 52, 0.92));
-      border-bottom: 1px solid rgba(144, 190, 255, 0.35);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(90deg, rgba(3,6,20,0.95), rgba(10,18,52,0.92));
+      border-bottom: 1px solid rgba(144,190,255,0.35);
     }
-
-    /* Curved header bottom */
-    .curved-header {
-      border-radius: 0 0 50% 50% / 0 0 12% 12%;
-      overflow: hidden;
-    }
-
+    .curved-header { border-radius: 0 0 50% 50% / 0 0 12% 12%; overflow: hidden; }
     .site-header-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.75rem 1.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
+      max-width: 1120px; margin: 0 auto; padding: .75rem 1.6rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1.25rem;
     }
-
-    .site-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      white-space: nowrap;
-    }
-
+    .site-logo { display:flex; align-items:center; gap:.6rem; font-size:.95rem; text-transform:uppercase; letter-spacing:.18em; }
     .site-logo-badge {
-      width: 22px;
-      height: 22px;
-      border-radius: 7px;
-      background: conic-gradient(from 200deg, #90beff, #f6b2ff, #ffc857, #90beff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: #050816;
+      width:22px; height:22px; border-radius:7px;
+      background: conic-gradient(from 200deg,#90beff,#f6b2ff,#ffc857,#90beff);
+      display:flex; align-items:center; justify-content:center; font-weight:700; color:#050816; font-size:.7rem;
     }
+    .site-logo-text span { color:#90beff; }
+    .site-nav { display:flex; flex-wrap:wrap; gap:.9rem; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; }
+    .site-nav a { color:#cbd7ff; text-decoration:none; opacity:.9; padding:.2rem .3rem; border-radius:999px; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+    .site-nav a:hover { opacity:1; background: rgba(144,190,255,0.12); }
 
-    .site-logo-text span {
-      color: #90beff;
-    }
-
-    .site-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .site-nav a {
-      color: #cbd7ff;
-      text-decoration: none;
-      opacity: 0.9;
-      padding: 0.2rem 0.3rem;
-      border-radius: 999px;
-    }
-
-    .site-nav a:hover {
-      opacity: 1;
-      background: rgba(144, 190, 255, 0.12);
-    }
-
-    @media (max-width: 720px) {
-      .site-header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-inline: 1.2rem;
-      }
-      .site-nav {
-        font-size: 0.78rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .curved-header {
-        border-radius: 0 0 60% 60% / 0 0 18% 18%;
-      }
-      .site-header-inner {
-        gap: 0.6rem;
-      }
-      .site-nav {
-        width: 100%;
-        row-gap: 0.4rem;
-      }
-      .site-nav a {
-        font-size: 0.75rem;
-      }
-    }
-
-    /* === Space planets background === */
+    /* Space scene (absolute so webviews don't freeze scrolling) */
     .space-scene {
-      position: fixed;
+      position: absolute;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: -1;
-      overflow: hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:-1;
+      overflow:hidden;
+      pointer-events: none; /* avoid interfering with touches */
     }
-
     .solar-center {
       position: relative;
-      width: 60vmin;
-      height: 60vmin;
-      border-radius: 50%;
+      width: clamp(360px, 60vmin, 720px);
+      height: clamp(360px, 60vmin, 720px);
+      border-radius:50%;
+      will-change: transform;
+      transform: translateZ(0);
+      opacity: .95;
     }
-
     .sun {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 8vmin;
-      height: 8vmin;
-      margin: -4vmin 0 0 -4vmin;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ffd56b, #ff7b00 70%, #b34700 100%);
-      box-shadow:
-        0 0 30px rgba(255, 183, 77, 0.8),
-        0 0 60px rgba(255, 145, 0, 0.8);
+      position:absolute; top:50%; left:50%;
+      width:8vmin; height:8vmin; margin:-4vmin 0 0 -4vmin; border-radius:50%;
+      background: radial-gradient(circle,#ffd56b,#ff7b00 70%, #b34700 100%);
+      box-shadow: 0 0 30px rgba(255,183,77,0.8), 0 0 60px rgba(255,145,0,0.8);
+      pointer-events: none;
     }
+    .orbit { position:absolute; top:50%; left:50%; border-radius:50%;
+      border:1px dashed rgba(173,186,255,0.2); transform: translate(-50%,-50%); pointer-events:none; }
+    .orbit.orbit-1 { width:18vmin; height:18vmin; }
+    .orbit.orbit-2 { width:28vmin; height:28vmin; }
+    .orbit.orbit-3 { width:40vmin; height:40vmin; }
+    .orbit.orbit-4 { width:54vmin; height:54vmin; }
 
-    .orbit {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border-radius: 50%;
-      border: 1px dashed rgba(173, 186, 255, 0.2);
-      transform: translate(-50%, -50%);
-    }
+    .planet { position:absolute; top:50%; left:50%; transform-origin: -50% -50%; animation: orbit linear infinite; pointer-events:none; }
+    .planet-body { border-radius:50%; box-shadow: 0 0 20px rgba(0,0,0,0.5); transform: translateZ(0); }
+    .planet-1 { animation-duration:12s; }
+    .planet-1 .planet-body { width:1.8vmin; height:1.8vmin; background: radial-gradient(circle,#a7b0ff,#636bff 70%,#232862 100%); transform: translateX(9vmin); }
+    .planet-2 { animation-duration:18s; }
+    .planet-2 .planet-body { width:2.4vmin; height:2.4vmin; background: radial-gradient(circle,#ffef9a,#ffc857 70%,#b98318); transform: translateX(14vmin); }
+    .planet-3 { animation-duration:26s; }
+    .planet-3 .planet-body { width:2.8vmin; height:2.8vmin; background: radial-gradient(circle,#94e1ff,#2d9cdb 70%,#1b4965); transform: translateX(20vmin); }
+    .planet-4 { animation-duration:36s; }
+    .planet-4 .planet-body { width:3.6vmin; height:3.6vmin; background: radial-gradient(circle,#f6b2ff,#d066ff 70%,#6a1b9a); transform: translateX(27vmin); }
 
-    .orbit.orbit-1 { width: 18vmin; height: 18vmin; }
-    .orbit.orbit-2 { width: 28vmin; height: 28vmin; }
-    .orbit.orbit-3 { width: 40vmin; height: 40vmin; }
-    .orbit.orbit-4 { width: 54vmin; height: 54vmin; }
+    @keyframes orbit { from { transform: translate(-50%,-50%) rotate(0deg);} to { transform: translate(-50%,-50%) rotate(360deg);} }
 
-    .planet {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform-origin: -50% -50%;
-      animation: orbit linear infinite;
-    }
+    .star { position:absolute; width:2px; height:2px; background:white; border-radius:50%; opacity:.7; animation: twinkle 2.4s infinite ease-in-out; pointer-events:none; }
+    @keyframes twinkle { 0%,100% {opacity:.8; transform:scale(1);} 50% {opacity:.2; transform:scale(.6);} }
 
-    .planet-body {
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
+    /* Portfolio layout */
+    .portfolio { position:relative; min-height: calc(var(--vh) * 100); padding: 3.2rem clamp(1.5rem,4vw,4rem) 4rem; display:flex; flex-direction:column; gap:3rem; backdrop-filter: blur(5px); max-width:1120px; margin:0 auto; z-index: 1; }
+    .hero { max-width:920px; }
+    .hero-top { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
+    .hero-text { flex:1 1 260px; min-width:0; }
+    .hero-photo-wrap { width:190px; aspect-ratio:1/1; border-radius:1.2rem; padding:4px; background: conic-gradient(from 220deg,#90beff,#f6b2ff,#ffc857,#90beff); box-shadow:0 18px 40px rgba(0,0,0,0.7); overflow:hidden; }
+    .hero-photo { width:100%; height:100%; border-radius:.9rem; object-fit:cover; display:block; border:3px solid rgba(5,8,22,0.95); background:linear-gradient(135deg,#90beff,#f6b2ff); }
 
-    .planet-1 { animation-duration: 12s; }
-    .planet-1 .planet-body {
-      width: 1.8vmin;
-      height: 1.8vmin;
-      background: radial-gradient(circle, #a7b0ff, #636bff 70%, #232862 100%);
-      transform: translateX(9vmin);
-    }
+    .hero-badge { display:inline-flex; align-items:center; gap:.4rem; padding:.3rem .9rem; border-radius:999px; border:1px solid rgba(144,190,255,0.5); background:rgba(3,6,20,0.86); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:#9eb6ff; margin-bottom:.9rem; }
 
-    .planet-2 { animation-duration: 18s; }
-    .planet-2 .planet-body {
-      width: 2.4vmin;
-      height: 2.4vmin;
-      background: radial-gradient(circle, #ffef9a, #ffc857 70%, #b98318 100%);
-      transform: translateX(14vmin);
-    }
+    .hero h1 { font-size: clamp(2.3rem, 4.8vw, 3.3rem); letter-spacing:.08em; text-transform:uppercase; margin:0 0 .4rem 0; }
+    .hero-subtitle { font-weight:500; color:#f5f7ff; margin:0 0 .4rem 0; }
+    .hero-status { font-family: ui-monospace, Menlo, Monaco, Consolas, monospace; font-size:.85rem; color:#9ee493; margin:.4rem 0 0; }
+    .hero-status span { color:#ffd56b; }
 
-    .planet-3 { animation-duration: 26s; }
-    .planet-3 .planet-body {
-      width: 2.8vmin;
-      height: 2.8vmin;
-      background: radial-gradient(circle, #94e1ff, #2d9cdb 70%, #1b4965 100%);
-      transform: translateX(20vmin);
-    }
+    .hero-links { margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:1rem; }
+    .hero-links a { padding:.6rem 1.4rem; border-radius:999px; border:1px solid rgba(144,190,255,0.5); color:#e3ecff; text-decoration:none; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; background: linear-gradient(135deg, rgba(90,133,255,0.25), rgba(5,8,22,0.95)); backdrop-filter: blur(10px); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .hero-links a:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.45); background: linear-gradient(135deg, rgba(144,190,255,0.45), rgba(5,8,22,1)); }
 
-    .planet-4 { animation-duration: 36s; }
-    .planet-4 .planet-body {
-      width: 3.6vmin;
-      height: 3.6vmin;
-      background: radial-gradient(circle, #f6b2ff, #d066ff 70%, #6a1b9a 100%);
-      transform: translateX(27vmin);
-    }
+    .section { max-width:1040px; }
+    .section h2 { font-size:1.5rem; margin:0 0 1rem 0; position:relative; }
+    .section h2::after { content:""; position:absolute; left:0; bottom:-.35rem; width:3rem; height:2px; background: linear-gradient(90deg,#90beff,transparent); }
+    .section p { color:#d3ddff; line-height:1.7; margin:.4rem 0 0 0; }
 
-    @keyframes orbit {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(360deg); }
-    }
+    .two-col { display:grid; grid-template-columns: minmax(0,2.1fr) minmax(0,1.4fr); gap:2rem; }
+    @media (max-width:800px) { .two-col { grid-template-columns: 1fr; } .hero-top { flex-direction: column-reverse; align-items:flex-start; } .hero-photo-wrap { width:160px; } }
 
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: twinkle 2.4s infinite ease-in-out;
-    }
+    .timeline { list-style:none; padding:0; margin:.4rem 0 0 0; border-left:1px solid rgba(144,190,255,0.4); }
+    .timeline-item { padding:.15rem 0 .15rem 1.1rem; position:relative; }
+    .timeline-item::before { content:""; position:absolute; left:-5px; top:.72rem; width:9px; height:9px; border-radius:50%; background:#90beff; box-shadow:0 0 0 4px rgba(144,190,255,0.2); }
+    .timeline-period { font-size:.82rem; color:#9fb2ff; }
+    .timeline-role { font-size:.96rem; font-weight:600; }
+    .timeline-place { font-size:.9rem; color:#cbd5ff; }
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.8; transform: scale(1); }
-      50% { opacity: 0.2; transform: scale(0.6); }
-    }
+    .pill-group { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:.4rem; }
+    .pill { padding:.26rem .7rem; border-radius:999px; border:1px solid rgba(144,190,255,0.45); font-size:.8rem; color:#e3ecff; background: rgba(8,12,35,0.9); backdrop-filter: blur(6px); white-space:nowrap; }
 
-    /* === Portfolio layout === */
-    .portfolio {
-      position: relative;
-      min-height: calc(var(--vh) * 100);
-      padding: 3.2rem clamp(1.5rem, 4vw, 4rem) 4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-      backdrop-filter: blur(5px);
-      max-width: 1120px;
-      margin: 0 auto;
-    }
+    .cards { display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:1rem; }
+    .card { padding:1.3rem 1.5rem; border-radius:1rem; background: radial-gradient(circle at top left, rgba(144,190,255,0.22), rgba(5,8,22,0.96)); border:1px solid rgba(144,190,255,0.35); box-shadow:0 18px 40px rgba(0,0,0,0.55); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .card:hover { transform: translateY(-6px); box-shadow:0 26px 60px rgba(0,0,0,0.7); border-color: rgba(202,218,255,0.8); }
+    .card h3 { margin:0 0 .4rem 0; font-size:1.05rem; }
+    .card-meta { font-size:.78rem; text-transform:uppercase; letter-spacing:.12em; color:#9fb2ff; margin-bottom:.35rem; }
+    .card p { margin:0; color:#cfd9ff; font-size:.93rem; line-height:1.6; }
+    .card-links { margin-top:.75rem; display:flex; flex-wrap:wrap; gap:.6rem; }
+    .card-links a { font-size:.8rem; color:#90beff; text-decoration:none; }
+    .card-links a:hover { text-decoration:underline; }
 
-    .hero {
-      max-width: 920px;
-    }
+    .contact-buttons { margin-top:1rem; display:flex; flex-wrap:wrap; gap:.7rem; }
+    .contact-buttons a { padding:.5rem 1.1rem; border-radius:999px; border:1px solid rgba(144,190,255,0.5); font-size:.85rem; color:#e3ecff; text-decoration:none; background: rgba(8,12,35,0.9); transition: background .2s ease, transform .2s ease; }
+    .contact-buttons a:hover { background: rgba(144,190,255,0.2); transform: translateY(-1px); }
 
-    .hero-top {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-    }
+    .footer { margin-top:2.5rem; font-size:.8rem; color:#9fb2ff; text-align:center; width:100%; }
 
-    .hero-text {
-      flex: 1 1 260px;
-      min-width: 0;
-    }
+    /* Floating FABs (kept as fixed but safe flag added) */
+    .fab { position: fixed; right: 18px; display:flex; align-items:center; justify-content:center; text-decoration:none; z-index:100; -webkit-tap-highlight-color: transparent; }
+    .fab-whatsapp { bottom: 18px; width:56px; height:56px; border-radius:50%; background-color:#25d366; box-shadow:0 4px 16px rgba(0,0,0,0.6); }
+    .fab-resume { bottom: 86px; padding:.5rem 1.1rem; border-radius:999px; background: linear-gradient(135deg,#90beff,#f6b2ff); color:#050816; font-size:.8rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; box-shadow:0 4px 16px rgba(0,0,0,0.6); white-space:nowrap; }
+    .fab:hover { transform: translateY(-2px); transition: transform .15s ease; }
+    .fab-whatsapp svg { width:28px; height:28px; fill:#fff; display:block; }
 
-    .hero-photo-wrap {
-      width: 190px;
-      aspect-ratio: 1 / 1;
-      border-radius: 1.2rem;
-      padding: 4px;
-      background: conic-gradient(from 220deg, #90beff, #f6b2ff, #ffc857, #90beff);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-    }
-
-    .hero-photo {
-      width: 100%;
-      height: 100%;
-      border-radius: 0.9rem;
-      object-fit: cover;
-      display: block;
-      border: 3px solid rgba(5, 8, 22, 0.95);
-      background: linear-gradient(135deg, #90beff, #f6b2ff);
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(144, 190, 255, 0.5);
-      background: rgba(3, 6, 20, 0.86);
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #9eb6ff;
-      margin-bottom: 0.9rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.3rem, 4.8vw, 3.3rem);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin: 0 0 0.4rem 0;
-    }
-
-    .hero-subtitle {
-      font-weight: 500;
-      color: #f5f7ff;
-      margin: 0 0 0.4rem 0;
-    }
-
-    .hero-status {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 0.85rem;
-      color: #9ee493;
-      margin: 0.4rem 0 0;
-    }
-
-    .hero-status span {
-      color: #ffd56b;
-    }
-
-    .hero-links {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .hero-links a {
-      padding: 0.6rem 1.4rem;
-      border-radius: 999px;
-      border: 1px solid rgba(144, 190, 255, 0.5);
-      color: #e3ecff;
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, rgba(90, 133, 255, 0.25), rgba(5, 8, 22, 0.95));
-      backdrop-filter: blur(10px);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .hero-links a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
-      background: linear-gradient(135deg, rgba(144, 190, 255, 0.45), rgba(5, 8, 22, 1));
-    }
-
-    .section {
-      max-width: 1040px;
-    }
-
-    .section h2 {
-      font-size: 1.5rem;
-      margin: 0 0 1rem 0;
-      position: relative;
-    }
-
-    .section h2::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -0.35rem;
-      width: 3rem;
-      height: 2px;
-      background: linear-gradient(90deg, #90beff, transparent);
-    }
-
-    .section p {
-      color: #d3ddff;
-      line-height: 1.7;
-      margin: 0.4rem 0 0 0;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-      gap: 2rem;
-    }
-
-    @media (max-width: 800px) {
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-      .hero-top {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-      }
-      .hero-photo-wrap {
-        width: 160px;
-      }
-    }
-
-    .timeline {
-      list-style: none;
-      padding: 0;
-      margin: 0.4rem 0 0 0;
-      border-left: 1px solid rgba(144, 190, 255, 0.4);
-    }
-
-    .timeline-item {
-      padding: 0.15rem 0 0.15rem 1.1rem;
-      position: relative;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -5px;
-      top: 0.72rem;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #90beff;
-      box-shadow: 0 0 0 4px rgba(144, 190, 255, 0.2);
-    }
-
-    .timeline-period {
-      font-size: 0.82rem;
-      color: #9fb2ff;
-    }
-
-    .timeline-role {
-      font-size: 0.96rem;
-      font-weight: 600;
-    }
-
-    .timeline-place {
-      font-size: 0.9rem;
-      color: #cbd5ff;
-    }
-
-    .pill-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      margin-top: 0.4rem;
-    }
-
-    .pill {
-      padding: 0.26rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(144, 190, 255, 0.45);
-      font-size: 0.8rem;
-      color: #e3ecff;
-      background: rgba(8, 12, 35, 0.9);
-      backdrop-filter: blur(6px);
-      white-space: nowrap;
-    }
-
-    .pill-pill-heading {
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #f5f7ff;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    .card {
-      padding: 1.3rem 1.5rem;
-      border-radius: 1rem;
-      background: radial-gradient(circle at top left, rgba(144, 190, 255, 0.22), rgba(5, 8, 22, 0.96));
-      border: 1px solid rgba(144, 190, 255, 0.35);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-      transform: translateY(0);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.7);
-      border-color: rgba(202, 218, 255, 0.8);
-    }
-
-    .card h3 {
-      margin: 0 0 0.4rem 0;
-      font-size: 1.05rem;
-    }
-
-    .card-meta {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #9fb2ff;
-      margin-bottom: 0.35rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: #cfd9ff;
-      font-size: 0.93rem;
-      line-height: 1.6;
-    }
-
-    .card-links {
-      margin-top: 0.75rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .card-links a {
-      font-size: 0.8rem;
-      color: #90beff;
-      text-decoration: none;
-    }
-
-    .card-links a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-buttons {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-
-    .contact-buttons a {
-      padding: 0.5rem 1.1rem;
-      border-radius: 999px;
-      border: 1px solid rgba(144, 190, 255, 0.5);
-      font-size: 0.85rem;
-      color: #e3ecff;
-      text-decoration: none;
-      background: rgba(8, 12, 35, 0.9);
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    .contact-buttons a:hover {
-      background: rgba(144, 190, 255, 0.2);
-      transform: translateY(-1px);
-    }
-
-    .footer {
-      margin-top: 2.5rem;
-      font-size: 0.8rem;
-      color: #9fb2ff;
-      text-align: center;      /* added */
-      width: 100%; 
-    }
-
-    /* === Floating WhatsApp & Resume buttons === */
-    .fab {
-      position: fixed;
-      right: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      z-index: 100;
-    }
-
-    .fab-whatsapp {
-      bottom: 18px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background-color: #25d366;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-    }
-
-    .fab-resume {
-      bottom: 86px;
-      padding: 0.5rem 1.1rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #90beff, #f6b2ff);
-      color: #050816;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-      white-space: nowrap;
-    }
-
-    .fab:hover {
-      transform: translateY(-2px);
-    }
-
-    .fab-whatsapp svg {
-      width: 28px;
-      height: 28px;
-      fill: #ffffff;
-    }
-
-    @media (max-width: 600px) {
-      .fab-whatsapp {
-        right: 14px;
-        bottom: 16px;
-        width: 52px;
-        height: 52px;
-      }
-      .fab-resume {
-        right: 14px;
-        bottom: 80px;
-        font-size: 0.78rem;
-      }
+    @media (max-width:600px) {
+      .site-header-inner { flex-direction:column; align-items:flex-start; padding-inline:1.2rem; }
+      .site-nav { font-size:.78rem; width:100%; row-gap:.4rem; }
+      .fab-whatsapp { right:14px; bottom:16px; width:52px; height:52px; }
+      .fab-resume { right:14px; bottom:80px; font-size:.78rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/916382336606" class="fab fab-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20.1 3.9C18.4 2.2 16.1 1.3 13.7 1.3 7.9 1.3 3.2 6 3.2 11.8c0 1.9.5 3.7 1.5 5.3L3 23l6-1.6c1.5.8 3.1 1.2 4.8 1.2 5.8 0 10.5-4.7 10.5-10.5 0-2.5-1-4.8-2.7-6.4zm-6.4 15c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.6 1 1-3.5-.2-.3c-.9-1.3-1.4-2.9-1.4-4.5 0-4.4 3.6-8 8-8 2.1 0 4.1.8 5.6 2.3 1.5 1.5 2.3 3.4 2.3 5.6 0 4.4-3.6 8-8 8zm4.4-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.1.2-.6.7-.8.9-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4.1-.1.2-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.1-.3 0-.1 0-.2 0-.3s-.5-1.3-.7-1.7c-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.3 0-.5.2-.2.2-.7.7-.7 1.7s.7 2 .8 2.1c.1.1 1.4 2.2 3.4 3.1.5.2.8.4 1.1.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.4-1 .2-.5.2-.9.2-1 0-.1-.1-.2-.2-.2z"></path>
-    </svg>
+  <!-- Floating WhatsApp (rel added) -->
+  <a href="https://wa.me/916382336606" class="fab fab-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.1 3.9C18.4 2.2 16.1 1.3 13.7 1.3 7.9 1.3 3.2 6 3.2 11.8c0 1.9.5 3.7 1.5 5.3L3 23l6-1.6c1.5.8 3.1 1.2 4.8 1.2 5.8 0 10.5-4.7 10.5-10.5 0-2.5-1-4.8-2.7-6.4zm-6.4 15c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.6 1 1-3.5-.2-.3c-.9-1.3-1.4-2.9-1.4-4.5 0-4.4 3.6-8 8-8 2.1 0 4.1.8 5.6 2.3 1.5 1.5 2.3 3.4 2.3 5.6 0 4.4-3.6 8-8 8zm4.4-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.1.2-.6.7-.8.9-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4.1-.1.2-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.1-.3 0-.1 0-.2 0-.3s-.5-1.3-.7-1.7c-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.3 0-.5.2-.2.2-.7.7-.7 1.7s.7 2 .8 2.1c.1.1 1.4 2.2 3.4 3.1.5.2.8.4 1.1.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.4-1 .2-.5.2-.9.2-1 0-.1-.1-.2-.2-.2z"/></svg>
   </a>
 
   <!-- Floating Resume -->
-  <a href="https://drive.google.com/drive/folders/1vSf_w5giYXh2gkR-_MazCl_rnl-HbzbE?usp=drive_link" class="fab fab-resume" target="_blank">Resume</a>
+  <a href="https://drive.google.com/drive/folders/1vSf_w5giYXh2gkR-_MazCl_rnl-HbzbE?usp=drive_link" class="fab fab-resume" target="_blank" rel="noopener noreferrer">Resume</a>
 
-  <!-- Space planets background -->
-  <div class="space-scene">
+  <!-- Space planets background (absolute & pointer-events none) -->
+  <div class="space-scene" aria-hidden="true">
     <div class="solar-center">
       <div class="sun"></div>
-
       <div class="orbit orbit-1"></div>
       <div class="orbit orbit-2"></div>
       <div class="orbit orbit-3"></div>
@@ -643,13 +192,13 @@
   </div>
 
   <!-- Header -->
-  <header class="site-header curved-header">
+  <header class="site-header curved-header" role="banner">
     <div class="site-header-inner">
-      <div class="site-logo">
+      <div class="site-logo" aria-hidden="false">
         <div class="site-logo-badge">SP</div>
         <div class="site-logo-text">Sanjay <span>Prasath</span></div>
       </div>
-      <nav class="site-nav">
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
@@ -661,30 +210,29 @@
     </div>
   </header>
 
-  <!-- Portfolio content -->
-  <main class="portfolio">
-    <header class="hero" id="top">
+  <!-- Main portfolio content -->
+  <main class="portfolio" id="top" role="main">
+    <header class="hero">
       <div class="hero-top">
         <div class="hero-text">
           <div class="hero-badge">
-            <span>Built With Purpose</span>
-            <span>•</span>
-            <span>Powered By Understanding</span>
+            <span>Built With Purpose</span><span>•</span><span>Powered By Understanding</span>
           </div>
           <h1>Sanjay Prasath</h1>
           <p class="hero-subtitle">Designing Better Futures</p>
-          <p>Integrating social work practice, data, and web technologies to build human‑centred solutions.</p>
+          <p>Integrating social work practice, data, and web technologies to build human-centred solutions.</p>
           <p class="hero-status">&gt; BootingCreativeCore… <span> Active ✔</span></p>
 
           <div class="hero-links">
             <a href="#volunteering">View Volunteering</a>
             <a href="#articles">View Articles</a>
-            <a href="https://github.com/sanjayprasath2004" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/sanjayprasath2004" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
 
-        <div class="hero-photo-wrap">
+        <div class="hero-photo-wrap" aria-hidden="false">
+          <!-- Replace the src with your image filename or hosted URL -->
           <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Photo of Sanjay Prasath" class="hero-photo" />
         </div>
       </div>
@@ -694,45 +242,17 @@
       <h2>About</h2>
       <div class="two-col">
         <div>
-          <p>
-            I am a postgraduate student pursuing a Master of Social Work at VIT Vellore, supported by a solid academic
-            background in computer applications. This interdisciplinary training enables me to apply analytical reasoning,
-            structured problem‑solving, and a systems‑oriented perspective to contemporary social issues.
-          </p>
-          <p>
-            My academic and fieldwork experiences have strengthened my competencies in community engagement,
-            organisational functioning, programme implementation, and evidence‑based social interventions. I have
-            contributed to outreach initiatives and developmental activities aimed at enhancing individual well‑being
-            and promoting sustainable community development.
-          </p>
-          <p>
-            I am committed to advancing inclusive growth, strengthening welfare mechanisms, and integrating social work
-            principles with technological insights to support effective and meaningful social change.
-          </p>
+          <p>I am a postgraduate student pursuing a Master of Social Work at VIT Vellore, supported by a solid academic background in computer applications. This interdisciplinary training enables me to apply analytical reasoning, structured problem-solving, and a systems-oriented perspective to contemporary social issues.</p>
+          <p>My academic and fieldwork experiences have strengthened my competencies in community engagement, organisational functioning, programme implementation, and evidence-based social interventions. I have contributed to outreach initiatives and developmental activities aimed at enhancing individual well-being and promoting sustainable community development.</p>
+          <p>I am committed to advancing inclusive growth, strengthening welfare mechanisms, and integrating social work principles with technological insights to support effective and meaningful social change.</p>
         </div>
         <div>
           <h3>Education &amp; Experience — Journey</h3>
           <ul class="timeline">
-            <li class="timeline-item">
-              <div class="timeline-period">2022 – 2025</div>
-              <div class="timeline-role">BCA</div>
-              <div class="timeline-place">VIT Vellore</div>
-            </li>
-            <li class="timeline-item">
-              <div class="timeline-period">2025 – Present</div>
-              <div class="timeline-role">MSW</div>
-              <div class="timeline-place">VIT Vellore</div>
-            </li>
-            <li class="timeline-item">
-              <div class="timeline-period">Aug – Oct 2025</div>
-              <div class="timeline-role">Social Work Trainee</div>
-              <div class="timeline-place">Freedom Foundation</div>
-            </li>
-            <li class="timeline-item">
-              <div class="timeline-period">Jan – Jul 2024</div>
-              <div class="timeline-role">Health Tech Intern</div>
-              <div class="timeline-place">Community Health Initiative</div>
-            </li>
+            <li class="timeline-item"><div class="timeline-period">2022 – 2025</div><div class="timeline-role">BCA</div><div class="timeline-place">VIT Vellore</div></li>
+            <li class="timeline-item"><div class="timeline-period">2025 – Present</div><div class="timeline-role">MSW</div><div class="timeline-place">VIT Vellore</div></li>
+            <li class="timeline-item"><div class="timeline-period">Aug – Oct 2025</div><div class="timeline-role">Social Work Trainee</div><div class="timeline-place">Freedom Foundation</div></li>
+            <li class="timeline-item"><div class="timeline-period">Jan – Jul 2024</div><div class="timeline-role">Health Tech Intern</div><div class="timeline-place">Community Health Initiative</div></li>
           </ul>
         </div>
       </div>
@@ -753,18 +273,9 @@
         <div>
           <p class="pill-pill-heading">Technical</p>
           <div class="pill-group">
-            <span class="pill">Java</span>
-            <span class="pill">HTML</span>
-            <span class="pill">CSS</span>
-            <span class="pill">Firebase</span>
-            <span class="pill">Arduino</span>
-            <span class="pill">MySQL</span>
-            <span class="pill">IoT</span>
-            <span class="pill">Power BI</span>
-            <span class="pill">AI for Business</span>
-            <span class="pill">Visual Studio</span>
-            <span class="pill">GitHub</span>
-            <span class="pill">Hosting</span>
+            <span class="pill">Java</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">Firebase</span>
+            <span class="pill">Arduino</span><span class="pill">MySQL</span><span class="pill">IoT</span><span class="pill">Power BI</span>
+            <span class="pill">AI for Business</span><span class="pill">Visual Studio</span><span class="pill">GitHub</span><span class="pill">Hosting</span>
           </div>
 
           <p class="pill-pill-heading">Professional</p>
@@ -780,108 +291,36 @@
     <section class="section" id="projects">
       <h2>Projects</h2>
       <div class="cards">
-        <article class="card">
-          <div class="card-meta">Web · AI</div>
-          <h3>E-Pharmacy with Chatbot</h3>
-          <p>Medicine purchase platform with OCR prescription upload and integrated AI chatbot for guided support.</p>
-        </article>
-        <article class="card">
-          <div class="card-meta">Security · Civic Tech</div>
-          <h3>Online Voting App</h3>
-          <p>Secure voting application with authenticated voter login using personal identification credentials.</p>
-        </article>
-        <article class="card">
-          <div class="card-meta">IoT · Agriculture</div>
-          <h3>Remote Plant Monitoring</h3>
-          <p>IoT-based system for smart agriculture, enabling remote monitoring of plant and soil conditions.</p>
-        </article>
-        <article class="card">
-          <div class="card-meta">Healthcare Systems</div>
-          <h3>Hospital Management System</h3>
-          <p>Application for efficient patient records, appointment scheduling, and basic hospital workflows.</p>
-        </article>
+        <article class="card"><div class="card-meta">Web · AI</div><h3>E-Pharmacy with Chatbot</h3><p>Medicine purchase platform with OCR prescription upload and integrated AI chatbot for guided support.</p></article>
+        <article class="card"><div class="card-meta">Security · Civic Tech</div><h3>Online Voting App</h3><p>Secure voting application with authenticated voter login using personal identification credentials.</p></article>
+        <article class="card"><div class="card-meta">IoT · Agriculture</div><h3>Remote Plant Monitoring</h3><p>IoT-based system for smart agriculture, enabling remote monitoring of plant and soil conditions.</p></article>
+        <article class="card"><div class="card-meta">Healthcare Systems</div><h3>Hospital Management System</h3><p>Application for efficient patient records, appointment scheduling, and basic hospital workflows.</p></article>
       </div>
     </section>
 
     <section class="section" id="certs">
       <h2>Certification Courses</h2>
       <div class="cards">
-        <article class="card">
-          <div class="card-meta">Digital Marketing</div>
-          <h3>Reliance Foundation — Feb 2025</h3>
-          <div class="card-links">
-            <a href="https://rfskillingacademy.com/en/skill_development/e-course/RF_498_en/Certificate-Course-in-Digital-Marketing-/91565" target="_blank">Show credential</a>
-            <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-meta">Generative AI &amp; Talent Acquisition</div>
-          <h3>LinkedIn Learning — Oct 2025</h3>
-          <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-generativeai-talentacquisition-activity-7387886744827957248-WpFh" target="_blank">Show credential</a>
-            <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-meta">Strategic Human Resources</div>
-          <h3>LinkedIn Learning — Sep 2025</h3>
-          <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-humanresources-strategichr-activity-7386298395537203201-8MID" target="_blank">Show credential</a>
-            <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-          </div>
-        </article>
+        <article class="card"><div class="card-meta">Digital Marketing</div><h3>Reliance Foundation — Feb 2025</h3><div class="card-links"><a href="https://rfskillingacademy.com/en/skill_development/e-course/RF_498_en/Certificate-Course-in-Digital-Marketing-/91565" target="_blank" rel="noopener noreferrer">Show credential</a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
+        <article class="card"><div class="card-meta">Generative AI &amp; Talent Acquisition</div><h3>LinkedIn Learning — Oct 2025</h3><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-generativeai-talentacquisition-activity-7387886744827957248-WpFh" target="_blank" rel="noopener noreferrer">Show credential</a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
+        <article class="card"><div class="card-meta">Strategic Human Resources</div><h3>LinkedIn Learning — Sep 2025</h3><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-humanresources-strategichr-activity-7386298395537203201-8MID" target="_blank" rel="noopener noreferrer">Show credential</a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
       </div>
     </section>
 
     <section class="section" id="articles">
       <h2>Articles</h2>
       <div class="cards">
-        <article class="card">
-          <div class="card-meta">Social Media · Youth</div>
-          <h3>Impact of Social Media on Youth</h3>
-          <p>Explores psychological theories and digital engagement from a social work perspective.</p>
-          <div class="card-links">
-            <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-meta">Tech for Social Good</div>
-          <h3>Tech for Social Good</h3>
-          <p>Discusses how web applications and digital platforms are transforming local NGOs and healthcare delivery.</p>
-          <div class="card-links">
-            <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-          </div>
-        </article>
+        <article class="card"><div class="card-meta">Social Media · Youth</div><h3>Impact of Social Media on Youth</h3><p>Explores psychological theories and digital engagement from a social work perspective.</p><div class="card-links"><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
+        <article class="card"><div class="card-meta">Tech for Social Good</div><h3>Tech for Social Good</h3><p>Discusses how web applications and digital platforms are transforming local NGOs and healthcare delivery.</p><div class="card-links"><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
       </div>
     </section>
 
     <section class="section" id="volunteering">
       <h2>Volunteering &amp; Collaboration</h2>
       <div class="cards">
-        <article class="card">
-          <div class="card-meta">VIT Gravitas 2025</div>
-          <h3>Department of Social Work Stall</h3>
-          <p>Represented the Department of Social Work at VIT Gravitas, showcasing departmental activities and experiential learning.</p>
-          <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-activity-7378987289483546624-2eAV" target="_blank">View LinkedIn Collab</a>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-meta">Ungaludan Stalin Camp</div>
-          <h3>Fieldwork — Tamil Nadu Govt</h3>
-          <p>Participated in a rural welfare camp delivering schemes and services directly to the public to ensure last‑mile connectivity.</p>
-          <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6" target="_blank">View LinkedIn Collab</a>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-meta">Hack the Dash — 2024</div>
-          <h3>Coordinator · Health Club VIT</h3>
-          <p>Coordinated “Hack the Dash” at VIT Gravitas 2024, where participants leveraged Power BI for data‑driven insights.</p>
-          <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ" target="_blank">View LinkedIn Collab</a>
-          </div>
-        </article>
+        <article class="card"><div class="card-meta">VIT Gravitas 2025</div><h3>Department of Social Work Stall</h3><p>Represented the Department of Social Work at VIT Gravitas, showcasing departmental activities and experiential learning.</p><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-activity-7378987289483546624-2eAV" target="_blank" rel="noopener noreferrer">View LinkedIn Collab</a></div></article>
+        <article class="card"><div class="card-meta">Ungaludan Stalin Camp</div><h3>Fieldwork — Tamil Nadu Govt</h3><p>Participated in a rural welfare camp delivering schemes and services directly to the public to ensure last-mile connectivity.</p><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6" target="_blank" rel="noopener noreferrer">View LinkedIn Collab</a></div></article>
+        <article class="card"><div class="card-meta">Hack the Dash — 2024</div><h3>Coordinator · Health Club VIT</h3><p>Coordinated “Hack the Dash” at VIT Gravitas 2024, where participants leveraged Power BI for data-driven insights.</p><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ" target="_blank" rel="noopener noreferrer">View LinkedIn Collab</a></div></article>
       </div>
     </section>
 
@@ -889,39 +328,50 @@
       <h2>Contact</h2>
       <p>Interested in collaborating or offering an internship? Reach out via any platform below.</p>
       <div class="contact-buttons">
-        <a href="https://wa.me/916382336606" target="_blank">WhatsApp</a>
-        <a href="mailto:sanjayprasath2004@gmail.com" target="_blank">Email</a>
-        <a href="https://www.instagram.com/sanjayprasath_2004/" target="_blank">Instagram</a>
-        <a href="https://x.com/Sanjayp62545815" target="_blank">X (Twitter)</a>
-        <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank">LinkedIn</a>
+        <a href="https://wa.me/916382336606" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="mailto:sanjayprasath2004@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+        <a href="https://www.instagram.com/sanjayprasath_2004/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://x.com/Sanjayp62545815" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+        <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
       <div class="footer">© 2025 Sanjay Prasath</div>
     </section>
   </main>
 
   <script>
-    // Fix 100vh issues on mobile & Instagram in-app browser.[web:39][web:43][web:55][web:57]
+    // mobile 100vh fix for webviews (Instagram in-app browser)
     function setViewportHeight() {
       const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", vh + "px");
+      document.documentElement.style.setProperty('--vh', vh + 'px');
     }
-    window.addEventListener("load", setViewportHeight);
-    window.addEventListener("resize", setViewportHeight);
+    window.addEventListener('load', setViewportHeight);
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', setViewportHeight);
 
-    // sprinkle small stars
-    const scene = document.querySelector(".space-scene");
-    const STAR_COUNT = 70;
-    for (let i = 0; i < STAR_COUNT; i++) {
-      const s = document.createElement("div");
-      s.className = "star";
-      const size = Math.random() * 2 + 1;
-      s.style.width = size + "px";
-      s.style.height = size + "px";
-      s.style.left = Math.random() * 100 + "vw";
-      s.style.top = Math.random() * 100 + "vh";
-      s.style.animationDelay = (Math.random() * 2.4) + "s";
-      scene.appendChild(s);
-    }
+    // sprinkle small stars (uses absolute coordinates with vw/vh to suit webviews)
+    (function createStars(){
+      const scene = document.querySelector('.space-scene');
+      if (!scene) return;
+      const STAR_COUNT = 70;
+      const frag = document.createDocumentFragment();
+      for (let i=0;i<STAR_COUNT;i++){
+        const s = document.createElement('div');
+        s.className = 'star';
+        const size = Math.random() * 2 + 1;
+        s.style.width = size + 'px';
+        s.style.height = size + 'px';
+        // use viewport-based positions to avoid layout reflow issues in webviews
+        s.style.left = (Math.random() * 100) + 'vw';
+        s.style.top = (Math.random() * 100) + 'vh';
+        s.style.animationDelay = (Math.random() * 2.4) + 's';
+        frag.appendChild(s);
+      }
+      scene.appendChild(frag);
+    })();
+
+    // A small enhancement: if the page is opened in a small webview that blocks target="_blank",
+    // these links will still navigate in the same window if necessary. No further action needed.
+    // Replace the hero image src and resume link with your own hosted URLs if you get blocked by IG viewer.
   </script>
 </body>
 </html>
