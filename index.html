@@ -14,18 +14,19 @@
 
     :root {
       scroll-behavior: smooth;
+      --vh: 1vh; /* for mobile height fix */
     }
 
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #f5f7ff;
-      min-height: 100vh;
+      min-height: calc(var(--vh) * 100);
       overflow-x: hidden;
       background: radial-gradient(circle at 20% 20%, #151933, #03040b 70%);
     }
 
-    /* === Sticky header, unique style === */
+    /* === Sticky header === */
     .site-header {
       position: sticky;
       top: 0;
@@ -34,6 +35,12 @@
       -webkit-backdrop-filter: blur(16px);
       background: linear-gradient(90deg, rgba(3, 6, 20, 0.95), rgba(10, 18, 52, 0.92));
       border-bottom: 1px solid rgba(144, 190, 255, 0.35);
+    }
+
+    /* Curved header bottom */
+    .curved-header {
+      border-radius: 0 0 50% 50% / 0 0 12% 12%;
+      overflow: hidden;
     }
 
     .site-header-inner {
@@ -103,6 +110,22 @@
       }
       .site-nav {
         font-size: 0.78rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .curved-header {
+        border-radius: 0 0 60% 60% / 0 0 18% 18%;
+      }
+      .site-header-inner {
+        gap: 0.6rem;
+      }
+      .site-nav {
+        width: 100%;
+        row-gap: 0.4rem;
+      }
+      .site-nav a {
+        font-size: 0.75rem;
       }
     }
 
@@ -220,7 +243,7 @@
     /* === Portfolio layout === */
     .portfolio {
       position: relative;
-      min-height: 100vh;
+      min-height: calc(var(--vh) * 100);
       padding: 3.2rem clamp(1.5rem, 4vw, 4rem) 4rem;
       display: flex;
       flex-direction: column;
@@ -246,7 +269,6 @@
       min-width: 0;
     }
 
-    /* Square photo card */
     .hero-photo-wrap {
       width: 190px;
       aspect-ratio: 1 / 1;
@@ -264,7 +286,7 @@
       object-fit: cover;
       display: block;
       border: 3px solid rgba(5, 8, 22, 0.95);
-      background: #050816;
+      background: linear-gradient(135deg, #90beff, #f6b2ff);
     }
 
     .hero-badge {
@@ -529,9 +551,11 @@
       margin-top: 2.5rem;
       font-size: 0.8rem;
       color: #9fb2ff;
+      text-align: center;      /* added */
+      width: 100%; 
     }
 
-    /* === Floating WhatsApp & Resume buttons (with SVG logo) === */
+    /* === Floating WhatsApp & Resume buttons === */
     .fab {
       position: fixed;
       right: 18px;
@@ -591,9 +615,8 @@
   </style>
 </head>
 <body>
-  <!-- Floating WhatsApp with SVG logo -->
+  <!-- Floating WhatsApp -->
   <a href="https://wa.me/916382336606" class="fab fab-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
-    <!-- Simplified WhatsApp SVG icon. [web:92][web:101] -->
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M20.1 3.9C18.4 2.2 16.1 1.3 13.7 1.3 7.9 1.3 3.2 6 3.2 11.8c0 1.9.5 3.7 1.5 5.3L3 23l6-1.6c1.5.8 3.1 1.2 4.8 1.2 5.8 0 10.5-4.7 10.5-10.5 0-2.5-1-4.8-2.7-6.4zm-6.4 15c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.6 1 1-3.5-.2-.3c-.9-1.3-1.4-2.9-1.4-4.5 0-4.4 3.6-8 8-8 2.1 0 4.1.8 5.6 2.3 1.5 1.5 2.3 3.4 2.3 5.6 0 4.4-3.6 8-8 8zm4.4-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.1.2-.6.7-.8.9-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4.1-.1.2-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.1-.3 0-.1 0-.2 0-.3s-.5-1.3-.7-1.7c-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.3 0-.5.2-.2.2-.7.7-.7 1.7s.7 2 .8 2.1c.1.1 1.4 2.2 3.4 3.1.5.2.8.4 1.1.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.4-1 .2-.5.2-.9.2-1 0-.1-.1-.2-.2-.2z"></path>
     </svg>
@@ -620,7 +643,7 @@
   </div>
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header curved-header">
     <div class="site-header-inner">
       <div class="site-logo">
         <div class="site-logo-badge">SP</div>
@@ -662,7 +685,6 @@
         </div>
 
         <div class="hero-photo-wrap">
-          <!-- square photo -->
           <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Photo of Sanjay Prasath" class="hero-photo" />
         </div>
       </div>
@@ -796,7 +818,7 @@
           <div class="card-meta">Generative AI &amp; Talent Acquisition</div>
           <h3>LinkedIn Learning — Oct 2025</h3>
           <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-generativeai-talentacquisition-activity-7387886744827957248-WpFh?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" target="_blank">Show credential</a>
+            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-generativeai-talentacquisition-activity-7387886744827957248-WpFh" target="_blank">Show credential</a>
             <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
           </div>
         </article>
@@ -804,7 +826,7 @@
           <div class="card-meta">Strategic Human Resources</div>
           <h3>LinkedIn Learning — Sep 2025</h3>
           <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-humanresources-strategichr-activity-7386298395537203201-8MID?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" target="_blank">Show credential</a>
+            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-humanresources-strategichr-activity-7386298395537203201-8MID" target="_blank">Show credential</a>
             <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
           </div>
         </article>
@@ -841,7 +863,7 @@
           <h3>Department of Social Work Stall</h3>
           <p>Represented the Department of Social Work at VIT Gravitas, showcasing departmental activities and experiential learning.</p>
           <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-activity-7378987289483546624-2eAV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" target="_blank">View LinkedIn Collab</a>
+            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-activity-7378987289483546624-2eAV" target="_blank">View LinkedIn Collab</a>
           </div>
         </article>
         <article class="card">
@@ -849,7 +871,7 @@
           <h3>Fieldwork — Tamil Nadu Govt</h3>
           <p>Participated in a rural welfare camp delivering schemes and services directly to the public to ensure last‑mile connectivity.</p>
           <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" target="_blank">View LinkedIn Collab</a>
+            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6" target="_blank">View LinkedIn Collab</a>
           </div>
         </article>
         <article class="card">
@@ -857,7 +879,7 @@
           <h3>Coordinator · Health Club VIT</h3>
           <p>Coordinated “Hack the Dash” at VIT Gravitas 2024, where participants leveraged Power BI for data‑driven insights.</p>
           <div class="card-links">
-            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAENyjDIBsUSPM3668VQCghzY1EsZIDUGzFI" target="_blank">View LinkedIn Collab</a>
+            <a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ" target="_blank">View LinkedIn Collab</a>
           </div>
         </article>
       </div>
@@ -878,6 +900,14 @@
   </main>
 
   <script>
+    // Fix 100vh issues on mobile & Instagram in-app browser.[web:39][web:43][web:55][web:57]
+    function setViewportHeight() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", vh + "px");
+    }
+    window.addEventListener("load", setViewportHeight);
+    window.addEventListener("resize", setViewportHeight);
+
     // sprinkle small stars
     const scene = document.querySelector(".space-scene");
     const STAR_COUNT = 70;
@@ -895,7 +925,3 @@
   </script>
 </body>
 </html>
-
-
-
-
