@@ -3,375 +3,603 @@
 <head>
   <meta charset="utf-8" />
   <title>Sanjay Prasath • MSW × Tech</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#03040b" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#020617" />
+  <meta name="description" content="Sanjay Prasath — MSW × Tech. Integrating social work practice, data and web technologies." />
+
   <style>
-    /* Reset & basics */
-    *, *::before, *::after { box-sizing: border-box; }
-    :root { --vh: 1vh; scroll-behavior: smooth; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: #f5f7ff;
-      min-height: calc(var(--vh) * 100);
-      overflow-x: hidden;
-      background: radial-gradient(circle at 20% 20%, #151933, #03040b 70%);
-      -webkit-font-smoothing: antialiased;
-      -webkit-text-size-adjust: 100%;
-      touch-action: manipulation;
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      color:#e5e7eb;
+      background:#020617;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      overflow-x:hidden;
     }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Black + sky blue background */
+    .bg-gradient{
+      position:fixed;inset:0;z-index:-2;
+      background:
+        radial-gradient(circle at top,#0f172a 0,#020617 55%),
+        radial-gradient(circle at bottom,#020617 0,#000 70%);
+    }
+
+    .bg-rings{
+      position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.55;
+    }
+    .ring{
+      position:absolute;border-radius:999px;
+      border:1px solid rgba(56,189,248,0.28);
+      transform-origin:center;
+      animation:ringSpin 40s linear infinite;
+    }
+    .ring.one{width:520px;height:520px;top:-160px;left:-120px;}
+    .ring.two{width:420px;height:420px;bottom:-140px;right:-40px;animation-duration:54s;}
+    .ring.three{width:360px;height:360px;top:40%;left:50%;animation-duration:66s;}
+    @keyframes ringSpin{to{transform:rotate(360deg);}}
+
+    .page-shell{position:relative;min-height:100vh;z-index:1;}
+    .container{max-width:1100px;margin:0 auto;padding:20px;}
 
     /* Header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      background: linear-gradient(90deg, rgba(3,6,20,0.95), rgba(10,18,52,0.92));
-      border-bottom: 1px solid rgba(144,190,255,0.35);
+    .header{
+      position:sticky;top:0;z-index:40;
+      backdrop-filter:blur(14px);
+      background:rgba(15,23,42,0.96);
+      border-bottom:1px solid rgba(30,64,175,0.7);
     }
-    .curved-header { border-radius: 0 0 50% 50% / 0 0 12% 12%; overflow: hidden; }
-    .site-header-inner {
-      max-width: 1120px; margin: 0 auto; padding: .75rem 1.6rem;
-      display:flex; align-items:center; justify-content:space-between; gap:1.25rem;
+    .header-inner{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      max-width:1100px;margin:0 auto;padding:10px 20px;
     }
-    .site-logo { display:flex; align-items:center; gap:.6rem; font-size:.95rem; text-transform:uppercase; letter-spacing:.18em; }
-    .site-logo-badge {
-      width:22px; height:22px; border-radius:7px;
-      background: conic-gradient(from 200deg,#90beff,#f6b2ff,#ffc857,#90beff);
-      display:flex; align-items:center; justify-content:center; font-weight:700; color:#050816; font-size:.7rem;
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand-badge{
+      width:40px;height:40px;border-radius:14px;
+      background:conic-gradient(from 180deg,#38bdf8,#0ea5e9,#a855f7,#38bdf8);
+      display:grid;place-items:center;
+      font-weight:800;color:#020617;font-size:15px;
+      box-shadow:0 0 0 2px rgba(15,23,42,1),0 10px 22px rgba(0,0,0,0.7);
     }
-    .site-logo-text span { color:#90beff; }
-    .site-nav { display:flex; flex-wrap:wrap; gap:.9rem; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; }
-    .site-nav a { color:#cbd7ff; text-decoration:none; opacity:.9; padding:.2rem .3rem; border-radius:999px; -webkit-tap-highlight-color: rgba(0,0,0,0); }
-    .site-nav a:hover { opacity:1; background: rgba(144,190,255,0.12); }
+    .brand-text{font-weight:700;font-size:15px;color:#e5e7eb}
+    .brand-sub{font-size:11px;color:#9ca3af;margin-top:1px}
 
-    /* Space scene (absolute so webviews don't freeze scrolling) */
-    .space-scene {
-      position: absolute;
-      inset: 0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:-1;
-      overflow:hidden;
-      pointer-events: none; /* avoid interfering with touches */
+    .nav{display:flex;gap:8px;align-items:center}
+    .nav a{
+      padding:7px 11px;border-radius:999px;font-size:13px;
+      color:#e5e7eb;
+      background:transparent;
+      border:1px solid transparent;
+      transition:background-color 160ms ease,border-color 160ms ease,transform 160ms ease;
     }
-    .solar-center {
-      position: relative;
-      width: clamp(360px, 60vmin, 720px);
-      height: clamp(360px, 60vmin, 720px);
-      border-radius:50%;
-      will-change: transform;
-      transform: translateZ(0);
-      opacity: .95;
+    .nav a:hover,.nav a:focus{
+      background:rgba(15,23,42,0.9);
+      border-color:rgba(56,189,248,0.7);
+      transform:translateY(-1px);
     }
-    .sun {
-      position:absolute; top:50%; left:50%;
-      width:8vmin; height:8vmin; margin:-4vmin 0 0 -4vmin; border-radius:50%;
-      background: radial-gradient(circle,#ffd56b,#ff7b00 70%, #b34700 100%);
-      box-shadow: 0 0 30px rgba(255,183,77,0.8), 0 0 60px rgba(255,145,0,0.8);
-      pointer-events: none;
+
+    .nav-toggle{
+      display:none;border:0;background:transparent;padding:7px;border-radius:8px;
+      font-size:20px;cursor:pointer;color:#e5e7eb;
     }
-    .orbit { position:absolute; top:50%; left:50%; border-radius:50%;
-      border:1px dashed rgba(173,186,255,0.2); transform: translate(-50%,-50%); pointer-events:none; }
-    .orbit.orbit-1 { width:18vmin; height:18vmin; }
-    .orbit.orbit-2 { width:28vmin; height:28vmin; }
-    .orbit.orbit-3 { width:40vmin; height:40vmin; }
-    .orbit.orbit-4 { width:54vmin; height:54vmin; }
 
-    .planet { position:absolute; top:50%; left:50%; transform-origin: -50% -50%; animation: orbit linear infinite; pointer-events:none; }
-    .planet-body { border-radius:50%; box-shadow: 0 0 20px rgba(0,0,0,0.5); transform: translateZ(0); }
-    .planet-1 { animation-duration:12s; }
-    .planet-1 .planet-body { width:1.8vmin; height:1.8vmin; background: radial-gradient(circle,#a7b0ff,#636bff 70%,#232862 100%); transform: translateX(9vmin); }
-    .planet-2 { animation-duration:18s; }
-    .planet-2 .planet-body { width:2.4vmin; height:2.4vmin; background: radial-gradient(circle,#ffef9a,#ffc857 70%,#b98318); transform: translateX(14vmin); }
-    .planet-3 { animation-duration:26s; }
-    .planet-3 .planet-body { width:2.8vmin; height:2.8vmin; background: radial-gradient(circle,#94e1ff,#2d9cdb 70%,#1b4965); transform: translateX(20vmin); }
-    .planet-4 { animation-duration:36s; }
-    .planet-4 .planet-body { width:3.6vmin; height:3.6vmin; background: radial-gradient(circle,#f6b2ff,#d066ff 70%,#6a1b9a); transform: translateX(27vmin); }
+    .mobile-panel{
+      position:fixed;right:16px;top:64px;min-width:200px;
+      background:#020617;
+      border:1px solid rgba(30,64,175,0.8);
+      box-shadow:0 18px 40px rgba(15,23,42,0.9);
+      border-radius:14px;padding:10px;display:none;z-index:70;
+    }
+    .mobile-panel a{
+      display:block;padding:8px 10px;border-radius:8px;color:#e5e7eb;font-size:14px;
+      transition:background-color 160ms ease,transform 160ms ease;
+    }
+    .mobile-panel a:hover{
+      background:#020617;
+      transform:translateX(2px);
+    }
+    .mobile-panel a + a{margin-top:4px}
+    .mobile-panel.show{display:block}
 
-    @keyframes orbit { from { transform: translate(-50%,-50%) rotate(0deg);} to { transform: translate(-50%,-50%) rotate(360deg);} }
+    /* Hero */
+    .hero{
+      margin-top:18px;padding:22px 22px 20px;
+      background:radial-gradient(circle at top left,rgba(56,189,248,0.18),rgba(15,23,42,0.98));
+      border-radius:22px;
+      border:1px solid rgba(56,189,248,0.4);
+      display:flex;gap:22px;align-items:center;flex-wrap:wrap;
+      box-shadow:0 26px 60px rgba(15,23,42,0.98);
+    }
+    .hero-left{flex:1;min-width:0}
+    .hero-badge{
+      font-size:11px;color:#e5e7eb;background:rgba(15,23,42,0.96);
+      padding:6px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
+      border:1px solid rgba(56,189,248,0.9);
+    }
+    .hero-badge-dot{
+      width:7px;height:7px;border-radius:999px;background:#22c55e;
+      box-shadow:0 0 8px rgba(34,197,94,0.9);
+    }
+    .hero-title{font-size:26px;margin:6px 0 6px;color:#f9fafb}
+    .hero-sub{margin:0 0 8px;color:#e5e7eb;font-size:14px}
+    .hero-desc{margin:0;color:#cbd5f5;font-size:14px}
+    .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
-    .star { position:absolute; width:2px; height:2px; background:white; border-radius:50%; opacity:.7; animation: twinkle 2.4s infinite ease-in-out; pointer-events:none; }
-    @keyframes twinkle { 0%,100% {opacity:.8; transform:scale(1);} 50% {opacity:.2; transform:scale(.6);} }
+    .btn{
+      padding:9px 13px;border-radius:999px;font-weight:700;font-size:13px;
+      border:0;cursor:pointer;
+      display:inline-flex;align-items:center;gap:6px;
+      transition:transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+    .btn:hover{
+      transform:translateY(-2px) scale(1.02);
+    }
+    .btn.primary{
+      background:#38bdf8;color:#020617;
+      box-shadow:0 10px 28px rgba(56,189,248,0.72);
+    }
+    .btn.secondary{
+      background:rgba(15,23,42,0.96);color:#e5e7eb;
+      border:1px solid rgba(148,163,184,0.7);
+      box-shadow:0 8px 22px rgba(15,23,42,0.9);
+    }
+    .btn.accent{
+      background:#0ea5e9;color:#0b1120;
+      border:1px solid rgba(125,211,252,0.9);
+      box-shadow:0 10px 26px rgba(14,165,233,0.75);
+    }
 
-    /* Portfolio layout */
-    .portfolio { position:relative; min-height: calc(var(--vh) * 100); padding: 3.2rem clamp(1.5rem,4vw,4rem) 4rem; display:flex; flex-direction:column; gap:3rem; backdrop-filter: blur(5px); max-width:1120px; margin:0 auto; z-index: 1; }
-    .hero { max-width:920px; }
-    .hero-top { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
-    .hero-text { flex:1 1 260px; min-width:0; }
-    .hero-photo-wrap { width:190px; aspect-ratio:1/1; border-radius:1.2rem; padding:4px; background: conic-gradient(from 220deg,#90beff,#f6b2ff,#ffc857,#90beff); box-shadow:0 18px 40px rgba(0,0,0,0.7); overflow:hidden; }
-    .hero-photo { width:100%; height:100%; border-radius:.9rem; object-fit:cover; display:block; border:3px solid rgba(5,8,22,0.95); background:linear-gradient(135deg,#90beff,#f6b2ff); }
+    .hero-photo{
+      width:140px;height:140px;border-radius:24px;overflow:hidden;
+      border:4px solid rgba(15,23,42,1);
+      box-shadow:0 18px 40px rgba(15,23,42,0.98);
+      background:radial-gradient(circle at 0 0,#38bdf8,#0ea5e9);
+      flex-shrink:0;
+      animation:floatPhoto 6s ease-in-out infinite;
+    }
+    .hero-photo img{width:100%;height:100%;object-fit:cover}
+    @keyframes floatPhoto{
+      0%{transform:translateY(0);}
+      50%{transform:translateY(-6px);}
+      100%{transform:translateY(0);}
+    }
 
-    .hero-badge { display:inline-flex; align-items:center; gap:.4rem; padding:.3rem .9rem; border-radius:999px; border:1px solid rgba(144,190,255,0.5); background:rgba(3,6,20,0.86); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:#9eb6ff; margin-bottom:.9rem; }
+    /* Sections */
+    .section{margin-top:26px}
+    .section h2{font-size:17px;margin:0 0 10px;color:#e5e7eb}
 
-    .hero h1 { font-size: clamp(2.3rem, 4.8vw, 3.3rem); letter-spacing:.08em; text-transform:uppercase; margin:0 0 .4rem 0; }
-    .hero-subtitle { font-weight:500; color:#f5f7ff; margin:0 0 .4rem 0; }
-    .hero-status { font-family: ui-monospace, Menlo, Monaco, Consolas, monospace; font-size:.85rem; color:#9ee493; margin:.4rem 0 0; }
-    .hero-status span { color:#ffd56b; }
+    .two-col{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+    @media (max-width:880px){.two-col{grid-template-columns:1fr}}
 
-    .hero-links { margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:1rem; }
-    .hero-links a { padding:.6rem 1.4rem; border-radius:999px; border:1px solid rgba(144,190,255,0.5); color:#e3ecff; text-decoration:none; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; background: linear-gradient(135deg, rgba(90,133,255,0.25), rgba(5,8,22,0.95)); backdrop-filter: blur(10px); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
-    .hero-links a:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.45); background: linear-gradient(135deg, rgba(144,190,255,0.45), rgba(5,8,22,1)); }
+    .section-card{
+      background:rgba(15,23,42,0.98);
+      border-radius:20px;padding:14px 16px;
+      border:1px solid rgba(30,64,175,0.8);
+      box-shadow:0 18px 38px rgba(15,23,42,0.98);
+      font-size:14px;color:#e5e7eb;
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+    .section-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 22px 52px rgba(15,23,42,0.98);
+      border-color:rgba(56,189,248,0.85);
+    }
 
-    .section { max-width:1040px; }
-    .section h2 { font-size:1.5rem; margin:0 0 1rem 0; position:relative; }
-    .section h2::after { content:""; position:absolute; left:0; bottom:-.35rem; width:3rem; height:2px; background: linear-gradient(90deg,#90beff,transparent); }
-    .section p { color:#d3ddff; line-height:1.7; margin:.4rem 0 0 0; }
+    .timeline{list-style:none;margin:8px 0 0;padding:0;border-left:2px solid rgba(56,189,248,0.6)}
+    .timeline-item{padding:7px 0 7px 10px;font-size:13px;color:#cbd5f5}
+    .timeline-item strong{display:block;color:#f9fafb;font-size:13px}
 
-    .two-col { display:grid; grid-template-columns: minmax(0,2.1fr) minmax(0,1.4fr); gap:2rem; }
-    @media (max-width:800px) { .two-col { grid-template-columns: 1fr; } .hero-top { flex-direction: column-reverse; align-items:flex-start; } .hero-photo-wrap { width:160px; } }
+    .pill-group{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{
+      padding:6px 10px;border-radius:999px;
+      background:rgba(15,23,42,0.96);
+      color:#e5e7eb;font-weight:600;font-size:12px;
+      border:1px solid rgba(56,189,248,0.8);
+      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    }
+    .pill:hover{
+      transform:translateY(-2px);
+      background:rgba(15,23,42,1);
+      border-color:rgba(125,211,252,0.95);
+    }
 
-    .timeline { list-style:none; padding:0; margin:.4rem 0 0 0; border-left:1px solid rgba(144,190,255,0.4); }
-    .timeline-item { padding:.15rem 0 .15rem 1.1rem; position:relative; }
-    .timeline-item::before { content:""; position:absolute; left:-5px; top:.72rem; width:9px; height:9px; border-radius:50%; background:#90beff; box-shadow:0 0 0 4px rgba(144,190,255,0.2); }
-    .timeline-period { font-size:.82rem; color:#9fb2ff; }
-    .timeline-role { font-size:.96rem; font-weight:600; }
-    .timeline-place { font-size:.9rem; color:#cbd5ff; }
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .card{
+      background:rgba(15,23,42,0.98);
+      border-radius:20px;padding:14px 14px 13px;
+      border:1px solid rgba(30,64,175,0.85);
+      box-shadow:0 16px 36px rgba(15,23,42,1);
+      font-size:13px;color:#e5e7eb;
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 22px 52px rgba(15,23,42,1);
+      border-color:rgba(56,189,248,0.85);
+    }
+    .card-meta{font-size:11px;color:#7dd3fc;font-weight:700;margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase}
+    .card h3{margin:0 0 8px;font-size:14px;color:#f9fafb}
+    .card p{margin:0;color:#e5e7eb;font-size:13px}
 
-    .pill-group { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:.4rem; }
-    .pill { padding:.26rem .7rem; border-radius:999px; border:1px solid rgba(144,190,255,0.45); font-size:.8rem; color:#e3ecff; background: rgba(8,12,35,0.9); backdrop-filter: blur(6px); white-space:nowrap; }
+    .card-links{margin-top:9px;display:flex;gap:8px;flex-wrap:wrap}
+    .link-btn{
+      padding:7px 10px;border-radius:999px;font-size:12px;font-weight:600;
+      background:#38bdf8;color:#020617;border:0;
+      transition:transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+    .link-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 24px rgba(56,189,248,0.8);
+    }
+    .link-btn.secondary{
+      background:rgba(15,23,42,0.96);color:#e5e7eb;
+      border:1px solid rgba(148,163,184,0.85);
+    }
 
-    .cards { display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:1rem; }
-    .card { padding:1.3rem 1.5rem; border-radius:1rem; background: radial-gradient(circle at top left, rgba(144,190,255,0.22), rgba(5,8,22,0.96)); border:1px solid rgba(144,190,255,0.35); box-shadow:0 18px 40px rgba(0,0,0,0.55); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-    .card:hover { transform: translateY(-6px); box-shadow:0 26px 60px rgba(0,0,0,0.7); border-color: rgba(202,218,255,0.8); }
-    .card h3 { margin:0 0 .4rem 0; font-size:1.05rem; }
-    .card-meta { font-size:.78rem; text-transform:uppercase; letter-spacing:.12em; color:#9fb2ff; margin-bottom:.35rem; }
-    .card p { margin:0; color:#cfd9ff; font-size:.93rem; line-height:1.6; }
-    .card-links { margin-top:.75rem; display:flex; flex-wrap:wrap; gap:.6rem; }
-    .card-links a { font-size:.8rem; color:#90beff; text-decoration:none; }
-    .card-links a:hover { text-decoration:underline; }
+    .contact-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .contact-actions a{
+      padding:7px 12px;border-radius:999px;font-size:13px;
+      background:#0ea5e9;
+      border:1px solid rgba(224,242,254,0.95);
+      color:#020617;
+      box-shadow:0 10px 26px rgba(14,165,233,0.75);
+      font-weight:600;
+      transition:transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+    .contact-actions a:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 30px rgba(14,165,233,0.85);
+      background:#38bdf8;
+    }
 
-    .contact-buttons { margin-top:1rem; display:flex; flex-wrap:wrap; gap:.7rem; }
-    .contact-buttons a { padding:.5rem 1.1rem; border-radius:999px; border:1px solid rgba(144,190,255,0.5); font-size:.85rem; color:#e3ecff; text-decoration:none; background: rgba(8,12,35,0.9); transition: background .2s ease, transform .2s ease; }
-    .contact-buttons a:hover { background: rgba(144,190,255,0.2); transform: translateY(-1px); }
+    .footer{margin-top:20px;text-align:center;color:#cbd5f5;font-size:12px;padding:18px 0;}
 
-    .footer { margin-top:2.5rem; font-size:.8rem; color:#9fb2ff; text-align:center; width:100%; }
+    :focus-visible{outline:3px solid rgba(56,189,248,0.9);border-radius:6px}
 
-    /* Floating FABs (kept as fixed but safe flag added) */
-    .fab { position: fixed; right: 18px; display:flex; align-items:center; justify-content:center; text-decoration:none; z-index:100; -webkit-tap-highlight-color: transparent; }
-    .fab-whatsapp { bottom: 18px; width:56px; height:56px; border-radius:50%; background-color:#25d366; box-shadow:0 4px 16px rgba(0,0,0,0.6); }
-    .fab-resume { bottom: 86px; padding:.5rem 1.1rem; border-radius:999px; background: linear-gradient(135deg,#90beff,#f6b2ff); color:#050816; font-size:.8rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; box-shadow:0 4px 16px rgba(0,0,0,0.6); white-space:nowrap; }
-    .fab:hover { transform: translateY(-2px); transition: transform .15s ease; }
-    .fab-whatsapp svg { width:28px; height:28px; fill:#fff; display:block; }
+    @media (max-width:880px){
+      .nav{display:none}
+      .nav-toggle{display:inline-flex}
+    }
+    @media (max-width:520px){
+      .hero{flex-direction:column;align-items:flex-start}
+      .hero-photo{width:118px;height:118px}
+      .header-inner{padding-inline:14px}
+    }
 
-    @media (max-width:600px) {
-      .site-header-inner { flex-direction:column; align-items:flex-start; padding-inline:1.2rem; }
-      .site-nav { font-size:.78rem; width:100%; row-gap:.4rem; }
-      .fab-whatsapp { right:14px; bottom:16px; width:52px; height:52px; }
-      .fab-resume { right:14px; bottom:80px; font-size:.78rem; }
+    /* Floating buttons */
+    .fab-resume{
+      position:fixed;right:18px;bottom:86px;
+      background:#38bdf8;color:#020617;
+      padding:10px 14px;border-radius:999px;
+      font-weight:700;font-size:13px;
+      text-decoration:none;
+      box-shadow:0 16px 32px rgba(56,189,248,0.85);
+      z-index:60;
+      border:1px solid rgba(226,232,240,0.9);
+      transition:transform 180ms ease, box-shadow 180ms ease;
+    }
+    .fab-resume:hover{
+      transform:translateY(-2px);
+      box-shadow:0 20px 40px rgba(56,189,248,0.95);
+    }
+    .fab-wa{
+      position:fixed;right:18px;bottom:18px;
+      background:#25d366;width:56px;height:56px;
+      border-radius:999px;display:grid;place-items:center;
+      color:#fff;text-decoration:none;
+      box-shadow:0 16px 32px rgba(22,163,74,0.7);
+      z-index:60;
+      transition:transform 180ms ease, box-shadow 180ms ease;
+    }
+    .fab-wa:hover{
+      transform:translateY(-2px);
+      box-shadow:0 20px 40px rgba(22,163,74,0.9);
+    }
+
+    /* Highlighted Contact section with pulse */
+    @keyframes contactPulse{
+      0%{box-shadow:0 0 0 0 rgba(56,189,248,0.55);}
+      100%{box-shadow:0 0 0 14px rgba(15,23,42,0);}
+    }
+
+    #contact-block{
+      position:relative;
+      background:radial-gradient(circle at top left,rgba(56,189,248,0.25),rgba(15,23,42,1));
+      border-radius:24px;
+      border:1px solid rgba(226,232,240,0.9);
+      box-shadow:
+        0 0 0 2px rgba(56,189,248,0.55),
+        0 22px 60px rgba(15,23,42,1);
+      animation:contactPulse 2.6s ease-out infinite;
+    }
+    #contact-block::before{
+      content:"Contact";
+      position:absolute;
+      top:10px;right:16px;
+      font-size:10px;letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:rgba(224,242,254,0.95);
+      background:rgba(15,23,42,0.9);
+      padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(148,163,184,0.9);
     }
   </style>
 </head>
 <body>
-  <!-- Floating WhatsApp (rel added) -->
-  <a href="https://wa.me/916382336606" class="fab fab-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.1 3.9C18.4 2.2 16.1 1.3 13.7 1.3 7.9 1.3 3.2 6 3.2 11.8c0 1.9.5 3.7 1.5 5.3L3 23l6-1.6c1.5.8 3.1 1.2 4.8 1.2 5.8 0 10.5-4.7 10.5-10.5 0-2.5-1-4.8-2.7-6.4zm-6.4 15c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.6 1 1-3.5-.2-.3c-.9-1.3-1.4-2.9-1.4-4.5 0-4.4 3.6-8 8-8 2.1 0 4.1.8 5.6 2.3 1.5 1.5 2.3 3.4 2.3 5.6 0 4.4-3.6 8-8 8zm4.4-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.1.2-.6.7-.8.9-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4.1-.1.2-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.1-.3 0-.1 0-.2 0-.3s-.5-1.3-.7-1.7c-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.3 0-.5.2-.2.2-.7.7-.7 1.7s.7 2 .8 2.1c.1.1 1.4 2.2 3.4 3.1.5.2.8.4 1.1.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.4-1 .2-.5.2-.9.2-1 0-.1-.1-.2-.2-.2z"/></svg>
-  </a>
-
-  <!-- Floating Resume -->
-  <a href="https://drive.google.com/drive/folders/1vSf_w5giYXh2gkR-_MazCl_rnl-HbzbE?usp=drive_link" class="fab fab-resume" target="_blank" rel="noopener noreferrer">Resume</a>
-
-  <!-- Space planets background (absolute & pointer-events none) -->
-  <div class="space-scene" aria-hidden="true">
-    <div class="solar-center">
-      <div class="sun"></div>
-      <div class="orbit orbit-1"></div>
-      <div class="orbit orbit-2"></div>
-      <div class="orbit orbit-3"></div>
-      <div class="orbit orbit-4"></div>
-
-      <div class="planet planet-1"><div class="planet-body"></div></div>
-      <div class="planet planet-2"><div class="planet-body"></div></div>
-      <div class="planet planet-3"><div class="planet-body"></div></div>
-      <div class="planet planet-4"><div class="planet-body"></div></div>
-    </div>
+  <div class="bg-gradient"></div>
+  <div class="bg-rings" aria-hidden="true">
+    <div class="ring one"></div>
+    <div class="ring two"></div>
+    <div class="ring three"></div>
   </div>
 
-  <!-- Header -->
-  <header class="site-header curved-header" role="banner">
-    <div class="site-header-inner">
-      <div class="site-logo" aria-hidden="false">
-        <div class="site-logo-badge">SP</div>
-        <div class="site-logo-text">Sanjay <span>Prasath</span></div>
-      </div>
-      <nav class="site-nav" role="navigation" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#certs">Certifications</a>
-        <a href="#volunteering">Volunteering</a>
-        <a href="#articles">Articles</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main portfolio content -->
-  <main class="portfolio" id="top" role="main">
-    <header class="hero">
-      <div class="hero-top">
-        <div class="hero-text">
-          <div class="hero-badge">
-            <span>Built With Purpose</span><span>•</span><span>Powered By Understanding</span>
+  <div class="page-shell">
+    <header class="header" role="banner">
+      <div class="header-inner">
+        <a href="#top" class="brand" aria-label="Home — Sanjay Prasath">
+          <div class="brand-badge">SP</div>
+          <div>
+            <div class="brand-text">Sanjay Prasath</div>
+            <div class="brand-sub">MSW × Tech</div>
           </div>
-          <h1>Sanjay Prasath</h1>
-          <p class="hero-subtitle">Designing Better Futures</p>
-          <p>Integrating social work practice, data, and web technologies to build human-centred solutions.</p>
-          <p class="hero-status">&gt; BootingCreativeCore… <span> Active ✔</span></p>
+        </a>
 
-          <div class="hero-links">
-            <a href="#volunteering">View Volunteering</a>
-            <a href="#articles">View Articles</a>
-            <a href="https://github.com/sanjayprasath2004" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-        </div>
+        <nav class="nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#certs">Certifications</a>
+          <a href="#volunteering">Volunteering</a>
+          <a href="#articles">Articles</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-        <div class="hero-photo-wrap" aria-hidden="false">
-          <!-- Replace the src with your image filename or hosted URL -->
-          <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Photo of Sanjay Prasath" class="hero-photo" />
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Open menu">☰</button>
+
+        <div id="mobilePanel" class="mobile-panel" role="menu" aria-hidden="true">
+          <a href="#about" role="menuitem">About</a>
+          <a href="#skills" role="menuitem">Skills</a>
+          <a href="#projects" role="menuitem">Projects</a>
+          <a href="#certs" role="menuitem">Certifications</a>
+          <a href="#volunteering" role="menuitem">Volunteering</a>
+          <a href="#articles" role="menuitem">Articles</a>
+          <a href="#contact" role="menuitem">Contact</a>
         </div>
       </div>
     </header>
 
-    <section class="section" id="about">
-      <h2>About</h2>
-      <div class="two-col">
-        <div>
-          <p>I am a postgraduate student pursuing a Master of Social Work at VIT Vellore, supported by a solid academic background in computer applications. This interdisciplinary training enables me to apply analytical reasoning, structured problem-solving, and a systems-oriented perspective to contemporary social issues.</p>
-          <p>My academic and fieldwork experiences have strengthened my competencies in community engagement, organisational functioning, programme implementation, and evidence-based social interventions. I have contributed to outreach initiatives and developmental activities aimed at enhancing individual well-being and promoting sustainable community development.</p>
-          <p>I am committed to advancing inclusive growth, strengthening welfare mechanisms, and integrating social work principles with technological insights to support effective and meaningful social change.</p>
-        </div>
-        <div>
-          <h3>Education &amp; Experience — Journey</h3>
-          <ul class="timeline">
-            <li class="timeline-item"><div class="timeline-period">2022 – 2025</div><div class="timeline-role">BCA</div><div class="timeline-place">VIT Vellore</div></li>
-            <li class="timeline-item"><div class="timeline-period">2025 – Present</div><div class="timeline-role">MSW</div><div class="timeline-place">VIT Vellore</div></li>
-            <li class="timeline-item"><div class="timeline-period">Aug – Oct 2025</div><div class="timeline-role">Social Work Trainee</div><div class="timeline-place">Freedom Foundation</div></li>
-            <li class="timeline-item"><div class="timeline-period">Jan – Jul 2024</div><div class="timeline-role">Health Tech Intern</div><div class="timeline-place">Community Health Initiative</div></li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <main id="main" class="container" role="main">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-left">
+          <div class="hero-badge"><span class="hero-badge-dot"></span>Built with purpose • Human-centred</div>
+          <h1 id="hero-heading" class="hero-title">Sanjay Prasath</h1>
+          <p class="hero-sub">Designing better futures — connecting social work and technology</p>
+          <p class="hero-desc">I combine social work practice, data, and software to build practical solutions for communities and healthcare systems.</p>
 
-    <section class="section" id="skills">
-      <h2>Skills</h2>
-      <div class="two-col">
-        <div>
-          <p class="pill-pill-heading">Social Work</p>
-          <div class="pill-group">
-            <span class="pill">Community Engagement</span>
-            <span class="pill">Case Work</span>
-            <span class="pill">Group Work</span>
-            <span class="pill">Research</span>
+          <div class="hero-cta">
+            <a href="#volunteering" class="btn primary">Volunteering</a>
+            <a href="#articles" class="btn accent">Articles</a>
+            <a href="https://github.com/sanjayprasath2004" target="_blank" rel="noopener noreferrer" class="btn secondary">GitHub</a>
+            <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" rel="noopener noreferrer" class="btn secondary">LinkedIn</a>
           </div>
         </div>
-        <div>
-          <p class="pill-pill-heading">Technical</p>
-          <div class="pill-group">
-            <span class="pill">Java</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">Firebase</span>
-            <span class="pill">Arduino</span><span class="pill">MySQL</span><span class="pill">IoT</span><span class="pill">Power BI</span>
-            <span class="pill">AI for Business</span><span class="pill">Visual Studio</span><span class="pill">GitHub</span><span class="pill">Hosting</span>
+
+        <div class="hero-photo" aria-hidden="false">
+          <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg" alt="Photo of Sanjay Prasath" loading="lazy" />
+        </div>
+      </section>
+
+      <section id="about" class="section" aria-labelledby="about-heading">
+        <h2 id="about-heading">About</h2>
+        <div class="two-col">
+          <div class="section-card">
+            <p>I am a postgraduate student pursuing a Master of Social Work at VIT Vellore with a background in computer applications. I focus on applying systems thinking, data, and technology to improve community services, healthcare delivery, and program outcomes.</p>
+            <p>Fieldwork and internships have given me hands-on experience in outreach, program implementation, and participatory methods. I aim to merge evidence-based practice with accessible tech solutions.</p>
           </div>
 
-          <p class="pill-pill-heading">Professional</p>
-          <div class="pill-group">
-            <span class="pill">MS Office</span>
-            <span class="pill">Digital Marketing</span>
-            <span class="pill">AI for Business</span>
+          <aside class="section-card">
+            <h3 style="margin-top:0;font-size:15px;color:#e5e7eb">Education & Experience</h3>
+            <ul class="timeline">
+              <li class="timeline-item"><strong>2022 – 2025</strong><span> BCA — VIT Vellore</span></li>
+              <li class="timeline-item"><strong>2025 – Present</strong><span> MSW — VIT Vellore</span></li>
+              <li class="timeline-item"><strong>Aug – Oct 2025</strong><span> Social Work Trainee — Freedom Foundation</span></li>
+              <li class="timeline-item"><strong>Jan – Jul 2024</strong><span> Health Tech Intern — Community Health Initiative</span></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="skills" class="section" aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Skills</h2>
+        <div class="section-card" style="display:flex;gap:20px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <h4 style="margin:0 0 8px 0;font-size:14px;color:#e5e7eb">Social Work</h4>
+            <div class="pill-group">
+              <span class="pill">Community Engagement</span>
+              <span class="pill">Case Work</span>
+              <span class="pill">Group Work</span>
+              <span class="pill">Research</span>
+            </div>
+          </div>
+          <div style="flex:1;min-width:220px">
+            <h4 style="margin:0 0 8px 0;font-size:14px;color:#e5e7eb">Technical</h4>
+            <div class="pill-group">
+              <span class="pill">HTML</span>
+              <span class="pill">CSS</span>
+              <span class="pill">Java</span>
+              <span class="pill">Firebase</span>
+              <span class="pill">MySQL</span>
+              <span class="pill">Power BI</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section" id="projects">
-      <h2>Projects</h2>
-      <div class="cards">
-        <article class="card"><div class="card-meta">Web · AI</div><h3>E-Pharmacy with Chatbot</h3><p>Medicine purchase platform with OCR prescription upload and integrated AI chatbot for guided support.</p></article>
-        <article class="card"><div class="card-meta">Security · Civic Tech</div><h3>Online Voting App</h3><p>Secure voting application with authenticated voter login using personal identification credentials.</p></article>
-        <article class="card"><div class="card-meta">IoT · Agriculture</div><h3>Remote Plant Monitoring</h3><p>IoT-based system for smart agriculture, enabling remote monitoring of plant and soil conditions.</p></article>
-        <article class="card"><div class="card-meta">Healthcare Systems</div><h3>Hospital Management System</h3><p>Application for efficient patient records, appointment scheduling, and basic hospital workflows.</p></article>
-      </div>
-    </section>
+      <section id="projects" class="section" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Projects</h2>
+        <div class="cards">
+          <article class="card" tabindex="0">
+            <div class="card-meta">Web · AI</div>
+            <h3>E-Pharmacy with Chatbot</h3>
+            <p>Responsive pharmacy UI with OCR prescription upload, Firebase backend and a chatbot for guided user support.</p>
+          </article>
 
-    <section class="section" id="certs">
-      <h2>Certification Courses</h2>
-      <div class="cards">
-        <article class="card"><div class="card-meta">Digital Marketing</div><h3>Reliance Foundation — Feb 2025</h3><div class="card-links"><a href="https://rfskillingacademy.com/en/skill_development/e-course/RF_498_en/Certificate-Course-in-Digital-Marketing-/91565" target="_blank" rel="noopener noreferrer">Show credential</a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
-        <article class="card"><div class="card-meta">Generative AI &amp; Talent Acquisition</div><h3>LinkedIn Learning — Oct 2025</h3><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-generativeai-talentacquisition-activity-7387886744827957248-WpFh" target="_blank" rel="noopener noreferrer">Show credential</a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
-        <article class="card"><div class="card-meta">Strategic Human Resources</div><h3>LinkedIn Learning — Sep 2025</h3><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-humanresources-strategichr-activity-7386298395537203201-8MID" target="_blank" rel="noopener noreferrer">Show credential</a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
-      </div>
-    </section>
+          <article class="card" tabindex="0">
+            <div class="card-meta">IoT · Agriculture</div>
+            <h3>Remote Plant Monitoring</h3>
+            <p>IoT system that collects plant and soil data for remote monitoring and alerts.</p>
+          </article>
 
-    <section class="section" id="articles">
-      <h2>Articles</h2>
-      <div class="cards">
-        <article class="card"><div class="card-meta">Social Media · Youth</div><h3>Impact of Social Media on Youth</h3><p>Explores psychological theories and digital engagement from a social work perspective.</p><div class="card-links"><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
-        <article class="card"><div class="card-meta">Tech for Social Good</div><h3>Tech for Social Good</h3><p>Discusses how web applications and digital platforms are transforming local NGOs and healthcare delivery.</p><div class="card-links"><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></article>
-      </div>
-    </section>
+          <article class="card" tabindex="0">
+            <div class="card-meta">Healthcare</div>
+            <h3>Hospital Management System</h3>
+            <p>Basic system for appointments, patient records and administrative workflows.</p>
+          </article>
+        </div>
+      </section>
 
-    <section class="section" id="volunteering">
-      <h2>Volunteering &amp; Collaboration</h2>
-      <div class="cards">
-        <article class="card"><div class="card-meta">VIT Gravitas 2025</div><h3>Department of Social Work Stall</h3><p>Represented the Department of Social Work at VIT Gravitas, showcasing departmental activities and experiential learning.</p><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-activity-7378987289483546624-2eAV" target="_blank" rel="noopener noreferrer">View LinkedIn Collab</a></div></article>
-        <article class="card"><div class="card-meta">Ungaludan Stalin Camp</div><h3>Fieldwork — Tamil Nadu Govt</h3><p>Participated in a rural welfare camp delivering schemes and services directly to the public to ensure last-mile connectivity.</p><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6" target="_blank" rel="noopener noreferrer">View LinkedIn Collab</a></div></article>
-        <article class="card"><div class="card-meta">Hack the Dash — 2024</div><h3>Coordinator · Health Club VIT</h3><p>Coordinated “Hack the Dash” at VIT Gravitas 2024, where participants leveraged Power BI for data-driven insights.</p><div class="card-links"><a href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ" target="_blank" rel="noopener noreferrer">View LinkedIn Collab</a></div></article>
-      </div>
-    </section>
+      <section id="certs" class="section" aria-labelledby="certs-heading">
+        <h2 id="certs-heading">Certifications</h2>
+        <div class="cards">
+          <article class="card">
+            <div class="card-meta">Digital Marketing</div>
+            <h3>Reliance Foundation — Feb 2025</h3>
+            <div class="card-links">
+              <a class="link-btn secondary" href="https://rfskillingacademy.com/en/skill_development/e-course/RF_498_en/Certificate-Course-in-Digital-Marketing-/91565" target="_blank" rel="noopener noreferrer">View Credential</a>
+              <a class="link-btn" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn">LinkedIn</a>
+            </div>
+          </article>
 
-    <section class="section" id="contact">
-      <h2>Contact</h2>
-      <p>Interested in collaborating or offering an internship? Reach out via any platform below.</p>
-      <div class="contact-buttons">
-        <a href="https://wa.me/916382336606" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="mailto:sanjayprasath2004@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
-        <a href="https://www.instagram.com/sanjayprasath_2004/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://x.com/Sanjayp62545815" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
-        <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
-      <div class="footer">© 2025 Sanjay Prasath</div>
-    </section>
-  </main>
+          <article class="card">
+            <div class="card-meta">Generative AI</div>
+            <h3>LinkedIn Learning — Oct 2025</h3>
+            <div class="card-links">
+              <a class="link-btn secondary" href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-generativeai-talentacquisition-activity-7387886744827957248-WpFh" target="_blank" rel="noopener noreferrer">View Credential</a>
+              <a class="link-btn" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn">LinkedIn</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-meta">Strategic HR</div>
+            <h3>LinkedIn Learning — Sep 2025</h3>
+            <div class="card-links">
+              <a class="link-btn secondary" href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_linkedinlearning-humanresources-strategichr-activity-7386298395537203201-8MID" target="_blank" rel="noopener noreferrer">View Credential</a>
+              <a class="link-btn" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn">LinkedIn</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="volunteering" class="section" aria-labelledby="volunteering-heading">
+        <h2 id="volunteering-heading">Volunteering</h2>
+        <div class="cards">
+          <article class="card">
+            <div class="card-meta">VIT Gravitas</div>
+            <h3>Department of Social Work Stall — 2025</h3>
+            <p>Represented the Department of Social Work at VIT Gravitas, showcasing departmental activities and experiential learning.</p>
+            <div class="card-links">
+              <a class="link-btn" href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_vitgravitas-socialwork-learningbydoing-activity-7378987289483546624-2eAV" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-meta">Fieldwork</div>
+            <h3>Ungaludan Stalin Camp — Tamil Nadu Govt</h3>
+            <p>Participated in a rural welfare camp delivering schemes and services directly to the public to ensure last-mile connectivity.</p>
+            <div class="card-links">
+              <a class="link-btn" href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_ungaludanstalin-tamilnadugovernment-fieldwork-activity-7357775960441606145-iSB6" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-meta">Hack the Dash</div>
+            <h3>Coordinator · Health Club VIT — 2024</h3>
+            <p>Coordinated “Hack the Dash” at VIT Gravitas 2024, where participants leveraged Power BI for data-driven insights.</p>
+            <div class="card-links">
+              <a class="link-btn" href="https://www.linkedin.com/posts/sanjay-prasath-982b69276_velloreinstituteoftechnology-vit-healthclubvit-activity-7242884614124421120-TDkZ" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="articles" class="section" aria-labelledby="articles-heading">
+        <h2 id="articles-heading">Articles</h2>
+        <div class="cards">
+          <article class="card"><div class="card-meta">Social Work</div><h3>Impact of Social Media on Youth</h3></article>
+          <article class="card"><div class="card-meta">Tech & Community</div><h3>Tech for Social Good</h3></article>
+        </div>
+      </section>
+
+      <section id="contact" class="section" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact</h2>
+        <div id="contact-block" class="section-card">
+          <p>If you want to collaborate, intern or offer feedback — reach out.</p>
+          <div class="contact-actions">
+            <a href="https://wa.me/916382336606" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="mailto:sanjayprasath2004@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+          <div class="footer">© 2025 Sanjay Prasath</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Floating resume and WhatsApp -->
+  <a class="fab-resume" href="https://drive.google.com/drive/folders/1vSf_w5giYXh2gkR-_MazCl_rnl-HbzbE?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Open resume">Resume</a>
+
+  <a class="fab-wa" href="https://wa.me/916382336606" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor">
+      <path d="M20.1 3.9C18.4 2.2 16.1 1.3 13.7 1.3 7.9 1.3 3.2 6 3.2 11.8c0 1.9.5 3.7 1.5 5.3L3 23l6-1.6c1.5.8 3.1 1.2 4.8 1.2 5.8 0 10.5-4.7 10.5-10.5 0-2.5-1-4.8-2.7-6.4zm-6.4 15c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.6 1 1-3.5-.2-.3c-.9-1.3-1.4-2.9-1.4-4.5 0-4.4 3.6-8 8-8 2.1 0 4.1.8 5.6 2.3 1.5 1.5 2.3 3.4 2.3 5.6 0 4.4-3.6 8-8 8zm4.4-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.1.2-.6.7-.8.9-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4.1-.1.2-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.1-.3 0-.1 0-.2 0-.3s-.5-1.3-.7-1.7c-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.3 0-.5.2-.2.2-.7.7-.7 1.7s.7 2 .8 2.1c.1.1 1.4 2.2 3.4 3.1.5.2.8.4 1.1.5.5.2 1 .2 1.4.1.4-.1 1.3-.5 1.4-1 .2-.5.2-.9.2-1 0-.1-.1-.2-.2-.2z"/>
+    </svg>
+  </a>
 
   <script>
-    // mobile 100vh fix for webviews (Instagram in-app browser)
-    function setViewportHeight() {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', vh + 'px');
-    }
-    window.addEventListener('load', setViewportHeight);
-    window.addEventListener('resize', setViewportHeight);
-    window.addEventListener('orientationchange', setViewportHeight);
+    // Mobile menu
+    (function(){
+      const btn = document.getElementById('navToggle');
+      const panel = document.getElementById('mobilePanel');
+      if (!btn || !panel) return;
 
-    // sprinkle small stars (uses absolute coordinates with vw/vh to suit webviews)
-    (function createStars(){
-      const scene = document.querySelector('.space-scene');
-      if (!scene) return;
-      const STAR_COUNT = 70;
-      const frag = document.createDocumentFragment();
-      for (let i=0;i<STAR_COUNT;i++){
-        const s = document.createElement('div');
-        s.className = 'star';
-        const size = Math.random() * 2 + 1;
-        s.style.width = size + 'px';
-        s.style.height = size + 'px';
-        // use viewport-based positions to avoid layout reflow issues in webviews
-        s.style.left = (Math.random() * 100) + 'vw';
-        s.style.top = (Math.random() * 100) + 'vh';
-        s.style.animationDelay = (Math.random() * 2.4) + 's';
-        frag.appendChild(s);
+      function openPanel(){
+        panel.classList.add('show');
+        panel.setAttribute('aria-hidden','false');
+        btn.setAttribute('aria-expanded','true');
+        const first = panel.querySelector('a');
+        if (first) first.focus();
       }
-      scene.appendChild(frag);
-    })();
+      function closePanel(){
+        panel.classList.remove('show');
+        panel.setAttribute('aria-hidden','true');
+        btn.setAttribute('aria-expanded','false');
+        btn.focus();
+      }
 
-    // A small enhancement: if the page is opened in a small webview that blocks target="_blank",
-    // these links will still navigate in the same window if necessary. No further action needed.
-    // Replace the hero image src and resume link with your own hosted URLs if you get blocked by IG viewer.
+      btn.addEventListener('click', ()=>{
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        if (expanded) closePanel(); else openPanel();
+      });
+
+      document.addEventListener('click',(e)=>{
+        if (!panel.classList.contains('show')) return;
+        if (e.target === btn) return;
+        if (!panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+      });
+
+      window.addEventListener('keydown',(e)=>{
+        if (e.key === 'Escape' && panel.classList.contains('show')) closePanel();
+      });
+
+      panel.querySelectorAll('a').forEach(a=>{
+        a.addEventListener('click', ()=> closePanel());
+      });
+    })();
   </script>
 </body>
 </html>
