@@ -30,7 +30,6 @@ position:sticky;
 top:0;
 z-index:999;
 }
-
 .logo{color:#ff2a2a;font-size:20px;font-weight:700;}
 nav ul{list-style:none;display:flex;gap:28px;}
 nav ul li a{color:#bbb;font-size:14px;}
@@ -62,15 +61,15 @@ transition:.3s;
 .btn:hover{background:#fff;color:#000;}
 .hero img{width:100%;border-radius:12px;filter:grayscale(100%);}
 
-/* SECTIONS */
+/* SECTION COMMON */
 .section{padding:90px 60px;}
 .section-title small{color:#ff2a2a;}
 .section-title h2{margin-top:5px;font-size:26px;}
 .card-grid{
 margin-top:40px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:24px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
 }
 .card{
 background:#121212;
@@ -80,7 +79,7 @@ border:1px solid #1f1f1f;
 transition:.3s;
 }
 .card:hover{border-color:#ff2a2a;transform:translateY(-6px);}
-.card img{width:100%;border-radius:8px;margin-bottom:10px;}
+.card img{width:100%;border-radius:8px;margin-bottom:12px;}
 
 /* ABOUT */
 .about{background:#111;}
@@ -203,25 +202,23 @@ nav ul.show{display:flex;}
 <small>Hello, I'm</small>
 <h1>Sanjay Prasath</h1>
 <p>Postgraduate student combining Social Work & Technology to build impactful digital solutions.</p>
-<a class="btn" href="#" target="_blank"><i class="fas fa-download"></i> Download Resume</a>
+<a class="btn" href="#"><i class="fas fa-download"></i> Download Resume</a>
 </div>
 <div>
-<img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg">
+<img src="20251225_183055.jpg">
 </div>
 </section>
 
 <!-- ABOUT -->
 <section class="section about animate" id="about">
 <div class="about-grid">
-<div>
-<img src="20251225_183055.jpg">
-</div>
+<div><img src="yourphoto2.jpg"></div>
 <div>
 <div class="section-title">
 <small>About</small>
 <h2>Who Am I?</h2>
 </div>
-<p>I am pursuing MSW at VIT University with BCA background, passionate about applying technology for social impact.</p>
+<p>I am pursuing MSW at VIT University with a background in BCA. I integrate technology and social systems to improve healthcare and community impact.</p>
 </div>
 </div>
 </section>
@@ -253,18 +250,36 @@ nav ul.show{display:flex;}
 <section class="section animate" id="projects">
 <div class="section-title">
 <small>Projects</small>
-<h2>My Projects</h2>
+<h2>My Academic & Technical Projects</h2>
 </div>
 
 <div class="card-grid">
+
 <div class="card">
 <h4>E-Pharmacy with Chatbot</h4>
-<p>AI-powered pharmacy with OCR and Firebase backend.</p>
+<p>Web-based pharmacy system featuring OCR prescription upload, Firebase backend and AI chatbot assistance.</p>
 </div>
+
+<div class="card">
+<h4>Remote Plant Monitoring (IoT)</h4>
+<p>IoT system collecting soil and plant data with real-time monitoring and alerts.</p>
+</div>
+
 <div class="card">
 <h4>Hospital Management System</h4>
-<p>Appointment and patient record management.</p>
+<p>Application for appointments, patient records, and administrative workflows.</p>
 </div>
+
+<div class="card">
+<h4>Online Voting Application</h4>
+<p>Secure online voting platform using unique user identification.</p>
+</div>
+
+<div class="card">
+<h4>Health Records Management System</h4>
+<p>Web application allowing users to store, view and manage health records securely.</p>
+</div>
+
 </div>
 </section>
 
@@ -276,16 +291,31 @@ nav ul.show{display:flex;}
 </div>
 
 <div class="card-grid">
+
 <div class="card">
 <img src="cert1.jpg">
 <h4>Digital Marketing</h4>
 <p>Reliance Foundation</p>
 </div>
+
 <div class="card">
 <img src="cert2.jpg">
 <h4>Generative AI</h4>
 <p>LinkedIn Learning</p>
 </div>
+
+<div class="card">
+<img src="cert3.jpg">
+<h4>Strategic HR</h4>
+<p>LinkedIn Learning</p>
+</div>
+
+<div class="card">
+<img src="cert4.jpg">
+<h4>Cyber Security Fundamentals</h4>
+<p>Online Course</p>
+</div>
+
 </div>
 </section>
 
@@ -297,31 +327,35 @@ nav ul.show{display:flex;}
 </div>
 
 <div class="card-grid">
+
 <div class="card">
 <h4>Impact of Social Media on Youth</h4>
 <p>Youth behaviour and mental health.</p>
-<a class="btn" href="https://sanjayprasath2004info.blogspot.com/2025/11/social-media-has-become-deeply.html" target="_blank">Visit Now</a>
+<a class="btn" href="#" target="_blank">Visit Now</a>
 </div>
+
 <div class="card">
 <h4>Cyber Security Awareness</h4>
 <p>Digital safety and best practices.</p>
-<a class="btn" href="https://sanjayprasath2004info.blogspot.com/2025/11/cyber-security-protecting-our-digital.html" target="_blank">Visit Now</a>
+<a class="btn" href="#" target="_blank">Visit Now</a>
 </div>
+
 </div>
 </section>
 
 <!-- CTA -->
 <section class="cta animate" id="contact">
 <h2>Let's Work Together</h2>
+
 <div class="cta-row">
 <a class="btn" href="mailto:sanjayprasath2004@gmail.com">
 <i class="fas fa-envelope"></i> Contact Me
 </a>
 
 <div class="social-links">
-<a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/"><i class="fab fa-linkedin-in"></i></a>
-<a href="https://github.com/sanjayprasath2004"><i class="fab fa-github"></i></a>
-<a href="https://www.instagram.com/sanjayprasath_2004/"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+<a href="#"><i class="fab fa-github"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
 </div>
 </div>
 </section>
@@ -330,19 +364,16 @@ nav ul.show{display:flex;}
 
 <script>
 
-// MENU TOGGLE
 function toggleMenu(){
 document.getElementById("navLinks").classList.toggle("show");
 }
 
-// CLOSE MENU AFTER CLICK
 document.querySelectorAll("#navLinks a").forEach(link=>{
 link.addEventListener("click",()=>{
 document.getElementById("navLinks").classList.remove("show");
 });
 });
 
-// SCROLL ANIMATION
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -359,4 +390,3 @@ observer.observe(el);
 
 </body>
 </html>
-
