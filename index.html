@@ -3,477 +3,359 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanjayprasath</title>
+<title>Sanjay Prasath | Portfolio</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
 
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;text-decoration:none;}
+html{scroll-behavior:smooth;}
 body{
-  font-family:Poppins,sans-serif;
-  background:#0a0a0a;
-  color:#e5e5e5;
+font-family:Poppins,sans-serif;
+background:#0a0a0a;
+color:#eee;
 }
 
-/* ===== NAV ===== */
+/* NAVBAR */
 nav{
-  background:#000;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 60px;
-  position:sticky;
-  top:0;
-  z-index:1000;
+background:#000;
+padding:18px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
 }
 
-.logo{
-  color:#ff2a2a;
-  font-weight:700;
-}
+.logo{color:#ff2a2a;font-size:20px;font-weight:700;}
+nav ul{list-style:none;display:flex;gap:28px;}
+nav ul li a{color:#bbb;font-size:14px;}
+nav ul li a:hover{color:#ff2a2a;}
+.menu-toggle{display:none;font-size:22px;color:#fff;cursor:pointer;}
 
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:28px;
-}
-
-nav a{
-  text-decoration:none;
-  color:#bbb;
-  font-size:14px;
-}
-
-nav a:hover{color:#ff2a2a}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:60px;
-  padding:90px 60px;
-  align-items:center;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+padding:90px 60px;
+align-items:center;
 }
-
-.hero small{color:#ff2a2a}
-
-.hero h1{
-  font-size:46px;
-  margin:10px 0;
-}
-
-.hero p{
-  color:#9ca3af;
-  max-width:520px;
-  margin-bottom:25px;
-}
-
+.hero small{color:#ff2a2a;}
+.hero h1{font-size:46px;}
+.hero p{color:#9ca3af;margin:20px 0;}
 .btn{
-  display:inline-block;
-  background:#ff2a2a;
-  color:#fff;
-  padding:10px 22px;
-  font-size:14px;
-  text-decoration:none;
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:#ff2a2a;
+color:#fff;
+padding:12px 26px;
+border-radius:30px;
+font-size:14px;
+transition:.3s;
 }
+.btn:hover{background:#fff;color:#000;}
+.hero img{width:100%;border-radius:12px;filter:grayscale(100%);}
 
-.red-box{
-  background:#c40000;
-  padding:18px;
-}
-
-.red-box img{
-  width:100%;
-  display:block;
-  filter:grayscale(100%);
-}
-
-/* ===== ABOUT ===== */
-.about{
-  background:#111;
-  padding:90px 60px;
-  display:grid;
-  grid-template-columns:420px 1fr;
-  gap:60px;
-}
-
-.about h3{
-  color:#ff2a2a;
-  font-size:14px;
-}
-
-.about h2{
-  font-size:30px;
-  margin:8px 0 18px;
-}
-
-.about p{
-  color:#9ca3af;
-  margin-bottom:20px;
-}
-
-.badges{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.badge{
-  background:#1a1a1a;
-  padding:10px;
-  font-size:12px;
-  text-align:center;
-  border:1px solid #222;
-}
-
-/* ===== COMMON SECTION ===== */
-.section{
-  padding:90px 60px;
-}
-
-.section-title small{
-  color:#ff2a2a;
-  font-size:14px;
-}
-
-.section-title h2{
-  font-size:26px;
-  margin-top:6px;
-}
-
+/* SECTIONS */
+.section{padding:90px 60px;}
+.section-title small{color:#ff2a2a;}
+.section-title h2{margin-top:5px;font-size:26px;}
 .card-grid{
-  margin-top:40px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
+margin-top:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:24px;
 }
-
 .card{
-  background:#121212;
-  padding:28px;
-  border:1px solid #1f1f1f;
-  transition:.3s;
+background:#121212;
+padding:25px;
+border-radius:10px;
+border:1px solid #1f1f1f;
+transition:.3s;
 }
+.card:hover{border-color:#ff2a2a;transform:translateY(-6px);}
+.card img{width:100%;border-radius:8px;margin-bottom:10px;}
 
-.card:hover{
-  border-color:#ff2a2a;
-  transform:translateY(-6px);
+/* ABOUT */
+.about{background:#111;}
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
 }
+.about-grid img{width:100%;border-radius:12px;}
 
-.card h4{
-  margin-bottom:8px;
-  font-size:16px;
-}
-
-.card h4::before{
-  content:"";
-  display:inline-block;
-  width:10px;
-  height:10px;
-  background:#ff2a2a;
-  border-radius:50%;
-  margin-right:8px;
-}
-
-.card p{
-  font-size:14px;
-  color:#9ca3af;
-  line-height:1.5;
-}
-
-.category{
-  font-size:13px;
-  color:#ff2a2a;
-  margin-bottom:6px;
-}
-
-/* ===== SKILLS ===== */
-.skills{
-  background:#111;
-}
-
-.skill-box{
-  background:#121212;
-  border:1px solid #1f1f1f;
-  padding:30px;
-}
-
-.skill-box h3{
-  color:#ff2a2a;
-  margin-bottom:18px;
-}
-
+/* SKILLS */
+.skills{background:#111;}
 .skill-list{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:12px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:12px;
+margin-top:30px;
 }
-
 .skill{
-  background:#1a1a1a;
-  padding:10px 14px;
-  font-size:14px;
-  border-left:3px solid #ff2a2a;
+background:#1a1a1a;
+padding:10px;
+border-left:3px solid #ff2a2a;
 }
 
-/* ===== CTA ===== */
+/* CTA */
 .cta{
-  background:#0d0d0d;
-  padding:80px 60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
+background:linear-gradient(135deg,#000,#1a0000);
+padding:80px 20px;
+text-align:center;
+}
+.cta h2{color:#ff2a2a;margin-bottom:30px;}
+.cta-row{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:25px;
+flex-wrap:wrap;
+}
+.social-links{display:flex;gap:18px;}
+.social-links a{
+width:42px;height:42px;
+background:#111;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#ff2a2a;
+font-size:18px;
+transition:.3s;
+}
+.social-links a:hover{
+background:#ff2a2a;
+color:#fff;
+transform:translateY(-4px);
 }
 
-.cta h2{font-size:28px}
-
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{
-  background:#000;
-  padding:30px;
-  text-align:center;
-  color:#777;
+background:#000;
+padding:25px;
+text-align:center;
+color:#777;
 }
 
-/* ===== MOBILE ===== */
+/* ANIMATION */
+.animate{
+opacity:0;
+transform:translateY(40px);
+transition:0.8s ease;
+}
+.animate.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* MOBILE */
 @media(max-width:900px){
-
-.hero{
-  grid-template-columns:1fr;
-  padding:60px 20px;
-}
-
-.about{
-  grid-template-columns:1fr;
-  padding:60px 20px;
-}
-
-.section{
-  padding:60px 20px;
-}
-
-.cta{
-  padding:60px 20px;
-}
-
-nav{
-  padding:18px 20px;
-}
-
-.hero h1{
-  font-size:34px;
-}
-
+.hero,.about-grid{grid-template-columns:1fr;padding:60px 20px;}
+.section{padding:60px 20px;}
 nav ul{
-  display:none;
+position:absolute;
+top:65px;
+right:0;
+background:#000;
+flex-direction:column;
+width:200px;
+padding:20px;
+display:none;
+}
+nav ul.show{display:flex;}
+.menu-toggle{display:block;}
 }
 
-}
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="logo">Sanjayprasath</div>
-  <ul>
-    <li><a href="#">HOME</a></li>
-    <li><a href="#">ABOUT</a></li>
-    <li><a href="#">SKILLS</a></li>
-    <li><a href="#">PROJECTS</a></li>
-  </ul>
+<div class="logo">Sanjay Prasath</div>
+<ul id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#certifications">Certifications</a></li>
+<li><a href="#articles">Articles</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<div class="menu-toggle" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div>
-    <small>Hello, My Name Is</small>
-    <h1>Sanjay Prasath</h1>
-    <p>
-      A postgraduate student combining Social Work and Technology
-      to create ethical, data-driven and impactful digital solutions.
-    </p>
-     <a class="btn" href="https://example.com" target="_blank">Download Resume </a>
-  </div>
-
-  <div class="red-box">
-    <img src="WhatsApp Image 2025-10-25 at 18.31.24_1bc86a9f.jpg">
-  </div>
+<section class="hero animate" id="home">
+<div>
+<small>Hello, I'm</small>
+<h1>Sanjay Prasath</h1>
+<p>Postgraduate student combining Social Work & Technology to build impactful digital solutions.</p>
+<a class="btn" href="#" target="_blank"><i class="fas fa-download"></i> Download Resume</a>
+</div>
+<div>
+<img src="yourphoto.jpg">
+</div>
 </section>
 
 <!-- ABOUT -->
-<section class="about">
-  <div class="red-box">
-    <img src="20251225_183055.jpg">
-  </div>
-
-  <div>
-    <h3>About me</h3>
-    <h2>Who Am I</h2>
-    <p>
-      I am pursuing MSW at VIT University with a background in BCA.
-      I apply systems thinking, data, and technology to improve
-      community services and healthcare delivery.
-    </p>
-
-    <div class="badges">
-      <div class="badge">Social Work</div>
-      <div class="badge">Technology</div>
-      <div class="badge">Research</div>
-      <div class="badge">Community</div>
-      <div class="badge">Data</div>
-      <div class="badge">Ethics</div>
-    </div>
-  </div>
+<section class="section about animate" id="about">
+<div class="about-grid">
+<div>
+<img src="yourphoto2.jpg">
+</div>
+<div>
+<div class="section-title">
+<small>About</small>
+<h2>Who Am I?</h2>
+</div>
+<p>I am pursuing MSW at VIT University with BCA background, passionate about applying technology for social impact.</p>
+</div>
+</div>
 </section>
 
 <!-- SKILLS -->
-<section class="section skills">
-  <div class="section-title">
-    <small>Skills</small>
-    <h2>Social Work & Technical Expertise</h2>
-  </div>
+<section class="section skills animate" id="skills">
+<div class="section-title">
+<small>Skills</small>
+<h2>My Expertise</h2>
+</div>
 
-  <div class="card-grid">
-    <div class="skill-box">
-      <h3>Social Work Skills</h3>
-      <div class="skill-list">
-        <div class="skill">Community Engagement</div>
-        <div class="skill">Case Work</div>
-        <div class="skill">Group Work</div>
-        <div class="skill">Research</div>
-        <div class="skill">Problem-solving</div>
-        <div class="skill">Documentation & Record-keeping</div>
-        <div class="skill">Advocacy for Client Rights</div>
-        <div class="skill">Empathy & Positive Attitude</div>
-        <div class="skill">Confidentiality & Professional Boundaries</div>
-      </div>
-    </div>
-
-    <div class="skill-box">
-      <h3>Technical Skills</h3>
-      <div class="skill-list">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">Java</div>
-        <div class="skill">Firebase</div>
-        <div class="skill">MySQL</div>
-        <div class="skill">Power BI</div>
-        <div class="skill">VS Code</div>
-        <div class="skill">Netlify / GitHub Pages</div>
-        <div class="skill">Basic Cybersecurity Awareness</div>
-        <div class="skill">MS Office</div>
-        <div class="skill">System Maintenance</div>
-      </div>
-    </div>
-  </div>
+<div class="skill-list">
+<div class="skill">Community Engagement</div>
+<div class="skill">Case Work</div>
+<div class="skill">Research</div>
+<div class="skill">HTML & CSS</div>
+<div class="skill">Java</div>
+<div class="skill">Firebase</div>
+<div class="skill">MySQL</div>
+<div class="skill">Power BI</div>
+<div class="skill">GitHub</div>
+<div class="skill">Leadership</div>
+<div class="skill">Communication</div>
+<div class="skill">Problem Solving</div>
+</div>
 </section>
 
 <!-- PROJECTS -->
-<section class="section">
-  <div class="section-title">
-    <small>Projects</small>
-    <h2>Academic & Technical Projects</h2>
-  </div>
+<section class="section animate" id="projects">
+<div class="section-title">
+<small>Projects</small>
+<h2>My Projects</h2>
+</div>
 
-  <div class="card-grid">
-    <div class="card">
-      <div class="category">Web · AI</div>
-      <h4>E-Pharmacy with Chatbot</h4>
-      <p>Responsive pharmacy UI with OCR prescription upload, Firebase backend and an AI chatbot for guided user support.</p>
-    </div>
-
-    <div class="card">
-      <div class="category">IoT · Agriculture</div>
-      <h4>Remote Plant Monitoring</h4>
-      <p>IoT system that collects plant and soil data for remote monitoring and alert-based notifications.</p>
-    </div>
-
-    <div class="card">
-      <div class="category">Healthcare</div>
-      <h4>Hospital Management System</h4>
-      <p>Basic system for appointments, patient records and administrative workflows.</p>
-    </div>
-
-    <div class="card">
-      <div class="category">Healthcare</div>
-      <h4>Online Voting App</h4>
-      <p>Online application allowing users to securely access and manage their information using a unique user ID.</p>
-    </div>
-  </div>
+<div class="card-grid">
+<div class="card">
+<h4>E-Pharmacy with Chatbot</h4>
+<p>AI-powered pharmacy with OCR and Firebase backend.</p>
+</div>
+<div class="card">
+<h4>Hospital Management System</h4>
+<p>Appointment and patient record management.</p>
+</div>
+</div>
 </section>
 
 <!-- CERTIFICATIONS -->
-<section class="section">
-  <div class="section-title">
-    <small>Certifications</small>
-    <h2>Professional Learning & Credentials</h2>
-  </div>
+<section class="section animate" id="certifications">
+<div class="section-title">
+<small>Certifications</small>
+<h2>My Certifications</h2>
+</div>
 
-  <div class="card-grid">
-    <div class="card">
-      <h4>Digital Marketing</h4>
-      <p>Reliance Foundation<br><small>Feb 2025</small></p>
-    </div>
-
-    <div class="card">
-      <h4>Generative AI, Recruiting & Talent Acquisition</h4>
-      <p>LinkedIn Learning<br><small>Oct 2025</small></p>
-    </div>
-
-    <div class="card">
-      <h4>Strategic HR</h4>
-      <p>LinkedIn Learning<br><small>Sep 2025</small></p>
-    </div>
-  </div>
+<div class="card-grid">
+<div class="card">
+<img src="cert1.jpg">
+<h4>Digital Marketing</h4>
+<p>Reliance Foundation</p>
+</div>
+<div class="card">
+<img src="cert2.jpg">
+<h4>Generative AI</h4>
+<p>LinkedIn Learning</p>
+</div>
+</div>
 </section>
 
 <!-- ARTICLES -->
-<section class="section">
-  <div class="section-title">
-    <small>Articles</small>
-    <h2>Published & Written Works</h2>
-  </div>
+<section class="section animate" id="articles">
+<div class="section-title">
+<small>Articles</small>
+<h2>Published Articles</h2>
+</div>
 
-  <div class="card-grid">
-
-    <div class="card">
-      <div class="category">Social Work</div>
-      <h4>Impact of Social Media on Youth</h4>
-      <p>
-        An article exploring how social media influences youth
-        behaviour, mental health, and social interaction.
-      </p>
-       <a class="btn" href="https://example.com" target="_blank">Visit Now</a>
-    </div>
-
-    <div class="card">
-      <div class="category">Technology</div>
-      <h4>Cyber Security: Protecting Our Digital World</h4>
-      <p>
-        A discussion on cyber threats, digital safety awareness
-        and best practices for protecting information online.
-      </p>
-       <a class="btn" href="https://example.com" target="_blank">Visit Now</a>
-    </div>
-
-  </div>
+<div class="card-grid">
+<div class="card">
+<h4>Impact of Social Media on Youth</h4>
+<p>Youth behaviour and mental health.</p>
+<a class="btn" href="https://sanjayprasath2004info.blogspot.com/2025/11/social-media-has-become-deeply.html" target="_blank">Visit Now</a>
+</div>
+<div class="card">
+<h4>Cyber Security Awareness</h4>
+<p>Digital safety and best practices.</p>
+<a class="btn" href="https://sanjayprasath2004info.blogspot.com/2025/11/cyber-security-protecting-our-digital.html" target="_blank">Visit Now</a>
+</div>
+</div>
 </section>
 
 <!-- CTA -->
-<section class="cta">
-  <h2>Lets work together</h2>
-   <a class="btn" href="sanjayprasath2004@gmail.com" target="_blank">Contact</a>
+<section class="cta animate" id="contact">
+<h2>Let's Work Together</h2>
+<div class="cta-row">
+<a class="btn" href="mailto:sanjayprasath2004@gmail.com">
+<i class="fas fa-envelope"></i> Contact Me
+</a>
+
+<div class="social-links">
+<a href="https://www.linkedin.com/in/sanjay-prasath-982b69276/"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://github.com/sanjayprasath2004"><i class="fab fa-github"></i></a>
+<a href="https://www.instagram.com/sanjayprasath_2004/"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
 </section>
 
-<footer>
-© Sanjayprasath
-</footer>
+<footer>© 2026 Sanjay Prasath</footer>
+
+<script>
+
+// MENU TOGGLE
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("show");
+}
+
+// CLOSE MENU AFTER CLICK
+document.querySelectorAll("#navLinks a").forEach(link=>{
+link.addEventListener("click",()=>{
+document.getElementById("navLinks").classList.remove("show");
+});
+});
+
+// SCROLL ANIMATION
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+document.querySelectorAll(".animate").forEach(el=>{
+observer.observe(el);
+});
+
+</script>
 
 </body>
 </html>
-
-
-
